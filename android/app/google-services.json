@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "571935621051",
+    "project_id": "aayushh-ab9f0",
+    "storage_bucket": "aayushh-ab9f0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:571935621051:android:532c89f348ea5c04314e9e",
+        "android_client_info": {
+          "package_name": "com.mycompany.aayushh"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "571935621051-jqco95bikj99p7fjaak47qd5u7fek136.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mycompany.aayushh",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "571935621051-lcg7u9n4e4j3irimi5tmc8afpjph7all.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBR4iLjpG8FEw-gOBmL0MmX701c6E8iT2g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "571935621051-lcg7u9n4e4j3irimi5tmc8afpjph7all.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "571935621051-avg3nfii8pkfjl2839nso27b07j8rpe7.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.flutterflow.healthai"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
