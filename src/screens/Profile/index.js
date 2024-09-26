@@ -24,29 +24,19 @@ export default function Profile({ navigation, route }) {
         }
     };
 
+
     const fetchData = async () => {
+        const userId = await AsyncStorage.getItem('id');
+        console.log('userId:', userId);
         try {
-        const token = await getData('token');
-
-        if (!token) {
-            throw new Error('Token not found');
-        }
-
-            const response = await fetch(`${BaseUrl2}/user/getUserById/${id}`,{
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`
-                }
-        });
-            const json = await response.json();
-            setUserData(json);
-            console.log('data:', json);
+            const response1 = await fetch(`${BaseUrl2}/user/getUserSingle/${userId}`);
+            const json1 = await response1.json();
+            setUserData(json1.data);
+            console.log('json:', json1.data);
         } catch (e) {
-            console.log('error:', e);
+            console.log('fetch error:', e);
         }
-    };
-
+    }
     const textToCopy = "This is some text that can be copied.";
 
     const copyToClipboard = () => {
@@ -56,7 +46,7 @@ export default function Profile({ navigation, route }) {
 
     useEffect(()=>{
         fetchData();
-        getData('token').then(token => console.log('token:', token));
+        // getData('token').then(token => console.log('token:', token));
     },[]);
 
     return (
@@ -66,14 +56,15 @@ export default function Profile({ navigation, route }) {
             </TouchableOpacity>
             <ScrollView contentContainerStyle={{ width: '100%' }}>
                 <TouchableOpacity onPress={()=>navigation.navigate('UserProfile')} style={styles.profileContainer}>
-                    <Image source={require('../../assets/images/profile3.png')} style={styles.profile} />
+                    <View style={styles.profile}/>
+                    {/* <Image source={require('../../assets/images/profile3.png')} style={styles.profile} /> */}
                     <View style={styles.textContainer}>
                         <View style={styles.nameContainer}>
-                            <Text style={styles.name}>Ishaan</Text>
+                            <Text style={styles.name}>{userData?.fullName}</Text>
                             <Image source={require('../../assets/images/tick.png')} style={styles.tick} />
                         </View>
                         <View style={styles.nameContainer}>
-                            <Text style={styles.number}>36465756888</Text>
+                            <Text style={styles.number}>{userData?.mobileNumber}</Text>
                             <TouchableOpacity style={{ marginLeft: '5%' }}>
                                 <Image source={require('../../assets/images/copy.png')} style={styles.copy} />
                             </TouchableOpacity>

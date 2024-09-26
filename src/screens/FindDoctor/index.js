@@ -40,9 +40,9 @@ export default function FindDoctor({ navigation }) {
 
     const fetchDoctorData = async () => {
         try {
-            const response = await fetch(`${BaseUrl2}/user/getDoctorConsultations`);
+            const response = await fetch(`${BaseUrl2}/doctor/getAllDoctorProfile`);
             const json = await response.json();
-            setDoctorData(json.consultations);
+            setDoctorData(json.data);
             console.log('data:', json);
         } catch (e) {
             console.log('error:', e);
@@ -201,7 +201,7 @@ export default function FindDoctor({ navigation }) {
                             <View style={{ flexDirection: 'row' }}>
                                 <Image source={require('../../assets/images/dr5.png')} style={{ height: 72, width: 72, borderRadius: 10 }} />
                                 <View style={{ paddingLeft: '2%', width: '90%' }}>
-                                    <Text style={{ fontSize: 16, fontFamily: 'Gilroy-SemiBold', color: colors.black, paddingLeft: '5%' }}>{item.name}</Text>
+                                    <Text style={{ fontSize: 16, fontFamily: 'Gilroy-SemiBold', color: colors.black, paddingLeft: '5%' }}>{item.fullName}</Text>
                                     <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                                         <Text style={{ fontSize: 12, fontFamily: 'Gilroy-SemiBold', color: colors.darkGrey, paddingTop: '2%', paddingLeft: '4%' }}>{item.speciality}</Text>
                                     </View>

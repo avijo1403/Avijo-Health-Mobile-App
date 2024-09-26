@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FlatList, Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import HeaderItem2 from "../../components/HeaderItem2";
 import styles from "./style";
 import { colors, wp } from "../../Theme/GlobalTheme";
-import { offerData } from "../../assets/Data";
+import { BaseUrl2, offerData } from "../../assets/Data";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function Consultation({navigation}) {
 
@@ -69,6 +70,27 @@ export default function Consultation({navigation}) {
 
     
     const Consultations = () => {
+
+        const [userData, setUserData] = useState([]);
+        
+    const fetchData = async () => {
+        const userId = await AsyncStorage.getItem("id");
+        try {
+            const response = await fetch(`${BaseUrl2}/user/appointments`);
+            const json = await response.json();
+            const myConsult = await json?.appointments?.filter((item)=>(item.userId._id === userId ));
+            setUserData(myConsult);
+            console.log('json:', myConsult);
+        } catch (e) {
+            console.log('fetch error:', e);
+        }
+    }
+
+    useEffect(()=>{
+        fetchData();
+        // console.log('id:', id);
+    },[]);
+
         return (
 
             <View style={{ width: '100%', alignItems: 'center' }}>
@@ -85,12 +107,12 @@ export default function Consultation({navigation}) {
                     nestedScrollEnabled={true}
                     style={{ width: '100%' }}
                     contentContainerStyle={{ paddingBottom: '5%' }}
-                    data={offerData}
+                    data={userData}
                     renderItem={({ item }) => (
                         <TouchableOpacity onPress={() => navigation.navigate('Detail')} style={{ width: '90%', marginTop: '5%', flexDirection: 'row', marginLeft: '5%', marginBottom: '5%' }}>
                             <Image source={require('../../assets/images/dr6.png')} style={{ width: 44, height: 53, borderRadius: 5, alignSelf: 'center' }} />
                             <View style={{ marginLeft: '5%', width: '100%' }}>
-                                <Text style={{ fontFamily: 'Gilroy-SemiBold', fontSize: 16, color: colors.blue }}>Dr. Jane Cooper</Text>
+                                <Text style={{ fontFamily: 'Gilroy-SemiBold', fontSize: 16, color: colors.blue }}>{item?.userName}</Text>
                                 <Text style={{ fontFamily: 'Gilroy-Medium', fontSize: 14, color: colors.darkGrey, paddingTop: '3%' }}>Psychologist at Apple Hospital</Text>
                                 <View style={{ flexDirection: 'row', marginTop: '0%', width: '80%', alignItems: 'center', justifyContent: 'space-between' }}>
                                     <Text style={{ fontSize: 12, fontFamily: 'Gilroy-Medium', color: colors.darkGrey }}>Status: <Text style={{ fontSize: 12, fontFamily: 'Gilroy-SemiBold', color: colors.blue }}>Completed</Text></Text>

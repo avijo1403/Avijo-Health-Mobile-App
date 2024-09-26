@@ -7,6 +7,7 @@ import styles from "./style"; // Ensure the path to your styles is correct
 import { BaseUrl2 } from "../../assets/Data";
 import { colors } from "../../Theme/GlobalTheme";
 import { GoogleSignin, statusCodes } from '@react-native-google-signin/google-signin';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function Login({ navigation }) {
   const phoneInput = useRef(null);
@@ -63,6 +64,19 @@ console.log("user info", userInfo);
     }
   };
 
+
+  const handleNavigation = async()=>{
+    const userId = await AsyncStorage.getItem("id");
+    if(userId){
+      navigation.navigate('BottomNav');
+    }
+  }
+
+  useEffect(()=>{
+    handleNavigation();
+  },[]);
+
+  
   return (
     <View style={styles.container}>
       <Text style={styles.heading}>Log In</Text>
@@ -89,8 +103,8 @@ console.log("user info", userInfo);
           <ActivityIndicator color={colors.blue} size={'large'} />
         ) : (
           <View style={{ width: '100%', alignItems: 'center' }}>
-            {/* <Button1 Text="USE OTP" onPress={handleUseOtp} /> */}
-            <Button1 Text="USE OTP" onPress={()=>{navigation.navigate('BottomNav')}} />
+            <Button1 Text="USE OTP" onPress={handleUseOtp} />
+            {/*<Button1 Text="USE OTP" onPress={()=>{navigation.navigate('BottomNav')}} />*/}
           </View>
         )}
       </View>

@@ -16,17 +16,10 @@ export default function UHIID({ navigation }) {
     const [drData, setDrData] = useState([]);
     const amount = 1000;
 
-    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NWZiMDI2MDE1ZTgxNjRhYTc4MzA1OSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcyMzUyNjA0NywiZXhwIjoxNzI0MTMwODQ3fQ.cQjO81HG9Y8yafkXs8_mwL8Q_G6sDJxRab5qzl7Rr4g';
 
     const fetchData = async () => {
         try {
-            const response = await fetch(`${BaseUrl2}/doctor/getAllDoctorProfileIds`, {
-                method: 'GET',
-                headers: {
-                    'Authorization': `Bearer ${token}`,
-                    'Content-Type': 'application/json',
-                },
-            });
+            const response = await fetch(`${BaseUrl2}/doctor/getAllDoctorProfile`);
             const json = await response.json();
             console.log('json:', json);
             setDrData(json.data);

@@ -1,10 +1,32 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Image, Text, TouchableOpacity, View } from "react-native";
 import styles from "./style";
 import { colors } from "../../Theme/GlobalTheme";
 import Button1 from "../../components/Button1";
+import { BaseUrl2 } from "../../assets/Data";
 
-export default function AppointmentConfirm({navigation}) {
+export default function AppointmentConfirm({navigation, route}) {
+    
+    const id = route.params.id;
+
+    const [singleData, setSingleData] = useState({});
+    
+
+    const fetchData = async () => {
+        try {
+            const response = await fetch(`${BaseUrl2}/doctor/getDoctorProfile/${id}`);
+            const json = await response.json();
+            setSingleData(json.data);
+            console.log('json:', json.data);
+        } catch (e) {
+            console.log('fetch error:', e);
+        }
+    }
+
+    useEffect(()=>{
+        fetchData();
+        // console.log('id:', id);
+    },[]);
 
     return (
         <View style={styles.container}>
@@ -26,12 +48,12 @@ export default function AppointmentConfirm({navigation}) {
             <View style={{ flexDirection: 'row', width: '90%', marginTop:'5%' }}>
                 <Image source={require('../../assets/images/appDoc.png')} style={{ width: 77, height: 98 }} />
                 <View style={{ paddingLeft: '5%', marginTop: '5%' }}>
-                    <Text style={{ fontSize: 16, fontFamily: 'Gilroy-SemiBold', color: colors.black }}>Dr. Sunil Puraswani</Text>
-                    <Text style={{ fontSize: 14, fontFamily: 'Gilroy-Medium', color: colors.darkGrey, marginTop: '5%' }}>MD Pedietrics MBBS</Text>
-                    <Text style={{ fontSize: 14, fontFamily: 'Gilroy-Medium', color: colors.darkGrey, marginTop: '5%' }}>Pediatrician</Text>
+                    <Text style={{ fontSize: 16, fontFamily: 'Gilroy-SemiBold', color: colors.black }}>{singleData?.fullName}</Text>
+                    <Text style={{ fontSize: 14, fontFamily: 'Gilroy-Medium', color: colors.darkGrey, marginTop: '5%' }}>{singleData?.specialization}</Text>
+                    {/* <Text style={{ fontSize: 14, fontFamily: 'Gilroy-Medium', color: colors.darkGrey, marginTop: '5%' }}>Pediatrician</Text> */}
                 </View>
             </View>
-            <Text style={{ fontSize: 16, fontFamily: 'Gilroy-SemiBold', color: colors.black, width: '100%', paddingLeft: '5%', marginTop: '5%' }}>Pysical examinations and vaccinations</Text>
+            <Text style={{ fontSize: 16, fontFamily: 'Gilroy-SemiBold', color: colors.black, width: '100%', paddingLeft: '5%', marginTop: '5%' }}>{singleData?.registrationCouncil}</Text>
             <Text style={{ fontSize: 14, fontFamily: 'Gilroy-Medium', color: colors.darkGrey, width: '100%', paddingLeft: '5%', marginTop: '5%' }}>3rd Floor,Headquarter Building,Satya Sai Square,Indore</Text>
             <Text style={{ fontSize: 14, fontFamily: 'Gilroy-SemiBold', color: colors.blue, width: '100%', paddingLeft: '5%', marginTop: '5%' }}>Get Directions</Text>
             <View style={styles.buttonContainer}>
