@@ -5,6 +5,7 @@ import ArticleHeader from "../../components/ArticleHeader";
 import { colors, hp } from "../../Theme/GlobalTheme";
 import SelectItem from "../../components/SelectItem";
 import { launchImageLibrary, launchCamera } from "react-native-image-picker";
+import HeaderItem from "../../components/HeaderItem";
 
 export default function UploadDoc({ navigation }) {
     const [selectedImage, setSelectedImage] = useState('');
@@ -64,14 +65,14 @@ export default function UploadDoc({ navigation }) {
 
     return (
         <View style={styles.container}>
-            <ArticleHeader onBack={() => navigation.goBack()} text="Upload Documents" />
+            <HeaderItem onBack={() => navigation.goBack()} text="Upload Documents" />
             <ScrollView style={{ width: '100%' }} contentContainerStyle={{ alignItems: 'center' }}>
                 <Text style={{ fontSize: 24, fontFamily: 'Gilroy-Bold', color: colors.black, width: '90%', marginTop: '5%' }}>Upload Prescription</Text>
                 <TouchableOpacity onPress={handleModal} style={{ width: '90%', alignSelf: 'center', alignItems: 'center', marginTop: '5%', marginBottom: '5%' }}>
-                    <Image source={require('../../assets/images/add4.png')} style={{ height: 26, width: 26 }} />
-                    <Text style={{ fontSize: 24, fontFamily: 'Gilroy-SemiBold', color: colors.lightGreen, width: '40%', textAlign: 'center', lineHeight: 36 }}>Add more Prescription</Text>
+                    <Image source={require('../../assets/images/add.png')} style={{ height: 26, width: 26 }} />
+                    <Text style={{ fontSize: 20, fontFamily: 'Gilroy-SemiBold', color: colors.blue, width: '40%', textAlign: 'center', lineHeight: 26 }}>Add more Prescription</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={{ height: 42, width: 43, zIndex: 2, marginTop: hp(25.5), position: 'absolute', alignSelf: 'flex-end', marginRight: '5.5%' }}>
+                <TouchableOpacity style={{ height: 42, width: 43, zIndex: 2, marginTop: hp(22.8), position: 'absolute', alignSelf: 'flex-end', marginRight: '5.5%', backgroundColor:colors.white }}>
                     <Image source={require('../../assets/images/cross.png')} style={{ height: 42, width: 42 }} />
                 </TouchableOpacity>
                 {selectedImage ? (
@@ -79,7 +80,7 @@ export default function UploadDoc({ navigation }) {
                 ) : (
                     <Image source={require('../../assets/images/doc.png')} style={{ height: 270, width: '90%' }} />
                 )}
-                <Text style={{ fontSize: 24, fontFamily: 'Gilroy-SemiBold', color: colors.lightGreen, width: '80%', lineHeight: 36, marginTop: '5%' }}>Document Name</Text>
+                <Text style={{ fontSize: 20, fontFamily: 'Gilroy-SemiBold', color: colors.blue, width: '80%', lineHeight: 36, marginTop: '5%' }}>Document Name</Text>
                 <View style={{ height: 1, width: '80%', backgroundColor: colors.grey, marginTop: '3%' }} />
                 <Text style={{ fontSize: 22, fontFamily: 'Gilroy-SemiBold', color: colors.black, width: '80%', marginTop: '5%' }}>Is this a Doctor’s Prescription?</Text>
                 <View style={{ flexDirection: 'row', width: '80%', justifyContent: 'flex-start' }}>

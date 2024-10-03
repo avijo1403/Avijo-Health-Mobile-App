@@ -5,6 +5,7 @@ import styles from "./style";
 import ArticleHeader from "../../components/ArticleHeader";
 import { colors } from "../../Theme/GlobalTheme";
 import { BaseUrl2, offerData } from "../../assets/Data";
+import HeaderItem from "../../components/HeaderItem";
 
 export default function HealthRecords({ navigation }) {
 
@@ -23,7 +24,7 @@ export default function HealthRecords({ navigation }) {
 
     return (
         <View style={styles.container}>
-            <ArticleHeader onBack={() => navigation.goBack()} text="Health Records" showSearch={true} image={<Image source={require('../../assets/images/addUser.png')} style={{height:24, width:24}}/>} />
+            <HeaderItem onBack={() => navigation.goBack()} text="Health Records" showSearch={true} image={<Image source={require('../../assets/images/addUser.png')} style={{height:24, width:24}}/>} />
             <ScrollView style={{width:'100%'}} contentContainerStyle={{ alignItems: 'center' }}>
                 <View style={{ width: '100%', alignItems: 'center' }}>
                     <FlatList
@@ -34,7 +35,7 @@ export default function HealthRecords({ navigation }) {
                             <TouchableOpacity onPress={()=>navigation.navigate('SaveUser',{id:item._id})} style={{ borderWidth: 1, width: '100%', flexDirection: 'row', padding: '5%', borderColor: colors.lightgrey }}>
                                 <Image source={require('../../assets/images/healthrecord.png')} style={{ height: 72, width: 72 }} />
                                 <View style={{ paddingLeft: '5%', width: '70%' }}>
-                                    <Text style={{ fontSize: 16, fontFamily: 'Gilroy-SemiBold', color: colors.lightGreen }}>{item.name}</Text>
+                                    <Text style={{ fontSize: 16, fontFamily: 'Gilroy-SemiBold', color: colors.blue }}>{item.name}</Text>
                                     <Text style={{ fontSize: 12, fontFamily: 'Gilroy-SemiBold', color: colors.darkGrey, marginTop: '3%' }}>{item.relation}</Text>
                                 </View>
                                 <Image source={require('../../assets/images/right2.png')} style={{height:32, width:32, alignSelf:'center'}}/>
@@ -42,9 +43,9 @@ export default function HealthRecords({ navigation }) {
                         )}
                     />
                 </View>
-                <TouchableOpacity onPress={() => navigation.navigate('AddNewUser')} style={{ flexDirection: 'row', alignItems: 'center' }}>
+                <TouchableOpacity onPress={() => navigation.navigate('AddNewUser')} style={{ flexDirection: 'row', alignItems: 'center', marginBottom:'5%' }}>
                     <Image source={require('../../assets/images/add3.png')} style={{ height: 14, width: 14 }} />
-                    <Text style={{ fontSize: 14, fontFamily: 'Gilroy-Medium', color: colors.lightGreen, paddingLeft: '2%' }}>Add New Users</Text>
+                    <Text style={{ fontSize: 14, fontFamily: 'Gilroy-Medium', color: colors.blue, paddingLeft: '2%' }}>Add New Users</Text>
                 </TouchableOpacity>
             </ScrollView>
         </View>

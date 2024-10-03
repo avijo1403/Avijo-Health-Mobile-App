@@ -6,6 +6,7 @@ import { colors } from "../../Theme/GlobalTheme";
 import CodePicker from "../../components/CodePicker";
 import Button2 from "../../components/Button2";
 import { BaseUrl2 } from "../../assets/Data";
+import CircleRadio from "../../components/CircleRadio";
 
 export default function NewAddress({ navigation }) {
 
@@ -62,12 +63,16 @@ export default function NewAddress({ navigation }) {
 
     return (
         <View style={styles.container}>
-            <ArticleHeader onBack={() => navigation.goBack()} text="Add Address" />
+            <ArticleHeader onBack={() => navigation.goBack()} text="Enter complete address" />
             <ScrollView style={{ width: '100%' }} contentContainerStyle={{ alignItems: "center" }}>
                 <View style={{ flexDirection: 'row', width: '90%', marginTop: '5%' }}>
-                    <Image source={require('../../assets/images/detect.png')} style={{ height: 32, width: 32 }} />
-                    <Text style={{ fontSize: 24, fontFamily: 'Gilroy-Bold', color: colors.black, paddingLeft: '4%' }}>Detect My Location</Text>
+                    <Text style={{ fontSize: 18, fontFamily: 'Gilroy-SemiBold', color: colors.black }}>Who you are ordering for?</Text>
                 </View>
+                <View style={{ flexDirection: 'row', alignItems: 'center', width: '90%', marginTop: '5%' }}>
+                    <CircleRadio text="Myself" />
+                    <CircleRadio text="Someone else" />
+                </View>
+                <Text style={{ fontSize: 16, fontFamily: 'Gilroy-SemiBold', color: colors.grey, width: '90%', marginTop: '5%' }}>Save address as</Text>
                 <View style={{ flexDirection: 'row', marginRight: 15, marginTop: '7%' }}>
                     <TouchableOpacity onPress={() => handleSelect(1)} style={select === 1 ? styles.optionContainer2 : styles.optionContainer}>
                         <Image source={require('../../assets/images/homeAddress.png')} style={{ height: 24, width: 24 }} />
@@ -149,7 +154,7 @@ export default function NewAddress({ navigation }) {
                     />
                 </View>
                 <View style={{ width: '100%', alignItems: 'center', marginTop: '10%', marginBottom: '5%' }}>
-                    <Button2 Text="Save Address" backgroundColor={colors.lightGreen} onPress={handleSaveAddress} />
+                    <Button2 Text="Save Address" backgroundColor={colors.green} onPress={handleSaveAddress} />
                 </View>
             </ScrollView>
         </View>

@@ -12,7 +12,7 @@ export default function Support({navigation}){
         <View style={styles.container}>
             <ArticleHeader onBack={()=>navigation.goBack()} text="Support"/>
             <ScrollView style={{width:'100%'}} contentContainerStyle={{alignItems:"center"}}>
-                <Text style={{fontSize:32, fontFamily:'Gilroy-SemiBold', color:colors.lightGreen, width:'90%', marginTop:'8%'}}>How may help you?</Text>
+                <Text style={{fontSize:24, fontFamily:'Gilroy-SemiBold', color:colors.green, width:'90%', marginTop:'8%'}}>How may help you?</Text>
                 <Text style={{fontSize:18, fontFamily:'Gilroy-Medium', color:colors.black, width:'90%', marginTop:'3%'}}>Let us know your queries and feedback.</Text>
                 <SupportInput text="EMAIL ADDRESS" placeholder="Enter Email Address"/>
                 <SupportInput text="MOBILE NUMBER" placeholder="Enter Mobile Number"/>
@@ -24,7 +24,7 @@ export default function Support({navigation}){
                 textAlignVertical="top"
                 />
                 <View style={{width:'100%', alignItems:'center', marginTop:'10%'}}>
-                    <Button2 Text="Submit" backgroundColor={colors.lightGreen} onPress={()=>navigation.navigate('Address')}/>
+                    <Button2 Text="Submit" backgroundColor={colors.green} onPress={()=>navigation.navigate('Address')}/>
                 </View>
             </ScrollView>
         </View>

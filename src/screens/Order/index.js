@@ -4,10 +4,11 @@ import styles from "./style";
 import ArticleHeader from "../../components/ArticleHeader";
 import { offerData } from "../../assets/Data";
 import { colors, wp } from "../../Theme/GlobalTheme";
+import HeaderItem2 from "../../components/HeaderItem2";
 
 export default function Order({ navigation }) {
 
-    const [select, setSelect] = useState(2);
+    const [select, setSelect] = useState(1);
 
 
     const handleSelect = (number) => {
@@ -90,20 +91,20 @@ export default function Order({ navigation }) {
 
     return (
         <View style={styles.container}>
-            <ArticleHeader onBack={() => navigation.goBack()} text="My Order" />
+            <HeaderItem2 onPress={() => navigation.goBack()} text="My Order" />
             <ScrollView style={{ width: '100%' }} contentContainerStyle={{ alignItems: 'center' }}>
-                <View style={{ flexDirection: 'row', marginRight: 15, marginTop: '7%', marginLeft: '7%', justifyContent: 'space-between', width: '90%' }}>
-                    <TouchableOpacity onPress={() => handleSelect(2)} style={select === 2 ? styles.optionContainer2 : styles.optionContainer}>
+                <View style={{ flexDirection: 'row', marginRight: 15, marginTop: '7%', marginLeft: '7%', justifyContent: 'space-between', width: '90%', borderBottomWidth:2, borderColor:colors.grey }}>
+                    <TouchableOpacity onPress={() => handleSelect(1)} style={select === 1 ? styles.optionContainer2 : styles.optionContainer}>
                         <Text style={select === 2 ? styles.optionText2 : styles.optionText}>Orders</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => handleSelect(2)} style={select === 2 ? styles.optionContainer2 : styles.optionContainer}>
+                        <Text style={select === 4 ? styles.optionText2 : styles.optionText}>Diagnostics</Text>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => handleSelect(3)} style={select === 3 ? styles.optionContainer2 : styles.optionContainer}>
                         <Text style={select === 3 ? styles.optionText2 : styles.optionText}>Consultations</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => handleSelect(4)} style={select === 4 ? styles.optionContainer2 : styles.optionContainer}>
-                        <Text style={select === 4 ? styles.optionText2 : styles.optionText}>Booking</Text>
-                    </TouchableOpacity>
                 </View>
-                {select === 2 && <Orders/>}
+                {select === 1 && <Orders/>}
                 {select === 3 && <Consultations/>}
             </ScrollView>
         </View>

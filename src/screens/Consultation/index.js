@@ -6,7 +6,7 @@ import { colors, wp } from "../../Theme/GlobalTheme";
 import { BaseUrl2, offerData } from "../../assets/Data";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-export default function Consultation({navigation}) {
+export default function Consultation({ navigation }) {
 
     const [all, setAll] = useState(false);
     const [consult, setConsult] = useState(true);
@@ -68,41 +68,41 @@ export default function Consultation({navigation}) {
         )
     }
 
-    
+
     const Consultations = () => {
 
         const [userData, setUserData] = useState([]);
-        
-    const fetchData = async () => {
-        const userId = await AsyncStorage.getItem("id");
-        try {
-            const response = await fetch(`${BaseUrl2}/user/appointments`);
-            const json = await response.json();
-            const myConsult = await json?.appointments?.filter((item)=>(item.userId._id === userId ));
-            setUserData(myConsult);
-            console.log('json:', myConsult);
-        } catch (e) {
-            console.log('fetch error:', e);
-        }
-    }
 
-    useEffect(()=>{
-        fetchData();
-        // console.log('id:', id);
-    },[]);
+        const fetchData = async () => {
+            const userId = await AsyncStorage.getItem("id");
+            try {
+                const response = await fetch(`${BaseUrl2}/user/appointments`);
+                const json = await response.json();
+                const myConsult = await json?.appointments?.filter((item) => (item.userId._id === userId));
+                setUserData(myConsult);
+                console.log('json:', myConsult);
+            } catch (e) {
+                console.log('fetch error:', e);
+            }
+        }
+
+        useEffect(() => {
+            fetchData();
+            // console.log('id:', id);
+        }, []);
 
         return (
 
             <View style={{ width: '100%', alignItems: 'center' }}>
-            <View style={{ flexDirection: 'row', width: '90%', justifyContent: 'space-between', marginTop: '10%' }}>
-                <View >
-                    <Text style={{ fontSize: 24, fontFamily: 'Gilroy-SemiBold', color: colors.black }}>My Consultations</Text>
-                    <Text style={{ fontSize: 14, fontFamily: 'Gilroy-SemiBold', color: colors.grey }}>Upcoming</Text>
+                <View style={{ flexDirection: 'row', width: '90%', justifyContent: 'space-between', marginTop: '10%' }}>
+                    <View >
+                        <Text style={{ fontSize: 24, fontFamily: 'Gilroy-SemiBold', color: colors.black }}>My Consultations</Text>
+                        <Text style={{ fontSize: 14, fontFamily: 'Gilroy-SemiBold', color: colors.grey }}>Upcoming</Text>
+                    </View>
+                    <TouchableOpacity>
+                        <Image source={require('../../assets/images/dotBlue.png')} style={{ width: 4, height: 18 }} />
+                    </TouchableOpacity>
                 </View>
-                <TouchableOpacity>
-                    <Image source={require('../../assets/images/dotBlue.png')} style={{ width: 4, height: 18 }} />
-                </TouchableOpacity>
-            </View>
                 <FlatList
                     nestedScrollEnabled={true}
                     style={{ width: '100%' }}
@@ -138,7 +138,7 @@ export default function Consultation({navigation}) {
 
     return (
         <View style={styles.container}>
-            <HeaderItem2 onPress={()=>navigation.goBack()}/>
+            <HeaderItem2 onPress={() => navigation.goBack()} />
             <ScrollView style={{ width: '100%' }} contentContainerStyle={{ alignItems: 'center' }}
                 showsVerticalScrollIndicator={false}>
                 <View style={styles.topContainer}>
@@ -152,8 +152,8 @@ export default function Consultation({navigation}) {
                         <Text style={[styles.topButtonText, { color: all ? colors.white : colors.grey }]}>Booking</Text>
                     </TouchableOpacity>
                 </View>
-                {orders  && <Orders/>}
-                {consult  && <Consultations/>}
+                {orders && <Orders />}
+                {consult && <Consultations />}
             </ScrollView>
         </View>
     )

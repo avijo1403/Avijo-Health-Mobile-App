@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
     },
     optionContainer:{
         borderWidth:1,
-        borderColor:colors.lightGreen,
+        borderColor:colors.green,
         borderRadius:6,
         flexDirection:'row',
         alignItems:'center',
@@ -20,13 +20,13 @@ const styles = StyleSheet.create({
         marginRight:10
     },
     optionText:{
-        color:colors.lightGreen,
+        color:colors.green,
         fontSize:10,
         marginLeft:5,
         fontFamily:'Gilroy-SemiBold'
     },
     optionContainer2:{
-        backgroundColor:colors.lightGreen,
+        backgroundColor:colors.green,
         borderRadius:6,
         flexDirection:'row',
         alignItems:'center',

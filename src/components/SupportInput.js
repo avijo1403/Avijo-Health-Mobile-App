@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
         fontFamily:'Gilroy-SemiBold',
         padding:'1%',
         paddingLeft:0,
-        color:colors.lightGreen,
+        color:colors.green,
     },
     warningContainer:{
         flexDirection:'row',

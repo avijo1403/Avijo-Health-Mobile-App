@@ -56,7 +56,7 @@ export default function AttachPrescription({navigation}) {
                     </TouchableOpacity>
                     <Text style={{ fontSize: 16, fontFamily: 'Gilroy-SemiBold', color: colors.black, paddingLeft: "4%", width: '65%' }}>Upload Prescription</Text>
                     <TouchableOpacity>
-                        <Text style={{ fontSize: 14, fontFamily: 'Gilroy-SemiBold', color: colors.lightGreen }}>Replace</Text>
+                        <Text style={{ fontSize: 14, fontFamily: 'Gilroy-SemiBold', color: colors.green }}>Replace</Text>
                     </TouchableOpacity>
                 </View>
                 <View style={{ flexDirection: 'row', width: "90%", alignItems: 'center', borderWidth: 1, borderColor: colors.grey, padding: "5%", marginTop: "5%" }}>
@@ -90,7 +90,7 @@ export default function AttachPrescription({navigation}) {
                 </View>
                 <Text style={{fontSize:14, fontFamily:'Gilroy-Medium', color:colors.grey, width:'80%', marginTop:"3%"}}>Total amount to be paid will be confirmed once your order is generated.</Text>
                 </TouchableOpacity>
-                <Button2 onPress={()=>navigation.navigate('OrderReview')} backgroundColor={colors.lightGreen} Text="Attach now"/>
+                <Button2 onPress={()=>navigation.navigate('OrderReview')} backgroundColor={colors.green} Text="Attach now"/>
             </ScrollView>
         </View>
     )

@@ -1,15 +1,28 @@
 import React, { useState } from "react";
-import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
+import { FlatList, Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import styles from "./style";
 import ArticleHeader from "../../components/ArticleHeader";
 import { colors, hp, wp } from "../../Theme/GlobalTheme";
 import Button2 from "../../components/Button2";
 import Collapsible4 from "../../components/Collapsible4";
 import Collapsible5 from "../../components/Collapsible5";
+import { product } from "../../assets/Data";
 
-export default function MyCart() {
+export default function MyCart({ navigation }) {
 
     const [select, setSelect] = useState(1);
+    const [qty, setQty] = useState(1);
+    const [columns, setColumns] = useState(3);
+
+    const decrement = () => {
+        if (qty > 1) {
+            setQty(qty - 1);
+        }
+    }
+
+    const increment = () => {
+        setQty(qty + 1);
+    }
 
     const handleSelect = (no) => {
         setSelect(no);
@@ -18,74 +31,123 @@ export default function MyCart() {
     const Medicine = () => {
         return (
             <View style={styles.container}>
-                <View style={{ width: '90%', alignItems: 'center', flexDirection: 'row', marginTop: "5%" }}>
-                    <Image source={require('../../assets/images/search1.png')} style={{ height: 24, width: 24 }} />
-                    <Text style={{ fontSize: 15, fontFamily: 'Gilroy-Medium', color: colors.darkGrey, paddingLeft: "2%" }}>Search for Medicine/Health products</Text>
+                <View style={{ width: '90%', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', borderRadius: 5, padding: '3%', borderWidth: 1, borderColor: colors.grey, marginTop: '5%' }}>
+                    <View style={{ flexDirection: 'row', alignItems: 'center', }}>
+                        <View style={{ padding: 5, backgroundColor: colors.grey, height: 40, width: 40, borderRadius: 8, alignItems: 'center', justifyContent: 'center' }}>
+                            <Image source={require('../../assets/images/clock.png')} style={{ height: 24, width: 24, backgroundColor: colors.white, borderRadius: 100 }} />
+                        </View>
+                        <View style={{ height: '100%', width: '80%' }}>
+                            <Text style={{ fontSize: 18, fontFamily: 'Gilroy-SemiBold', color: colors.black, marginLeft: '5%' }}>Delivery in 8 minutes</Text>
+                            <Text style={{ fontSize: 14, fontFamily: 'Gilroy-Medium', color: colors.darkGrey, marginLeft: '5%' }}>Shipment of 2 items</Text>
+                        </View>
+                    </View>
+                    {/* <View style={{ alignItems: 'flex-end' }}>
+                        <Image source={require('../../assets/images/rightBlack.png')} style={{ height: 20, width: 20 }} />
+                    </View> */}
                 </View>
-                <Text style={{ fontSize: 18, fontFamily: 'Gilroy-SemiBold', color: colors.darkGrey, paddingTop: "2%", width: '90%' }}>1 Item in your cart</Text>
-                <View style={{ flexDirection: 'row', width: "90%", alignItems: 'center', marginTop: '5%', marginBottom: "5%" }}>
-                    <Image source={require('../../assets/images/skinCare4.png')} style={{ height: 90, width: 90 }} />
-                    <View style={{ paddingLeft: '5%', width: "70%" }}>
-                        <Text style={{ fontSize: 12, color: colors.black, fontFamily: "Gilroy-SemiBold" }}>Skin shine Spf 30 sunscreen Location 100ml</Text>
-                        <Text style={{ fontSize: 10, color: colors.black, fontFamily: "Gilroy-SemiBold", marginTop: '2%' }}>Cadila Pharmaceuticals Ltd</Text>
-                        <Text style={{ fontSize: 10, color: colors.black, fontFamily: "Gilroy-SemiBold", marginTop: '2%' }}>Pack of 100 ML</Text>
-                        <Text style={{ fontSize: 12, color: colors.black, fontFamily: "Gilroy-SemiBold", marginTop: '2%' }}>$178.02 <Text style={{ fontSize: 10, fontFamily: 'Gilroy-Medium', color: colors.darkGrey }}>  MRP $197.80</Text></Text>
+                <View style={{ width: '90%', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', borderWidth: 1, borderColor: colors.lightgrey, borderRadius: 5, padding: '3%', marginTop: '5%' }}>
+                    <View style={{ flexDirection: 'row', alignItems: 'center', }}>
+                        <Image source={require('../../assets/images/product4.png')} style={{ height: 80, width: '30%', borderRadius: 3 }} />
+                        <View style={{ height: '100%', alignSelf: 'flex-start', width: '50%' }}>
+                            <Text style={{ fontSize: 16, fontFamily: 'Gilroy-SemiBold', color: colors.black, marginLeft: '5%' }}>Clipcal 500 Tablet 15</Text>
+                            <Text style={{ fontSize: 12, fontFamily: 'Gilroy-SemiBold', color: colors.grey, marginLeft: '5%' }}>30mg </Text>
+                        </View>
+                    </View>
+                    <View style={{ width: '20%', alignItems: 'flex-end' }}>
+                        <View style={{ flexDirection: 'row', alignItems: 'center', width: '90%', justifyContent: 'space-between', backgroundColor: colors.green, borderRadius: 5, marginBottom: '10%', height: 25 }}>
+                            <TouchableOpacity onPress={decrement} style={{ alignItems: 'center', width: '35%' }}>
+                                <Text style={{ fontSize: 16, fontFamily: 'Gilroy-SemiBold', color: colors.white, marginLeft: '5%', paddingLeft: '5%' }}>-</Text>
+                            </TouchableOpacity>
+                            <Text style={{ fontSize: 14, fontFamily: 'Gilroy-SemiBold', color: colors.white, marginLeft: '5%' }}>{qty}</Text>
+                            <TouchableOpacity onPress={increment} style={{ alignItems: 'center', width: '35%' }}>
+                                <Text style={{ fontSize: 16, fontFamily: 'Gilroy-SemiBold', color: colors.white, marginLeft: '5%', paddingRight: '5%' }}>+</Text>
+                            </TouchableOpacity>
+                        </View>
+                        <Text style={{ fontSize: 12, fontFamily: 'Gilroy-SemiBold', color: colors.black, marginLeft: '5%' }}>$24.56 </Text>
                     </View>
                 </View>
-                <Button2 backgroundColor={colors.lightGreen} Text="Add more Medicines" image={<Image source={require('../../assets/images/plus2.png')} style={{ height: 24, width: 24, marginRight: '5%' }} />} />
-                <View style={{ width: '90%', marginTop: '5%', flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end' }}>
-                    <TouchableOpacity>
-                        <Image source={require('../../assets/images/bin2.png')} style={{ height: 20, width: 20 }} />
-                    </TouchableOpacity>
-                    <View style={{ width: "30%", marginLeft: "3%" }}>
-                        <Collapsible5 text="1 item" />
+                <Text style={{ fontSize: 18, fontFamily: 'Gilroy-SemiBold', color: colors.black, width: '90%', marginTop: '5%' }}>Consumers also bought</Text>
+                <View style={{ width: '100%', alignItems: 'center' }}>
+                    <FlatList
+                        style={{ width: '100%' }}
+                        contentContainerStyle={{ alignItems: 'center' }}
+                        data={product}
+                        numColumns={columns}
+                        renderItem={({ item }) => (
+                            <View style={{ flexDirection: 'column', width: "32%", alignItems: 'center', borderRadius: 12, marginTop: '3%', paddingBottom: '2%', borderWidth: 1, padding: 5, borderColor: colors.lightgrey }}>
+                                <Image source={item} style={{ height: 75, width: '100%', borderRadius: 4 }} />
+                                <Text style={{ fontSize: 14, fontFamily: 'Gilroy-SemiBold', color: colors.black, width: '100%', paddingTop: "5%" }}>Dry Apricot </Text>
+                                <Text style={{ fontSize: 12, fontFamily: 'Gilroy-SemiBold', color: colors.black, width: '100%', paddingTop: "3%" }}>$40.56 </Text>
+                                <View style={{ flexDirection: 'row', alignItems: 'center', width: "100%", marginTop: '5%' }}>
+                                    <Text style={{ fontSize: 6, fontFamily: 'Gilroy-Medium', color: colors.green, backgroundColor: colors.lightgrey, padding: 5, textAlign: 'center', borderRadius: 30 }}>200 ml</Text>
+                                </View>
+                                <View style={{ justifyContent: 'space-between', width: '100%', flexDirection: 'row', alignItems: 'center' }}>
+                                    <View style={{ flexDirection: 'row', alignItems: 'center', width: "50%", marginTop: '5%' }}>
+                                        <Image source={require('../../assets/images/clock.png')} style={{ height: 16, width: 16 }} />
+                                        <Text style={{ fontSize: 12, fontFamily: 'Gilroy-Medium', color: colors.darkGrey, marginLeft: '2%', marginTop: '2%' }}>15 mins</Text>
+                                    </View>
+                                    <TouchableOpacity onPress={() => navigation.navigate('ProductDetail')} style={[styles.buttonSubContainer, { backgroundColor: '#2C851121' }]}>
+                                        <Text style={styles.buttonText}>Add</Text>
+                                    </TouchableOpacity>
+                                </View>
+                            </View>)} />
+                </View>
+                <Text style={{ fontSize: 18, fontFamily: 'Gilroy-SemiBold', color: colors.black, width: '90%', marginTop: '5%' }}>Bill Details</Text>
+                <Text style={{ fontSize: 16, fontFamily: 'Gilroy-Medium', color: colors.darkGrey, width: "90%", marginTop: '5%' }}>Bill details</Text>
+                <View style={{ flexDirection: 'row', alignItems: 'center', width: '90%', justifyContent: 'space-between' }}>
+                    <Text style={{ fontSize: 16, fontFamily: 'Gilroy-Medium', color: colors.darkGrey, marginTop: '5%' }}>MRP</Text>
+                    <Text style={{ fontSize: 14, fontFamily: 'Gilroy-Medium', color: colors.black, marginTop: '5%' }}> $197.80</Text>
+                </View>
+                <View style={{ flexDirection: 'row', alignItems: 'center', width: '90%', justifyContent: 'space-between' }}>
+                    <Text style={{ fontSize: 16, fontFamily: 'Gilroy-Medium', color: colors.green, marginTop: '3%' }}>Product Discount</Text>
+                    <Text style={{ fontSize: 14, fontFamily: 'Gilroy-Medium', color: colors.green, marginTop: '3%' }}>  $19.78</Text>
+                </View>
+                <View style={{ flexDirection: 'row', alignItems: 'center', width: '90%', justifyContent: 'space-between' }}>
+                    <Text style={{ fontSize: 16, fontFamily: 'Gilroy-Medium', color: colors.black, marginTop: '3%' }}>Taxes and Charges</Text>
+                    <Text style={{ fontSize: 14, fontFamily: 'Gilroy-Medium', color: colors.black, marginTop: '3%' }}>  $11.00</Text>
+                </View>
+                <View style={{ flexDirection: 'row', alignItems: 'center', width: '90%', justifyContent: 'space-between' }}>
+                    <Text style={{ fontSize: 16, fontFamily: 'Gilroy-Medium', color: colors.black, marginTop: '3%' }}>Delivery charges</Text>
+                    <Text style={{ fontSize: 14, fontFamily: 'Gilroy-Medium', color: colors.black, marginTop: '3%' }}><Text style={{ color: colors.grey, textDecorationLine: 'line-through' }}>$149.00</Text>  $39.00</Text>
+                </View>
+                <View style={{ flexDirection: 'row', alignItems: 'center', width: '90%', justifyContent: 'space-between' }}>
+                    <Text style={{ fontSize: 16, fontFamily: 'Gilroy-Medium', color: colors.black, marginTop: '3%' }}>Bill total</Text>
+                    <Text style={{ fontSize: 14, fontFamily: 'Gilroy-Medium', color: colors.black, marginTop: '3%' }}>$228.02</Text>
+                </View>
+                <View style={{ height: 1, width: '100%', backgroundColor: colors.lightgrey, marginTop: '5%', marginBottom: '5%' }} />
+                <View style={{ width: '90%', alignItems: 'center', backgroundColor: colors.background, borderRadius: 5, marginTop: '5%', padding: 5, marginBottom: '5%', paddingBottom: 10 }}>
+                    <View style={{ width: '100%', alignItems: 'center', flexDirection: 'row', justifyContent: 'space-between' }}>
+                        <Text style={{ fontSize: 14, fontFamily: 'Gilroy-SemiBold', paddingLeft: '3%', color: colors.green, marginTop: '3%', width: "60%", textAlign: 'left' }}>Inclusive of all taxes</Text>
+                        <Text style={{ fontSize: 14, fontFamily: 'Gilroy-SemiBold', paddingLeft: '3%', color: colors.green, marginTop: '3%', width: "20%", textAlign: 'left' }}>$32.00</Text>
+                    </View>
+                    <Text style={{ fontSize: 12, fontFamily: 'Gilroy-Medium', paddingLeft: '3%', color: colors.green, marginTop: '3%', width: "100%", textAlign: 'left' }}>Includes $30 savings through free delivery</Text>
+                </View>
+                <Text style={{ fontSize: 18, fontFamily: 'Gilroy-SemiBold', color: colors.black, width: '90%', marginTop: '5%' }}>Delivery Instructions</Text>
+                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', width: '90%', marginTop: '5%' }}>
+                    <View style={{ borderWidth: 1, borderColor: colors.grey, borderRadius: 5, width: '32%', alignItems: 'center', height: 100, justifyContent: 'center' }}>
+                        <Image source={require('../../assets/images/micGrey.png')} style={{ height: 32, width: 32 }} />
+                        <Text style={{ color: colors.green, fontSize: 14, fontFamily: 'Gilroy-SemiBold', width: 60, textAlign: 'center' }}>Press here an..</Text>
+                    </View>
+                    <View style={{ borderWidth: 1, borderColor: colors.grey, borderRadius: 5, width: '32%', alignItems: 'center', height: 100, justifyContent: 'center' }}>
+                        <Image source={require('../../assets/images/cutPhone.png')} style={{ height: 32, width: 32 }} />
+                        <Text style={{ color: colors.green, fontSize: 14, fontFamily: 'Gilroy-SemiBold', width: 60, textAlign: 'center' }}>Avoid calling</Text>
+                    </View>
+                    <View style={{ borderWidth: 1, borderColor: colors.grey, borderRadius: 5, width: '32%', alignItems: 'center', height: 100, justifyContent: 'center' }}>
+                        <Image source={require('../../assets/images/cutRing.png')} style={{ height: 32, width: 32 }} />
+                        <Text style={{ color: colors.green, fontSize: 14, fontFamily: 'Gilroy-SemiBold', width: 60, textAlign: 'center' }}>Don’t ring the bell</Text>
                     </View>
                 </View>
-                <Text style={{ width: '90%', fontSize: 18, fontFamily: 'Gilroy-SemiBold', color: colors.darkGrey }}>Upload Prescription</Text>
-                <View style={{ flexDirection: 'row', alignItems: 'center', width: '90%' }}>
-                    <View style={{ width: '40%', alignItems: 'center', padding: '5%' }}>
-                        <Image source={require('../../assets/images/add4.png')} style={{ height: 19, width: 19 }} />
-                        <Text style={{ textAlign: 'center', fontSize: 14, fontFamily: 'Gilroy-Medium', color: colors.lightGreen, marginTop: '5%' }}>Add more Prescription</Text>
-                    </View>
-                    <View style={{ width: '45%', alignItems: 'center', padding: '5%' }}>
-                        <TouchableOpacity style={{ height: 24, width: 24, zIndex: 2, marginTop: hp(3), position: 'absolute', alignSelf: 'flex-end', marginRight: '25%' }}>
-                            <Image source={require('../../assets/images/cross.png')} style={{ height: 24, width: 24 }} />
-                        </TouchableOpacity>
-                        <Image source={require('../../assets/images/prescription.png')} style={{ height: 100, width: '100%', marginTop: '5%', borderRadius: 5 }} />
+                <View style={{ width: '90%', alignItems: 'center', backgroundColor: colors.white, borderRadius: 5, marginTop: '5%', padding: 5, marginBottom: '5%', paddingBottom: 10, borderWidth: 1, borderColor: colors.lightgrey }}>
+                    <View style={{ width: '100%', alignItems: 'center', flexDirection: 'row', justifyContent: 'space-between' }}>
+                        <Text style={{ fontSize: 16, fontFamily: 'Gilroy-SemiBold', paddingLeft: '3%', color: colors.black, marginTop: '3%', width: "70%", textAlign: 'left' }}>Ordering for someone else?</Text>
+                        <Text style={{ fontSize: 12, fontFamily: 'Gilroy-SemiBold', paddingLeft: '3%', color: colors.green, marginTop: '3%', width: "30%", textAlign: 'left' }}>Add Details</Text>
                     </View>
                 </View>
-                <View style={{ flexDirection: 'row', width: "90%", alignItems: 'center', justifyContent: "space-between", marginTop: '5%' }}>
-                    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                        <Image source={require('../../assets/images/coupon2.png')} style={{ height: 20, width: 20 }} />
-                        <Text style={{ fontSize: 18, fontFamily: 'Gilroy-SemiBold', paddingLeft: '3%', color: colors.lightGreen }}>Apply coupon</Text>
+                <View style={{ width: '90%', alignItems: 'center', backgroundColor: colors.white, borderRadius: 5, marginTop: '2%', padding: 5, marginBottom: '5%', paddingBottom: 10, borderWidth: 1, borderColor: colors.lightgrey }}>
+                    <View style={{ width: '100%', alignItems: 'center', flexDirection: 'row', justifyContent: 'space-between' }}>
+                        <Text style={{ fontSize: 18, fontFamily: 'Gilroy-SemiBold', paddingLeft: '3%', color: colors.black, marginTop: '3%', width: "70%", textAlign: 'left' }}>Cancellation Policy</Text>
                     </View>
-                    <Image source={require('../../assets/images/greenRight.png')} style={{ height: 20, width: 20 }} />
-                </View>
-                <Text style={{ fontSize: 16, fontFamily: 'Gilroy-Medium', paddingLeft: '3%', color: colors.darkGrey, width: "90%", marginTop: '5%' }}>Bill details</Text>
-                <View style={{ flexDirection: 'row', alignItems: 'center', width: '90%', justifyContent: 'space-between' }}>
-                    <Text style={{ fontSize: 16, fontFamily: 'Gilroy-Medium', paddingLeft: '3%', color: colors.darkGrey, marginTop: '5%' }}>MRP</Text>
-                    <Text style={{ fontSize: 14, fontFamily: 'Gilroy-Medium', paddingLeft: '3%', color: colors.black, marginTop: '5%' }}> $197.80</Text>
-                </View>
-                <View style={{ flexDirection: 'row', alignItems: 'center', width: '90%', justifyContent: 'space-between' }}>
-                    <Text style={{ fontSize: 16, fontFamily: 'Gilroy-Medium', paddingLeft: '3%', color: colors.black, marginTop: '3%' }}>Discount</Text>
-                    <Text style={{ fontSize: 14, fontFamily: 'Gilroy-Medium', paddingLeft: '3%', color: colors.black, marginTop: '3%' }}>  $19.78</Text>
-                </View>
-                <View style={{ flexDirection: 'row', alignItems: 'center', width: '90%', justifyContent: 'space-between' }}>
-                    <Text style={{ fontSize: 16, fontFamily: 'Gilroy-Medium', paddingLeft: '3%', color: colors.black, marginTop: '3%' }}>Taxes and Charges</Text>
-                    <Text style={{ fontSize: 14, fontFamily: 'Gilroy-Medium', paddingLeft: '3%', color: colors.black, marginTop: '3%' }}>  $11.00</Text>
-                </View>
-                <View style={{ flexDirection: 'row', alignItems: 'center', width: '90%', justifyContent: 'space-between' }}>
-                    <Text style={{ fontSize: 16, fontFamily: 'Gilroy-Medium', paddingLeft: '3%', color: colors.black, marginTop: '3%' }}>Delivery charges</Text>
-                    <Text style={{ fontSize: 14, fontFamily: 'Gilroy-Medium', paddingLeft: '3%', color: colors.black, marginTop: '3%' }}><Text style={{ color: colors.grey, textDecorationLine: 'line-through' }}>$149.00</Text>  $39.00</Text>
-                </View>
-                <Text style={{ fontSize: 14, fontFamily: 'Gilroy-Medium', paddingLeft: '3%', color: colors.lightGreen, marginTop: '3%', width: "90%" }}>Add items worth $221.99 more to save $10 on delivery</Text>
-                <View style={{ flexDirection: 'row', alignItems: 'center', width: '90%', justifyContent: 'space-between' }}>
-                    <Text style={{ fontSize: 16, fontFamily: 'Gilroy-Medium', paddingLeft: '3%', color: colors.black, marginTop: '3%' }}>Estimated Payable</Text>
-                    <Text style={{ fontSize: 14, fontFamily: 'Gilroy-Medium', paddingLeft: '3%', color: colors.black, marginTop: '3%' }}>$228.02</Text>
-                </View>
-                <Text style={{ fontSize: 14, fontFamily: 'Gilroy-Medium', paddingLeft: '3%', color: colors.darkGrey, marginTop: '3%', width: "90%", textAlign:'right' }}>Inclusive of all taxes</Text>
-                <View style={{width:'100%', alignItems:'center'}}>
-                <Button2 backgroundColor={colors.lightGreen} Text="Add Delivery Detail"/>
+                    <Text style={{ fontSize: 14, fontFamily: 'Gilroy-Medium', paddingLeft: '3%', color: colors.darkGrey, marginTop: '3%', width: "100%", textAlign: 'left' }}>Orders cannot be cancelled once packed for delivery. In case of unexpected delays, a refund will be provided. If applicable.</Text>
                 </View>
             </View>
         )
@@ -96,20 +158,17 @@ export default function MyCart() {
         <View style={styles.container}>
             <ArticleHeader onBack={() => navigation.goBack()} text="My Cart" showSearch={true} image={<Image source={require('../../assets/images/whiteSearch.png')} style={{ height: 24, width: 24 }} />} />
             <ScrollView style={{ width: '100%' }} contentContainerStyle={{ alignItems: 'center' }}>
-                <ScrollView horizontal={true} contentContainerStyle={{ flexDirection: 'row', alignItems: 'center', paddingLeft: '5%', marginTop: '5%' }} showsHorizontalScrollIndicator={false}>
-                    <TouchableOpacity onPress={() => handleSelect(1)} style={[styles.tabContainer, { backgroundColor: select === 1 ? colors.lightGreen : colors.white }]}>
-                        <Text style={{ fontFamily: 'Gilroy-Medium', fontSize: 12, color: select === 1 ? colors.white : colors.lightGreen }}>Online Consultation</Text>
+                <View horizontal={true} style={{ flexDirection: 'row', alignItems: 'center', marginTop: '5%', width: '100%', justifyContent: 'space-between', borderBottomWidth: 2, borderColor: colors.lightgrey }}>
+                    <TouchableOpacity onPress={() => handleSelect(1)} style={[styles.tabContainer, { backgroundColor: colors.white, borderBottomWidth: select === 1 ? 2 : 0, marginLeft: '5%' }]}>
+                        <Text style={{
+                            fontFamily: 'Gilroy-SemiBold', fontSize: 14, color: colors.black
+                            , textAlign: 'center'
+                        }}>Online Consultation</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => handleSelect(2)} style={[styles.tabContainer, { backgroundColor: select === 2 ? colors.lightGreen : colors.white }]}>
-                        <Text style={{ fontFamily: 'Gilroy-Medium', fontSize: 12, color: select === 2 ? colors.white : colors.lightGreen }}>Find Doctor near You</Text>
+                    <TouchableOpacity onPress={() => handleSelect(2)} style={[styles.tabContainer, { backgroundColor: colors.white, borderBottomWidth: select === 2 ? 2 : 0 }]}>
+                        <Text style={{ fontFamily: 'Gilroy-SemiBold', fontSize: 14, color: colors.black, textAlign: 'center' }}>Find Doctor near You</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => handleSelect(3)} style={[styles.tabContainer, { backgroundColor: select === 3 ? colors.lightGreen : colors.white }]}>
-                        <Text style={{ fontFamily: 'Gilroy-Medium', fontSize: 12, color: select === 3 ? colors.white : colors.lightGreen }}>Medicine</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => handleSelect(4)} style={[styles.tabContainer, { backgroundColor: select === 4 ? colors.lightGreen : colors.white }]}>
-                        <Text style={{ fontFamily: 'Gilroy-Medium', fontSize: 12, color: select === 4 ? colors.white : colors.lightGreen, }}>Lab Test</Text>
-                    </TouchableOpacity>
-                </ScrollView>
+                </View>
                 <Medicine />
             </ScrollView>
         </View>

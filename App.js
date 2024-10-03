@@ -1,4 +1,4 @@
-import { StyleSheet} from 'react-native'
+import { StyleSheet } from 'react-native'
 import React from 'react'
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -71,66 +71,66 @@ const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name='Login' component={Login} options={{headerShown:false}}/>
-        <Stack.Screen name='OtpVerify' component={OtpVerify} options={{headerShown:false}}/>
-        <Stack.Screen name='CreateAccount' component={CreateAccount} options={{headerShown:false}}/>
-        <Stack.Screen name='BottomNav' component={BottomNav} options={{headerShown:false}}/>
-        <Stack.Screen name='OnlineConsult' component={OnlineConsult} options={{headerShown:false}}/>
-        <Stack.Screen name='Profile' component={Profile} options={{headerShown:false}}/>
-        <Stack.Screen name='New' component={New} options={{headerShown:false}}/>
-        <Stack.Screen name='UHIID' component={UHIID} options={{headerShown:false}}/>
-        <Stack.Screen name='AddPayment' component={AddPayment} options={{headerShown:false}}/>
-        <Stack.Screen name='PaymentMethod' component={PaymentMethod} options={{headerShown:false}}/>
-        <Stack.Screen name='Success' component={Success} options={{headerShown:false}}/>
-        <Stack.Screen name='Detail' component={Detail} options={{headerShown:false}}/>
-        <Stack.Screen name='Reschedule' component={Reschedule} options={{headerShown:false}}/>
-        <Stack.Screen name='Consultation' component={Consultation} options={{headerShown:false}}/>
-        <Stack.Screen name='Chat' component={Chat} options={{headerShown:false}}/>
-        <Stack.Screen name='FindDoctor' component={FindDoctor} options={{headerShown:false}}/>
-        <Stack.Screen name='DoctorDetail' component={DoctorDetail} options={{headerShown:false}}/>
-        <Stack.Screen name='ConfirmBooking' component={ConfirmBooking} options={{headerShown:false}}/>
-        <Stack.Screen name='AppointmentConfirm' component={AppointmentConfirm} options={{headerShown:false}}/>
-        <Stack.Screen name='AppointmentCancel' component={AppointmentCancel} options={{headerShown:false}}/>
-        <Stack.Screen name='VideoChat' component={VideoChat} options={{headerShown:false}}/>
-        <Stack.Screen name='ConsultDetail' component={ConsultDetail} options={{headerShown:false}}/>
-        <Stack.Screen name='Articles' component={Articles} options={{headerShown:false}}/>
-        <Stack.Screen name='HealthArticles' component={HealthArticles} options={{headerShown:false}}/>
-        <Stack.Screen name='Support' component={Support} options={{headerShown:false}}/>
-        <Stack.Screen name='Address' component={Address} options={{headerShown:false}}/>
-        <Stack.Screen name='NewAddress' component={NewAddress} options={{headerShown:false}}/>
-        <Stack.Screen name='ManageAddress' component={ManageAddress} options={{headerShown:false}}/>
-        <Stack.Screen name='HealthRecords' component={HealthRecords} options={{headerShown:false}}/>
-        <Stack.Screen name='AddNewUser' component={AddNewUser} options={{headerShown:false}}/>
-        <Stack.Screen name='SaveUser' component={SaveUser} options={{headerShown:false}}/>
-        <Stack.Screen name='UploadDoc' component={UploadDoc} options={{headerShown:false}}/>
-        <Stack.Screen name='AssignDoc' component={AssignDoc} options={{headerShown:false}}/>
-        <Stack.Screen name='Wallet' component={Wallet} options={{headerShown:false}}/>
-        <Stack.Screen name='Order' component={Order} options={{headerShown:false}}/>
-        <Stack.Screen name='OrderDetail' component={OrderDetail} options={{headerShown:false}}/>
-        <Stack.Screen name='Reviews' component={Reviews} options={{headerShown:false}}/>
-        <Stack.Screen name='Lab' component={Lab} options={{headerShown:false}}/>
-        <Stack.Screen name='LabOrder' component={LabOrder} options={{headerShown:false}}/>
-        <Stack.Screen name='LabReview' component={LabReview} options={{headerShown:false}}/>
-        <Stack.Screen name='LabCart' component={LabCart} options={{headerShown:false}}/>
-        <Stack.Screen name='Slot' component={Slot} options={{headerShown:false}}/>
-        <Stack.Screen name='OnlineMedicine' component={OnlineMedicine} options={{headerShown:false}}/>
-        <Stack.Screen name='AttachPrescription' component={AttachPrescription} options={{headerShown:false}}/>
-        <Stack.Screen name='OrderReview' component={OrderReview} options={{headerShown:false}}/>
-        <Stack.Screen name='ProductList' component={ProductList} options={{headerShown:false}}/>
-        <Stack.Screen name='MyCart' component={MyCart} options={{headerShown:false}}/>
-        <Stack.Screen name='ProductDetail' component={ProductDetail} options={{headerShown:false}}/>
-        <Stack.Screen name='AbhaLogin' component={AbhaLogin} options={{headerShown:false}}/>
-        <Stack.Screen name='AbhaPhone' component={AbhaPhone} options={{headerShown:false}}/>
-        <Stack.Screen name='AbhaOtp' component={AbhaOtp} options={{headerShown:false}}/>
-        <Stack.Screen name='AbhaSelect' component={AbhaSelect} options={{headerShown:false}}/>
-        <Stack.Screen name='AbhaSuccess' component={AbhaSuccess} options={{headerShown:false}}/>
-        <Stack.Screen name='AbhaTerms' component={AbhaTerms} options={{headerShown:false}}/>
-        <Stack.Screen name='AbhaQR' component={AbhaQR} options={{headerShown:false}}/>
-        <Stack.Screen name='AbhaRegister' component={AbhaRegister} options={{headerShown:false}}/>
-        <Stack.Screen name='AbhaPassword' component={AbhaPassword} options={{headerShown:false}}/>
-        <Stack.Screen name='ScanScreen' component={ScanScreen} options={{headerShown:false}}/>
-        <Stack.Screen name='AddQuestion' component={AddQuestion} options={{headerShown:false}}/>
-        <Stack.Screen name='UserProfile' component={UserProfile} options={{headerShown:false}}/>
+        <Stack.Screen name='Login' component={Login} options={{ headerShown: false }} />
+        <Stack.Screen name='OtpVerify' component={OtpVerify} options={{ headerShown: false }} />
+        <Stack.Screen name='CreateAccount' component={CreateAccount} options={{ headerShown: false }} />
+        <Stack.Screen name='BottomNav' component={BottomNav} options={{ headerShown: false }} />
+        <Stack.Screen name='OnlineConsult' component={OnlineConsult} options={{ headerShown: false }} />
+        <Stack.Screen name='Profile' component={Profile} options={{ headerShown: false }} />
+        <Stack.Screen name='New' component={New} options={{ headerShown: false }} />
+        <Stack.Screen name='UHIID' component={UHIID} options={{ headerShown: false }} />
+        <Stack.Screen name='AddPayment' component={AddPayment} options={{ headerShown: false }} />
+        <Stack.Screen name='PaymentMethod' component={PaymentMethod} options={{ headerShown: false }} />
+        <Stack.Screen name='Success' component={Success} options={{ headerShown: false }} />
+        <Stack.Screen name='Detail' component={Detail} options={{ headerShown: false }} />
+        <Stack.Screen name='Reschedule' component={Reschedule} options={{ headerShown: false }} />
+        <Stack.Screen name='Consultation' component={Consultation} options={{ headerShown: false }} />
+        <Stack.Screen name='Chat' component={Chat} options={{ headerShown: false }} />
+        <Stack.Screen name='FindDoctor' component={FindDoctor} options={{ headerShown: false }} />
+        <Stack.Screen name='DoctorDetail' component={DoctorDetail} options={{ headerShown: false }} />
+        <Stack.Screen name='ConfirmBooking' component={ConfirmBooking} options={{ headerShown: false }} />
+        <Stack.Screen name='AppointmentConfirm' component={AppointmentConfirm} options={{ headerShown: false }} />
+        <Stack.Screen name='AppointmentCancel' component={AppointmentCancel} options={{ headerShown: false }} />
+        <Stack.Screen name='VideoChat' component={VideoChat} options={{ headerShown: false }} />
+        <Stack.Screen name='ConsultDetail' component={ConsultDetail} options={{ headerShown: false }} />
+        <Stack.Screen name='Articles' component={Articles} options={{ headerShown: false }} />
+        <Stack.Screen name='HealthArticles' component={HealthArticles} options={{ headerShown: false }} />
+        <Stack.Screen name='Support' component={Support} options={{ headerShown: false }} />
+        <Stack.Screen name='Address' component={Address} options={{ headerShown: false }} />
+        <Stack.Screen name='NewAddress' component={NewAddress} options={{ headerShown: false }} />
+        <Stack.Screen name='ManageAddress' component={ManageAddress} options={{ headerShown: false }} />
+        <Stack.Screen name='HealthRecords' component={HealthRecords} options={{ headerShown: false }} />
+        <Stack.Screen name='AddNewUser' component={AddNewUser} options={{ headerShown: false }} />
+        <Stack.Screen name='SaveUser' component={SaveUser} options={{ headerShown: false }} />
+        <Stack.Screen name='UploadDoc' component={UploadDoc} options={{ headerShown: false }} />
+        <Stack.Screen name='AssignDoc' component={AssignDoc} options={{ headerShown: false }} />
+        <Stack.Screen name='Wallet' component={Wallet} options={{ headerShown: false }} />
+        <Stack.Screen name='Order' component={Order} options={{ headerShown: false }} />
+        <Stack.Screen name='OrderDetail' component={OrderDetail} options={{ headerShown: false }} />
+        <Stack.Screen name='Reviews' component={Reviews} options={{ headerShown: false }} />
+        <Stack.Screen name='Lab' component={Lab} options={{ headerShown: false }} />
+        <Stack.Screen name='LabOrder' component={LabOrder} options={{ headerShown: false }} />
+        <Stack.Screen name='LabReview' component={LabReview} options={{ headerShown: false }} />
+        <Stack.Screen name='LabCart' component={LabCart} options={{ headerShown: false }} />
+        <Stack.Screen name='Slot' component={Slot} options={{ headerShown: false }} />
+        <Stack.Screen name='OnlineMedicine' component={OnlineMedicine} options={{ headerShown: false }} />
+        <Stack.Screen name='AttachPrescription' component={AttachPrescription} options={{ headerShown: false }} />
+        <Stack.Screen name='OrderReview' component={OrderReview} options={{ headerShown: false }} />
+        <Stack.Screen name='ProductList' component={ProductList} options={{ headerShown: false }} />
+        <Stack.Screen name='MyCart' component={MyCart} options={{ headerShown: false }} />
+        <Stack.Screen name='ProductDetail' component={ProductDetail} options={{ headerShown: false }} />
+        <Stack.Screen name='AbhaLogin' component={AbhaLogin} options={{ headerShown: false }} />
+        <Stack.Screen name='AbhaPhone' component={AbhaPhone} options={{ headerShown: false }} />
+        <Stack.Screen name='AbhaOtp' component={AbhaOtp} options={{ headerShown: false }} />
+        <Stack.Screen name='AbhaSelect' component={AbhaSelect} options={{ headerShown: false }} />
+        <Stack.Screen name='AbhaSuccess' component={AbhaSuccess} options={{ headerShown: false }} />
+        <Stack.Screen name='AbhaTerms' component={AbhaTerms} options={{ headerShown: false }} />
+        <Stack.Screen name='AbhaQR' component={AbhaQR} options={{ headerShown: false }} />
+        <Stack.Screen name='AbhaRegister' component={AbhaRegister} options={{ headerShown: false }} />
+        <Stack.Screen name='AbhaPassword' component={AbhaPassword} options={{ headerShown: false }} />
+        <Stack.Screen name='ScanScreen' component={ScanScreen} options={{ headerShown: false }} />
+        <Stack.Screen name='AddQuestion' component={AddQuestion} options={{ headerShown: false }} />
+        <Stack.Screen name='UserProfile' component={UserProfile} options={{ headerShown: false }} />
       </Stack.Navigator>
     </NavigationContainer>
   )

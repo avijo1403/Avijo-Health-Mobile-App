@@ -9,8 +9,6 @@ const styles = StyleSheet.create({
         backgroundColor:colors.white,
     },
     optionContainer:{
-        borderWidth:1,
-        borderColor:colors.grey,
         borderRadius:6,
         flexDirection:'row',
         alignItems:'center',
@@ -25,16 +23,17 @@ const styles = StyleSheet.create({
         fontFamily:'Gilroy-SemiBold'
     },
     optionContainer2:{
-        backgroundColor:colors.lightGreen,
-        borderRadius:6,
         flexDirection:'row',
         alignItems:'center',
         padding:5,
         paddingLeft:'3%',
         paddingRight:'3%',
+        borderBottomWidth:2,
+        paddingBottom:'5%',
+        borderColor:colors.darkGrey,
     },
     optionText2:{
-        color:colors.white,
+        color:colors.grey,
         fontSize:14,
         marginLeft:5,
         fontFamily:'Gilroy-SemiBold'

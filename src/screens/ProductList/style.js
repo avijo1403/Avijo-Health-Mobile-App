@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     },
     optionContainer2:{
         borderWidth:1,
-        borderColor:colors.lightGreen,
+        borderColor:colors.green,
         borderRadius:6,
         flexDirection:'row',
         alignItems:'center',
@@ -35,14 +35,14 @@ const styles = StyleSheet.create({
         paddingRight:'3%',
     },
     optionText2:{
-        color:colors.lightGreen,
+        color:colors.green,
         fontSize:13,
         marginLeft:5,
         fontFamily:'Gilroy-SemiBold'
     },
     buttonSubContainer:{
-        height:20,
-        width:'100%',
+        height:25,
+        width:60,
         alignItems:'center',
         borderRadius:3,
         marginTop:'8%',

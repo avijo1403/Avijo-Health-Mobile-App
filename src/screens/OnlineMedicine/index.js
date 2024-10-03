@@ -21,7 +21,7 @@ export default function OnlineMedicine({navigation}) {
                         <View style={{ width: '70%' }}>
                             <Text style={{ fontSize: 16, fontFamily: 'Gilroy-SemiBold', color: colors.black, width: '100%' }}>Upload prescription</Text>
                             <Text style={{ fontSize: 12, fontFamily: 'Gilroy-Medium', color: colors.grey, width: '100%', marginTop: '3%' }}>Just upload the photo of your prescriptions and get medicines delivered to you.</Text>
-                            <TouchableOpacity onPress={()=>navigation.navigate('AttachPrescription')} style={[styles.buttonSubContainer, { backgroundColor: colors.lightGreen }]}>
+                            <TouchableOpacity onPress={()=>navigation.navigate('AttachPrescription')} style={[styles.buttonSubContainer, { backgroundColor: colors.green }]}>
                                 <Text style={styles.buttonText}>Upload now</Text>
                             </TouchableOpacity>
                         </View>
@@ -32,7 +32,7 @@ export default function OnlineMedicine({navigation}) {
                             <View style={{ width: '70%', paddingLeft: '2%' }}>
                                 <Text style={{ fontSize: 12, fontFamily: 'Gilroy-SemiBold', color: colors.black, width: '100%' }}>No Prescription? No Problem</Text>
                                 <Text style={{ fontSize: 8, fontFamily: 'Gilroy-Medium', color: colors.grey, width: '100%', marginTop: '3%' }}>Get a free doctor consultation.</Text>
-                                <TouchableOpacity style={[styles.buttonSubContainer2, { backgroundColor: colors.lightGreen, marginTop: '5%' }]}>
+                                <TouchableOpacity style={[styles.buttonSubContainer2, { backgroundColor: colors.green, marginTop: '5%' }]}>
                                     <Text style={{ fontSize: 10, fontFamily: 'Gilroy-Medium', color: colors.white }}>Consult Doctor</Text>
                                 </TouchableOpacity>
                             </View>
@@ -42,7 +42,7 @@ export default function OnlineMedicine({navigation}) {
                             <View style={{ width: '70%', paddingLeft: '2%' }}>
                                 <Text style={{ fontSize: 12, fontFamily: 'Gilroy-SemiBold', color: colors.black, width: '100%' }}>Call to Order</Text>
                                 <Text style={{ fontSize: 8, fontFamily: 'Gilroy-Medium', color: colors.grey, width: '100%', marginTop: '3%' }}>Just a call away to order medicine at your doorstep.</Text>
-                                <TouchableOpacity style={[styles.buttonSubContainer2, { backgroundColor: colors.lightGreen, marginTop: '5%' }]}>
+                                <TouchableOpacity style={[styles.buttonSubContainer2, { backgroundColor: colors.green, marginTop: '5%' }]}>
                                     <Image source={require('../../assets/images/phone3.png')} style={{ height: 12, width: 12 }} />
                                     <Text style={{ fontSize: 10, fontFamily: 'Gilroy-Medium', color: colors.white }}> Call to Order</Text>
                                 </TouchableOpacity>
@@ -78,14 +78,14 @@ export default function OnlineMedicine({navigation}) {
                         <Text style={{ fontSize: 12, fontFamily: 'Gilroy-Medium', color: colors.darkGrey, width: '100%', paddingTop: "3%" }}>Known as Blood CP test</Text>
                         <View style={{ flexDirection: 'row', marginTop: '5%', alignItems: 'center', width: '100%' }}>
                             <Image source={require('../../assets/images/home5.png')} style={{ height: 16, width: 16 }} />
-                            <Text style={{ fontSize: 10, fontFamily: 'Gilroy-Medium', color: colors.lightGreen }}> Free Home Delivery</Text>
+                            <Text style={{ fontSize: 10, fontFamily: 'Gilroy-Medium', color: colors.green }}> Free Home Delivery</Text>
                         </View>
                         <Text style={{ fontSize: 12, fontFamily: 'Gilroy-Medium', color: colors.black, marginTop: '5%', width: "100%" }}>800 - 1,050</Text>
                         <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
-                            <TouchableOpacity onPress={()=>navigation.navigate('MyCart')} style={[styles.buttonSubContainer3, { backgroundColor: colors.white, marginTop: '5%', borderWidth: 1, borderColor: colors.lightGreen }]}>
-                                <Text style={{ fontSize: 10, fontFamily: 'Gilroy-Medium', color: colors.lightGreen }}>View Detail</Text>
+                            <TouchableOpacity onPress={()=>navigation.navigate('MyCart')} style={[styles.buttonSubContainer3, { backgroundColor: colors.white, marginTop: '5%', borderWidth: 1, borderColor: colors.green }]}>
+                                <Text style={{ fontSize: 10, fontFamily: 'Gilroy-Medium', color: colors.green }}>View Detail</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity style={[styles.buttonSubContainer3, { backgroundColor: colors.lightGreen, marginTop: '5%' }]}>
+                            <TouchableOpacity onPress={()=>navigation.navigate('MyCart')} style={[styles.buttonSubContainer3, { backgroundColor: colors.green, marginTop: '5%' }]}>
                                 <Text style={{ fontSize: 10, fontFamily: 'Gilroy-Medium', color: colors.white }}>Add to Cart</Text>
                             </TouchableOpacity>
                         </View>

@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
         alignSelf:'center'
     },
     detailContainer:{
-        flexDirection:'column',
+        flexDirection:'row',
         width:'90%',
         paddingTop:'3%',
         alignItems:'center',
@@ -27,13 +27,13 @@ const styles = StyleSheet.create({
     detailOption:{
         fontSize:14,
         fontFamily:'Gilroy-SemiBold',
-        color:colors.darkGrey,
+        // color:colors.grey,
     },
     detail:{
         fontSize:14,
         fontFamily:'Gilroy-SemiBold',
-        color:colors.black,
-        paddingTop:'5%'
+        // color:colors.black,
+        paddingTop:'1%'
     },
     totalOption:{
         fontFamily:'Gilroy-SemiBold',

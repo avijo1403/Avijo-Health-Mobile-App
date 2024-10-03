@@ -55,13 +55,13 @@ const styles = StyleSheet.create({
   },
   textHeading: {
     width: '90%',
-    fontSize: 20,
-    fontFamily: 'Gilroy-Bold',
+    fontSize: 16,
+    fontFamily: 'Gilroy-SemiBold',
     padding: '1%',
     paddingLeft: 0,
     color: colors.lightGreen,
     marginBottom: 5,
-    marginTop: '5%',
+    marginTop: '3%',
   },
   arrow: {
     height: 10,
@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   arrow: {
-    height: 24,
-    width: 24,
+    height: 12,
+    width: 12,
   }
 });

@@ -26,14 +26,14 @@ export default function ConfirmBooking({ navigation, route }) {
 
     const handleSubmit = async () => {
         const userId = await AsyncStorage.getItem('id');
-        console.log('userId:', userId);
+        console.log('userId:', userId, id);
         try {
             const data = {
                 "userId": userId,
                 "doctorId": id,
                 "time": "10:00 AM",
                 "date": "2024-08-25",
-                "userName": userData?.fullName
+                "userName": singleData?.fullName
             }
 
             const response = await fetch(`${BaseUrl2}/user/appointment/book`, {

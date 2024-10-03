@@ -6,6 +6,7 @@ import { colors } from "../../Theme/GlobalTheme";
 import Collapsible2 from "../../components/Collapsible2";
 import Button2 from "../../components/Button2";
 import { BaseUrl2 } from "../../assets/Data";
+import HeaderItem from "../../components/HeaderItem";
 
 export default function AddNewUser({ navigation}) {
 
@@ -23,6 +24,10 @@ export default function AddNewUser({ navigation}) {
 
 
     const handleSaveUser = async () => {
+
+        // if(!name || !email || !mobileNo ){
+        //     return;
+        // }
         const data = {
             name,
             email,
@@ -75,14 +80,14 @@ export default function AddNewUser({ navigation}) {
 
     return (
         <View style={styles.container}>
-            <ArticleHeader onBack={() => navigation.goBack()} text="Add New User" />
+            <HeaderItem onBack={() => navigation.goBack()} text="Add New User" />
             <ScrollView style={{ width: '100%' }} contentContainerStyle={{ alignItems: 'center' }}>
                 <View style={{ width: '90%', flexDirection: 'row', paddingTop: '5%', borderColor: colors.lightgrey, alignItems: 'center' }}>
                     <Image source={require('../../assets/images/healthrecord.png')} style={{ height: 100, width: 100 }} />
                     <View style={{ paddingLeft: '5%', width: '80%' }}>
-                        <Text style={{ fontSize: 24, fontFamily: 'Gilroy-SemiBold', color: colors.lightGreen }}>Alicia Johns</Text>
-                        <Text style={{ fontSize: 14, fontFamily: 'Gilroy-Medium', color: colors.darkGrey, marginTop: '1%' }}>24 Years Old</Text>
-                        <Text style={{ fontSize: 14, fontFamily: 'Gilroy-Medium', color: colors.lightGreen, marginTop: '1%' }}>Relation: <Text style={{ color: colors.darkGrey }}>Daughter</Text></Text>
+                        <Text style={{ fontSize: 20, fontFamily: 'Gilroy-SemiBold', color: colors.blue }}>Alicia Johns</Text>
+                        <Text style={{ fontSize: 12, fontFamily: 'Gilroy-Medium', color: colors.darkGrey, marginTop: '1%' }}>24 Years Old</Text>
+                        <Text style={{ fontSize: 12, fontFamily: 'Gilroy-Medium', color: colors.blue, marginTop: '1%' }}>Relation: <Text style={{ color: colors.darkGrey }}>Daughter</Text></Text>
                     </View>
                 </View>
                 <Text style={{ fontSize: 21, fontFamily: 'Gilroy-SemiBold', color: colors.black, width: '90%', marginTop: '5%' }}>User Detail</Text>
@@ -164,7 +169,7 @@ export default function AddNewUser({ navigation}) {
                     onChangeText={setRelation}
                 />
                 <View style={{ width: '100%', alignItems: 'center', marginTop: '10%', marginBottom: '5%' }}>
-                    <Button2 Text="Save Users" backgroundColor={colors.lightGreen} onPress={handleSaveUser} />
+                    <Button2 Text="Save Users" backgroundColor={colors.blue} onPress={handleSaveUser} />
                 </View>
             </ScrollView>
         </View>
