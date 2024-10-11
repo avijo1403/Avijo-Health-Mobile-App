@@ -1,3 +1,5 @@
+import { heightPercentageToDP as hp, widthPercentageToDP as wp } from "react-native-responsive-screen";
+
 const data = [
     {
         id: 0,
@@ -55,9 +57,9 @@ const data2 = [
 const offerData = [
     require('../assets/images/offer1.png'),
     require('../assets/images/offer2.png'),
+    require('../assets/images/offer2.png'),
     require('../assets/images/offer1.png'),
-    require('../assets/images/offer2.png'),
-    require('../assets/images/offer2.png'),
+    require('../assets/images/offer1.png'),
 ]
 
 const specialist = [
@@ -528,18 +530,73 @@ const product = [
 const profileOption=[
     {
         id:0,
-        text:'Profile'
+        text:'Questions'
         
     },
     {
         id:1,
-        text:'0 Answers'
+        text:'Answers'
     },
     {
         id:2,
-        text:'1 Questions'
+        text:'Followings'
+    },
+    {
+        id:3,
+        text:'Records'
     }
 ]
+
+
+const notiData = [
+    {
+        id: 0,
+        image: require('../assets/images/calendar6.png'),
+        name: 'Micheal Owen',
+        text: 'Its Micheal Owen birthday  today',
+        time: '2:00 PM',
+        duration: '1 Day ago',
+    },
+    {
+        id: 1,
+        image: require('../assets/images/candle.png'),
+        name: 'Mauris',
+        text: 'Recent Appointments with Mauris',
+        time: '2:00 PM',
+        duration: '1 Day ago',
+    },
+    {
+        id: 2,
+        image: require('../assets/images/calendar6.png'),
+        name: 'Micheal Owen',
+        text: 'Its Micheal Owen birthday  today',
+        time: '2:00 PM',
+        duration: '1 Day ago',
+    },
+    {
+        id: 3,
+        image: require('../assets/images/candle.png'),
+        name: 'Mauris',
+        text: 'Recent Appointments with Mauris',
+        time: '2:00 PM',
+        duration: '1 Day ago',
+    }
+]
+
+
+export const getData = async (key) => {
+    try {
+        const value = await AsyncStorage.getItem(key);
+        if (value !== null) {
+            return value;
+        }
+    } catch (e) {
+        console.error('Failed to fetch the data from storage', e);
+    }
+};
+
+
+
 
 // const BaseUrl = "https://avijobackendtest-production-6295.up.railway.app";
 const BaseUrl2 = "https://avijobackend-production.up.railway.app";
@@ -564,5 +621,8 @@ export {
     women, 
     shopCategory, 
     product, 
-    profileOption
+    profileOption,
+    notiData,
+    hp,
+    wp,
 };

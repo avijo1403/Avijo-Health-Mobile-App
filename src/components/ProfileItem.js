@@ -14,7 +14,7 @@ const ProfileItem=(props)=>{
             </View>
             {props.emergency && <Image source={require('../assets/images/emergency.png')} style={{height:20, width:56}}/>}
             <View style={styles.arrowContainer}>
-            <Image style={styles.arrow} source={require('../assets/images/right.png')}/>
+            {/* <Image style={styles.arrow} source={require('../assets/images/right.png')}/> */}
         </View>
         </TouchableOpacity>
     )
@@ -30,8 +30,8 @@ const styles = StyleSheet.create({
         marginTop:'2%',
         padding:'2%',
         marginLeft:'2%',
-        borderBottomWidth:1,
-        borderColor:colors.grey,
+        // borderBottomWidth:1,
+        // borderColor:colors.grey,
         alignSelf:'center'
     },
     icon:{

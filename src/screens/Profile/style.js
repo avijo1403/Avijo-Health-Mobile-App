@@ -51,16 +51,18 @@ const styles = StyleSheet.create({
         flexDirection:'row',
         marginLeft:'5%',
         marginTop:'5%',
-        alignItems:'center'
+        alignItems:'center',
+        width:'90%',
+        justifyContent:'space-between'
     },
     addText:{
-        fontSize:16,
+        fontSize:24,
         fontFamily:'Gilroy-Bold',
-        color:colors.blue,
+        color:colors.black,
     },
     blueRight:{
-        width:8,
-        height:12,
+        width:24,
+        height:24,
         marginLeft:'5%'
     },
     qr:{

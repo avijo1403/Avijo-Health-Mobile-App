@@ -64,6 +64,8 @@ import AbhaPassword from './src/screens/AbhaPassword';
 import ScanScreen from './src/screens/ScanScreen';
 import AddQuestion from './src/screens/AddQuestion';
 import UserProfile from './src/screens/UserProfile';
+import DoCare from './src/screens/DoCare';
+import Notification from './src/screens/Notification';
 
 const Stack = createNativeStackNavigator();
 
@@ -131,6 +133,8 @@ const App = () => {
         <Stack.Screen name='ScanScreen' component={ScanScreen} options={{ headerShown: false }} />
         <Stack.Screen name='AddQuestion' component={AddQuestion} options={{ headerShown: false }} />
         <Stack.Screen name='UserProfile' component={UserProfile} options={{ headerShown: false }} />
+        <Stack.Screen name='DoCare' component={DoCare} options={{ headerShown: false }} />
+        <Stack.Screen name='Notification' component={Notification} options={{ headerShown: false }} />
       </Stack.Navigator>
     </NavigationContainer>
   )

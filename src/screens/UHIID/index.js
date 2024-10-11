@@ -170,6 +170,7 @@ export default function UHIID({ navigation }) {
                     <Text style={styles.bottomText}>avijo Gaurantee: 100% Money back if no response</Text>
                 </View>
                 <TouchableOpacity onPress={() => navigation.navigate('VideoChat')} style={styles.buttonContainer}>
+                {/* <TouchableOpacity onPress={() => navigation.navigate('Chat')} style={styles.buttonContainer}> */}
                     <View style={{ flexDirection: 'row', height: 48, alignItems: 'center', justifyContent: 'space-between', width: '55%', marginLeft: 20 }}>
                         <Text style={styles.buttonFee}>$999</Text>
                         <View style={{ width: 2, height: '50%', backgroundColor: colors.white }} />

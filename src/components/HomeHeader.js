@@ -16,21 +16,22 @@ export default function HomeHeader(props) {
                 {props.profile && <TouchableOpacity onPress={props.onPress}>
                     <Image source={require('../assets/images/profile.png')} style={styles.image} />
                 </TouchableOpacity>}
-                {props.showText && <Text style={{ fontSize: 20, color: colors.white, fontFamily: 'Gilroy-SemiBold', paddingLeft: '5%' }}>{props.text}</Text>}
-                {props.profile && <TouchableOpacity onPress={props.createPress} style={styles.textContainer}>
-                    <Image source={require('../assets/images/add.png')} style={{ height: 18, width: 18 }} />
-                    <Text style={styles.CreateText}>Create New UHI ID</Text>
-                </TouchableOpacity>}
+                <View style={{ flexDirection: 'column', width: '75%' }}>
+                    {props.heading && <Text style={{ fontSize: 28, fontFamily: 'Gilroy-SemiBold', color: props?.headingColor, marginLeft: '10%' }}>{props?.heading}</Text>}
+                    {props.showText && <Text style={{ fontSize: 20, color: colors.white, fontFamily: 'Gilroy-SemiBold', paddingLeft: '5%' }}>{props.text}</Text>}
+                    <TouchableOpacity onPress={props.createPress} style={styles.textContainer}>
+                        <Text style={styles.CreateText}>Other <Text style={{color:colors.darkGrey, fontSize:12}}>- Mahalaxmi</Text></Text>
+                        <Image source={require('../assets/images/down.png')} style={{ height: 8, width: 8, marginLeft:'3%' }} />
+                    </TouchableOpacity>
+                </View>
             </View>
             <View style={{ flexDirection: 'row', width: 65, justifyContent: 'space-between', marginLeft: '2%' }}>
-                <TouchableOpacity>
-                    <Image source={require('../assets/images/whiteSearch.png')} style={{ height: 30, width: 30 }} />
-                </TouchableOpacity>
-                <TouchableOpacity>
+                {/* <View style={{ height: 30, width: 30 }} /> */}
+                <TouchableOpacity onPress={() => navigation.navigate('Notification')}>
                     <View style={styles.numberContainer}>
                         <Text style={styles.number}>33+</Text>
                     </View>
-                    <Image source={require('../assets/images/whiteNoti.png')} style={{ height: 30, width: 28 }} />
+                    <Image source={require('../assets/images/blackChat.png')} style={{ height: 24, width: 24 }} />
                 </TouchableOpacity>
             </View>
         </View>
@@ -46,7 +47,7 @@ const styles = StyleSheet.create({
         padding: '5%',
         paddingTop: '10%',
         justifyContent: 'space-between',
-        backgroundColor: colors.blue,
+        backgroundColor: colors.white,
     },
     image: {
         height: 48,
@@ -55,12 +56,13 @@ const styles = StyleSheet.create({
     },
     textContainer: {
         flexDirection: 'row',
-        marginLeft: '10%',
+        marginLeft: '5%',
         backgroundColor: colors.white,
         padding: 10,
+        paddingTop:0,
         borderRadius: 50,
-        borderWidth: 3,
-        borderColor: colors.darkBlue,
+        // borderWidth: 3,
+        // borderColor: colors.darkBlue,
         alignItems: 'center',
     },
     locationContainer: {
@@ -69,9 +71,9 @@ const styles = StyleSheet.create({
         marginLeft: '5%'
     },
     CreateText: {
-        fontSize: 10,
+        fontSize: 14,
         fontFamily: 'Gilroy-SemiBold',
-        color: colors.darkBlue,
+        color: colors.black,
         paddingLeft: 5,
     },
     location: {
@@ -83,7 +85,7 @@ const styles = StyleSheet.create({
     numberContainer: {
         height: 14,
         width: 14,
-        backgroundColor: colors.red,
+        backgroundColor: colors.blue,
         color: colors.white,
         borderRadius: 13,
         position: 'absolute',

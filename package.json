@@ -31,11 +31,13 @@
     "react-native-confirmation-code-field": "^7.4.0",
     "react-native-country-codes-picker": "^2.3.5",
     "react-native-floating-action": "^1.22.0",
+    "react-native-fs": "^2.20.0",
     "react-native-gifted-charts": "^1.4.16",
     "react-native-image-picker": "^7.1.2",
     "react-native-image-slider": "^2.0.3",
     "react-native-image-slider-box": "^2.0.7",
     "react-native-paper": "^5.12.5",
+    "react-native-pell-rich-editor": "^1.9.0",
     "react-native-permissions": "^4.1.5",
     "react-native-phone-number-input": "^2.1.0",
     "react-native-qrcode-scanner": "^1.5.5",
@@ -47,10 +49,13 @@
     "react-native-snap-carousel": "^3.9.1",
     "react-native-svg": "^15.3.0",
     "react-native-uuid": "^2.0.2",
+    "react-native-vector-icons": "^10.2.0",
     "react-native-webrtc": "^124.0.3",
+    "react-native-webview": "^13.12.3",
     "react-navigation": "^5.0.0",
     "react-navigation-stack": "^2.10.4",
-    "socket.io-client": "^4.7.5"
+    "socket.io-client": "^4.7.5",
+    "uuid": "^10.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

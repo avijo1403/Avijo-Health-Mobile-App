@@ -5,6 +5,7 @@ import ArticleHeader from "../../components/ArticleHeader";
 import { offerData } from "../../assets/Data";
 import { colors, wp } from "../../Theme/GlobalTheme";
 import HeaderItem2 from "../../components/HeaderItem2";
+import Button2 from "../../components/Button2";
 
 export default function Order({ navigation }) {
 
@@ -89,6 +90,19 @@ export default function Order({ navigation }) {
         )
     }
 
+    const Diagnostics=()=>{
+        return(
+            <View style={{flex:1, width:'100%', alignItems:'center', justifyContent:'center', marginTop:'20%'}}>
+                <Image source={require('../../assets/images/noOrder.png')} style={{height:200, width:200}}/>
+                <Text style={{color:colors.black, fontSize:24, fontFamily:'Gilroy-SemiBold', marginTop:'3%'}}>No orders placed!</Text>
+                <Text style={{color:colors.grey, fontSize:16, fontFamily:'Gilroy-Medium', marginTop:'1%'}}>Currently you don’t have any orders.</Text>
+                <View style={{width:'100%', marginTop:'10%', alignItems:'center'}}>
+                    <Button2 Text="Order Now" backgroundColor={colors.green}/>
+                </View>
+            </View>
+        )
+    }
+
     return (
         <View style={styles.container}>
             <HeaderItem2 onPress={() => navigation.goBack()} text="My Order" />
@@ -105,6 +119,7 @@ export default function Order({ navigation }) {
                     </TouchableOpacity>
                 </View>
                 {select === 1 && <Orders/>}
+                {select === 2 && <Diagnostics/>}
                 {select === 3 && <Consultations/>}
             </ScrollView>
         </View>

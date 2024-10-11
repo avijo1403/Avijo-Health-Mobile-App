@@ -11,6 +11,7 @@ const colors = {
         lightText:'rgba(209,211,213, 0.7)',
         green:'rgba(52, 168, 83, 1)',
         darkGreen:'#A9A9A9',
+        lightGreen2:'#2C851129',
         lightGreen:'#39D2C0',
         darkBlue:'#2B90F4',
         blueText:'#3C76FE',
@@ -30,6 +31,8 @@ const colors = {
         maroon:'#B15675',
         orange:'#F0A031',
         aqua:'#E2EFF4',
+        torquish:'#39D2C0',
+        parrot:'#9FCB08',
 }
 
 export {colors, hp, wp};

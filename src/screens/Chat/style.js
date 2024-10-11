@@ -46,7 +46,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingHorizontal: 10,
         paddingVertical: 5,
-        marginBottom: '5%'
+        marginBottom: '5%',
+        justifyContent:'space-between'
     },
     input: {
         flex: 1,
@@ -56,7 +57,9 @@ const styles = StyleSheet.create({
         marginRight: 10,
         color: 'black',
         fontSize:16,
-        fontFamily:'Gilroy-SemiBold'
+        fontFamily:'Gilroy-SemiBold',
+        borderRadius:50,
+        backgroundColor:colors.lightgrey,
     },
     sendButtonText: {
         color: '#fff',

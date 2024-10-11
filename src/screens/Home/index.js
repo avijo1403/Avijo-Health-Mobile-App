@@ -4,29 +4,22 @@ import styles from "./style";
 import HomeHeader from "../../components/HomeHeader";
 import SymptomCard from "../../components/SymptomCard";
 import CategoryCard from "../../components/CategoryCard";
-import { BaseUrl2, common, data, data2, offerData, symptomData } from "../../assets/Data";
+import { BaseUrl2, common, data, data2, getData, offerData, symptomData } from "../../assets/Data";
 import { colors, wp } from "../../Theme/GlobalTheme";
 import ImageSlider from "react-native-image-slider";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import SymptomCard2 from "../../components/SymptomCard2";
+import SearchItem from "../../components/SearchItem";
+import SearchItem2 from "../../components/SearchItem2";
 
 export default function Home({ navigation }) {
     const [position, setPosition] = useState(0);
     const [columns, setColumns] = useState(4);
     const commonLimit = common.slice(0, 8);
     const [doctorData, setDoctorData] = useState([]);
+    const [id, setId] = useState();
 
-    const id = '669a5b87c84a50ef68549ec4';
 
-    const getData = async (key) => {
-        try {
-            const value = await AsyncStorage.getItem(key);
-            if (value !== null) {
-                return value;
-            }
-        } catch (e) {
-            console.error('Failed to fetch the data from storage', e);
-        }
-    };
 
     const fetchDoctorData = async () => {
         try {
@@ -47,24 +40,38 @@ export default function Home({ navigation }) {
     useEffect(() => {
         fetchDoctorData();
         getData('token').then(token => console.log('token:', token));
+        getData('id').then(id => setId(id));
     }, []);
 
     return (
         <View style={styles.container}>
-            <HomeHeader profile={true} onPress={() => navigation.navigate('Profile',{id:id})} createPress={()=>navigation.navigate('AbhaLogin')}/>
+            <HomeHeader profile={true} heading="avijo" headingColor={colors.blue} onPress={() => navigation.navigate('Profile', { id: id })} createPress={() => navigation.navigate('AbhaLogin')} />
             <ScrollView style={{ width: '100%' }} contentContainerStyle={{ alignItems: 'center', paddingBottom: '5%' }}>
                 <View style={{ width: '100%', backgroundColor: colors.white, paddingBottom: '10%' }}>
-                    <Text style={styles.heading}>Your Medication Services Partner</Text>
+                    {/* <Text style={styles.heading}>Your Medication Services Partner</Text> */}
+                    <View style={{width:'100%', alignItems:'center', marginTop:'5%', marginBottom:'5%'}}>
+                        <SearchItem2 right={require('../../assets/images/micGrey2.png')} rightHeight={32} rightWidth={32}/>
+                    </View>
                     <View style={{ width: '90%', alignSelf: 'center', flexDirection: 'row', justifyContent: 'space-between', marginRight: '2%' }}>
+                        <SymptomCard2 image={require('../../assets/images/bookClinic.png')} image2={require('../../assets/images/rightCircle.png')} text="Book In-Clinic Appointment" bottomText="UP TO 10 % OFF" bottomBackground={colors.skyblue} bottomColor={colors.blue} onPress={() => navigation.navigate('FindDoctor')} />
+                        <SymptomCard2 image={require('../../assets/images/videoCall.png')} image2={require('../../assets/images/rightCircle.png')} text="Instant Video Consultation" bottomText="UP TO 10 % OFF" bottomBackground={colors.skyblue} bottomColor={colors.blue} onPress={() => navigation.navigate('OnlineConsult')} />
+                    </View>
+                    <View style={{ width: '90%', alignSelf: 'center', flexDirection: 'row', justifyContent: 'space-between', marginRight: '2%', marginTop: '5%' }}>
+                        <SymptomCard2 image={require('../../assets/images/orderMed.png')} image2={require('../../assets/images/rightCircle.png')} text="Book In-Clinic Appointment" bottomText="UP TO 10 % OFF" bottomBackground={colors.lightGreen2} bottomColor={colors.green} onPress={() => navigation.navigate('FindDoctor')} />
+                        <SymptomCard2 image={require('../../assets/images/bookTest.png')} image2={require('../../assets/images/rightCircle.png')} text="Instant Video Consultation" bottomText="UP TO 10 % OFF" bottomBackground={colors.lightGreen2} bottomColor={colors.green} onPress={() => navigation.navigate('OnlineConsult')} />
+                    </View>
+                    {/* <View style={{
+                        width: '90%', alignSelf: 'center', flexDirection: 'row', justifyContent: 'space-between', marginRight: '2%', marginTop: '5%'
+                    }}>
                         {data.map((item) => (
                             <SymptomCard key={item.text} image={item.image} text={item.text} onPress={() => navigation.navigate(item.navigate)} />
                         ))}
-                    </View>
-                    <View style={{ width: '90%', alignSelf: 'center', flexDirection: 'row', justifyContent: 'space-between', marginRight: '2%', marginTop: '3%' }}>
+                    </View> */}
+                    {/* <View style={{ width: '90%', alignSelf: 'center', flexDirection: 'row', justifyContent: 'space-between', marginRight: '2%', marginTop: '3%' }}>
                         {data2.map((item) => (
                             <SymptomCard key={item.text} image={item.image} text={item.text} onPress={() => navigation.navigate(item.navigate)} />
                         ))}
-                    </View>
+                    </View> */}
                 </View>
                 <View style={styles.viewAllContainer}>
                     <Text style={styles.viewText}>Offers</Text>
