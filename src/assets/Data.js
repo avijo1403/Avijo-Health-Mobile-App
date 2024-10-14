@@ -1,29 +1,30 @@
 import { heightPercentageToDP as hp, widthPercentageToDP as wp } from "react-native-responsive-screen";
+import { colors } from "../Theme/GlobalTheme";
 
 const data = [
     {
         id: 0,
         image: require('../assets/images/laptop.png'),
         text: 'Online Consultation',
-        navigate:'OnlineConsult'
+        navigate: 'OnlineConsult'
     },
     {
         id: 1,
         image: require('../assets/images/doctor.png'),
         text: 'Find Doctor near You',
-        navigate:'FindDoctor'
+        navigate: 'FindDoctor'
     },
     {
         id: 2,
         image: require('../assets/images/medicine.png'),
         text: 'Medicine',
-        navigate:'OnlineMedicine'
+        navigate: 'OnlineMedicine'
     },
     {
         id: 3,
         image: require('../assets/images/lab.png'),
         text: 'Lab Tests',
-        navigate:'Lab'
+        navigate: 'Lab'
     }
 ]
 
@@ -32,25 +33,25 @@ const data2 = [
         id: 0,
         image: require('../assets/images/health.png'),
         text: 'HealthCare products',
-        navigate:'Articles'
+        navigate: 'Articles'
     },
     {
         id: 1,
         image: require('../assets/images/med.png'),
         text: 'Stores',
-        navigate:'Articles'
+        navigate: 'Articles'
     },
     {
         id: 2,
         image: require('../assets/images/diary.png'),
         text: 'Health Diary',
-        navigate:'Articles'
+        navigate: 'Articles'
     },
     {
         id: 3,
         image: require('../assets/images/vlog.png'),
         text: 'Health Vlog',
-        navigate:'Articles'
+        navigate: 'Articles'
     }
 ]
 
@@ -394,8 +395,8 @@ const tableOfContent = [
     {
         id: 4,
         heading: 'Symptoms of high Blood Pressure?',
-        imageText:'The symptoms of high blood pressure include:',
-        image:require('../assets/images/bp.png'),
+        imageText: 'The symptoms of high blood pressure include:',
+        image: require('../assets/images/bp.png'),
         text: 'Severe headache: It is a common symptom of high blood pressure, especially when accompanied by dizziness and nausea. Anxiety: Getting anxious is another symptom of high blood pressure. It leads to increased heart rate and shallow breathing. Shortness of breath: When the heart has to work harder to pump blood, it can cause shortness of breath, especially during physical activity. Chest pain: High blood pressure can cause chest pain or discomfort due to the increased workload on the heart. Vision problems: Hypertension can cause vision problems such as blurry, double vision, or even vision loss in severe cases. Nosebleeds: Although rare, high blood pressure can cause nosebleeds, especially in people with severe hypertension.',
     },
     {
@@ -407,113 +408,113 @@ const tableOfContent = [
 
 const men = [
     {
-        id:0,
-        image:require('../assets/images/man1.png'),
-        age:'24 - 40'
+        id: 0,
+        image: require('../assets/images/man1.png'),
+        age: '24 - 40'
     },
     {
-        id:1,
-        image:require('../assets/images/man2.png'),
-        age:'20 - 38'
+        id: 1,
+        image: require('../assets/images/man2.png'),
+        age: '20 - 38'
     },
     {
-        id:2,
-        image:require('../assets/images/man3.png'),
-        age:'28 - 40'
+        id: 2,
+        image: require('../assets/images/man3.png'),
+        age: '28 - 40'
     },
     {
-        id:3,
-        image:require('../assets/images/man1.png'),
-        age:'24 - 40'
+        id: 3,
+        image: require('../assets/images/man1.png'),
+        age: '24 - 40'
     }
 ]
 
 const women = [
     {
-        id:0,
-        image:require('../assets/images/woman1.png'),
-        age:'24 - 40'
+        id: 0,
+        image: require('../assets/images/woman1.png'),
+        age: '24 - 40'
     },
     {
-        id:1,
-        image:require('../assets/images/woman2.png'),
-        age:'20 - 38'
+        id: 1,
+        image: require('../assets/images/woman2.png'),
+        age: '20 - 38'
     },
     {
-        id:2,
-        image:require('../assets/images/woman3.png'),
-        age:'28 - 40'
+        id: 2,
+        image: require('../assets/images/woman3.png'),
+        age: '28 - 40'
     },
     {
-        id:3,
-        image:require('../assets/images/woman1.png'),
-        age:'24 - 40'
+        id: 3,
+        image: require('../assets/images/woman1.png'),
+        age: '24 - 40'
     }
 ]
 
-bookingSlot=[
+bookingSlot = [
     {
-        id:0,
-        heading:'Available',
-        time:'6:00 AM - 8:00 PM'
+        id: 0,
+        heading: 'Available',
+        time: '6:00 AM - 8:00 PM'
     },
     {
-        id:1,
-        heading:'Available',
-        time:'8:00 AM - 10:00 PM'
+        id: 1,
+        heading: 'Available',
+        time: '8:00 AM - 10:00 PM'
     },
     {
-        id:2,
-        heading:'Available',
-        time:'10:00 AM - 12:00 PM'
+        id: 2,
+        heading: 'Available',
+        time: '10:00 AM - 12:00 PM'
     },
     {
-        id:3,
-        heading:'Available',
-        time:'12:00 AM - 02:00 PM'
+        id: 3,
+        heading: 'Available',
+        time: '12:00 AM - 02:00 PM'
     },
     {
-        id:4,
-        heading:'Available',
-        time:'02:00 AM - 8:00 PM'
+        id: 4,
+        heading: 'Available',
+        time: '02:00 AM - 8:00 PM'
     },
     {
-        id:5,
-        heading:'Available',
-        time:'02:00 AM - 4:00 PM'
+        id: 5,
+        heading: 'Available',
+        time: '02:00 AM - 4:00 PM'
     }
 ]
 
-const shopCategory=[
+const shopCategory = [
     {
-        id:0,
-        text:'Skin Care',
-        image:require('../assets/images/med4.png'),
+        id: 0,
+        text: 'Skin Care',
+        image: require('../assets/images/med4.png'),
     },
     {
-        id:1,
-        text:'Hair Care',
-        image:require('../assets/images/med5.png'),
+        id: 1,
+        text: 'Hair Care',
+        image: require('../assets/images/med5.png'),
     },
     {
-        id:2,
-        text:'Mom Care',
-        image:require('../assets/images/med6.png'),
+        id: 2,
+        text: 'Mom Care',
+        image: require('../assets/images/med6.png'),
     },
     {
-        id:3,
-        text:'Skin Care',
-        image:require('../assets/images/med4.png'),
+        id: 3,
+        text: 'Skin Care',
+        image: require('../assets/images/med4.png'),
     },
     {
-        id:4,
-        text:'Hair Care',
-        image:require('../assets/images/med5.png'),
+        id: 4,
+        text: 'Hair Care',
+        image: require('../assets/images/med5.png'),
     },
     {
-        id:5,
-        text:'Mom Care',
-        image:require('../assets/images/med6.png'),
+        id: 5,
+        text: 'Mom Care',
+        image: require('../assets/images/med6.png'),
     }
 ]
 
@@ -527,23 +528,23 @@ const product = [
 ]
 
 
-const profileOption=[
+const profileOption = [
     {
-        id:0,
-        text:'Questions'
-        
+        id: 0,
+        text: 'Questions'
+
     },
     {
-        id:1,
-        text:'Answers'
+        id: 1,
+        text: 'Answers'
     },
     {
-        id:2,
-        text:'Followings'
+        id: 2,
+        text: 'Followings'
     },
     {
-        id:3,
-        text:'Records'
+        id: 3,
+        text: 'Records'
     }
 ]
 
@@ -596,6 +597,237 @@ export const getData = async (key) => {
 };
 
 
+const productCategory = [
+    {
+        id: 0,
+        image: require('../assets/images/category1.png'),
+        text: 'Top product',
+    },
+    {
+        id: 1,
+        image: require('../assets/images/category2.png'),
+        text: 'Nutrition',
+    },
+    {
+        id: 2,
+        image: require('../assets/images/category3.png'),
+        text: 'Vitamins',
+    },
+    {
+        id: 3,
+        image: require('../assets/images/category4.png'),
+        text: 'Respiratory',
+    },
+    {
+        id: 4,
+        image: require('../assets/images/category5.png'),
+        text: 'Women care',
+    },
+    {
+        id: 5,
+        image: require('../assets/images/category6.png'),
+        text: 'Ayurvedic care',
+    },
+    {
+        id: 6,
+        image: require('../assets/images/category7.png'),
+        text: 'Diabetic Care',
+    },
+    {
+        id: 7,
+        image: require('../assets/images/category8.png'),
+        text: 'Homeopathy',
+    },
+    {
+        id: 8,
+        image: require('../assets/images/category9.png'),
+        text: 'Accessories',
+    },
+    {
+        id: 9,
+        image: require('../assets/images/category10.png'),
+        text: 'Baby Care',
+    },
+    {
+        id: 10,
+        image: require('../assets/images/category11.png'),
+        text: 'Mom Care',
+    },
+    {
+        id: 11,
+        image: require('../assets/images/category12.png'),
+        text: 'Wearables',
+    }
+]
+
+
+const hilight = [
+    {
+        id: 0,
+        image: require('../assets/images/hilight1.png'),
+        text: 'Top product',
+    },
+    {
+        id: 1,
+        image: require('../assets/images/hilight2.png'),
+        text: 'Nutrition',
+    },
+    {
+        id: 2,
+        image: require('../assets/images/hilight3.png'),
+        text: 'Vitamins',
+    },
+    {
+        id: 3,
+        image: require('../assets/images/hilight4.png'),
+        text: 'Respiratory',
+    },
+    {
+        id: 4,
+        image: require('../assets/images/hilight5.png'),
+        text: 'Women care',
+    },
+    {
+        id: 5,
+        image: require('../assets/images/hilight6.png'),
+        text: 'Ayurvedic care',
+    }
+]
+
+
+
+const conditions = [
+    {
+        id: 0,
+        image: require('../assets/images/condition9.png'),
+        text: 'Allergy Relief',
+    },
+    {
+        id: 1,
+        image: require('../assets/images/condition8.png'),
+        text: 'Diabetes Care',
+    },
+    {
+        id: 2,
+        image: require('../assets/images/condition7.png'),
+        text: 'Heart Health',
+    },
+    {
+        id: 3,
+        image: require('../assets/images/condition6.png'),
+        text: 'Diabetes Care',
+    },
+    {
+        id: 4,
+        image: require('../assets/images/condition5.png'),
+        text: 'Joint & Bone Health',
+    },
+    {
+        id: 5,
+        image: require('../assets/images/condition4.png'),
+        text: 'Immune Support',
+    },
+    {
+        id: 6,
+        image: require('../assets/images/condition3.png'),
+        text: 'Digestive Health',
+    },
+    {
+        id: 7,
+        image: require('../assets/images/condition2.png'),
+        text: 'Respiratory Health',
+    },
+    {
+        id: 8,
+        image: require('../assets/images/condition1.png'),
+        text: 'Mental Wellness',
+    }
+]
+
+const allCategory = [
+    {
+        id: 0,
+        image: require('../assets/images/all1.png'),
+        text: 'Allergy Relief',
+        subText:'Top Diabetic Care, Vitam..',
+        color:colors.lightPink,
+    },
+    {
+        id: 1,
+        image: require('../assets/images/all2.png'),
+        text: 'Diabetes Care',
+        subText:'Homeopathy Care..',
+        color:colors.darkPink,
+    },
+    {
+        id: 2,
+        image: require('../assets/images/all3.png'),
+        text: 'Heart Health',
+        subText:'Glucometer, BP M...',
+        color:colors.skin,
+    },
+    {
+        id: 3,
+        image: require('../assets/images/all4.png'),
+        text: 'Diabetes Care',
+        subText:'Top Diabetic Care, Vitam..',
+        color:colors.lightGreen2,
+    },
+    {
+        id: 4,
+        image: require('../assets/images/all5.png'),
+        text: 'Joint & Bone Health',
+        subText:'Top Diabetic Care, Vitam..',
+        color:colors.skyblue,
+    },
+    {
+        id: 5,
+        image: require('../assets/images/all6.png'),
+        text: 'Immune Support',
+        subText:'Immunity Boosters..',
+        color:colors.darkPink,
+    },
+    {
+        id: 6,
+
+        image: require('../assets/images/all7.png'),
+        text: 'Digestive Health',
+        subText:'Diabetic & Ortho F..',
+        color:colors.lightPink,
+    },
+    {
+        id: 7,
+        image: require('../assets/images/all8.png'),
+        text: 'Respiratory Health',
+        subText:'Stomach care,Skin..',
+        color:colors.lightPurple,
+    }
+]
+
+
+
+const newSearch = [
+    {
+        id: 0,
+        image: require('../assets/images/new1.png'),
+        text: 'Multivitamins',
+    },
+    {
+        id: 1,
+        image: require('../assets/images/new2.png'),
+        text: 'Magnesium',
+    },
+    {
+        id: 2,
+        image: require('../assets/images/new3.png'),
+        text: 'Probiotics',
+    },
+    {
+        id: 3,
+        image: require('../assets/images/new3.png'),
+        text: 'Respiratory',
+    }
+]
 
 
 // const BaseUrl = "https://avijobackendtest-production-6295.up.railway.app";
@@ -603,26 +835,31 @@ const BaseUrl2 = "https://avijobackend-production.up.railway.app";
 
 
 
-export { 
-    data, 
-    offerData, 
-    specialist, 
-    symptomData, 
-    consult, 
-    common, 
-    data2, 
-    consult2, 
-    article, 
-    tableOfContent, 
-    BaseUrl2, 
-    test, 
-    test1, 
-    men, 
-    women, 
-    shopCategory, 
-    product, 
+export {
+    data,
+    offerData,
+    specialist,
+    symptomData,
+    consult,
+    common,
+    data2,
+    consult2,
+    article,
+    tableOfContent,
+    BaseUrl2,
+    test,
+    test1,
+    men,
+    women,
+    shopCategory,
+    product,
     profileOption,
     notiData,
+    productCategory,
+    hilight,
+    conditions,
+    allCategory,
+    newSearch,
     hp,
     wp,
 };

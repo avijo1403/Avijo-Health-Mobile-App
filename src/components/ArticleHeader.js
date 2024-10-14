@@ -10,7 +10,13 @@ export default function ArticleHeader(props) {
                 <TouchableOpacity onPress={props.onBack}>
                     <Image source={require('../assets/images/leftWhite.png')} style={{ width: 15, height: 14 }} />
                 </TouchableOpacity>
-                <Text style={styles.text}>{props.text}</Text>
+                <View style={{flexDirection:'column'}}>
+                    <Text style={styles.text}>{props.text}</Text>
+                    {props.showBottomText && <TouchableOpacity onPress={props.createPress} style={styles.textContainer}>
+                        <Text style={styles.CreateText}>Other <Text style={{ color: colors.white, fontSize: 12 }}>- Mahalaxmi</Text></Text>
+                        <Image source={require('../assets/images/downWhite.png')} style={{ height: 8, width: 8, marginLeft: '3%' }} />
+                    </TouchableOpacity>}
+                </View>
             </View>
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                 {props.showSearch ? (<TouchableOpacity onPress={props.onRightPress}>
@@ -41,5 +47,22 @@ const styles = StyleSheet.create({
         color: colors.white,
         fontFamily: 'Gilroy-SemiBold',
         paddingLeft: '5%',
+    },
+    textContainer: {
+        flexDirection: 'row',
+        marginLeft: '5%',
+        backgroundColor: colors.green,
+        padding: 10,
+        paddingTop: 0,
+        borderRadius: 50,
+        // borderWidth: 3,
+        // borderColor: colors.darkBlue,
+        alignItems: 'center',
+    },
+    CreateText: {
+        fontSize: 14,
+        fontFamily: 'Gilroy-SemiBold',
+        color: colors.white,
+        paddingLeft: 5,
     }
 })

@@ -9,6 +9,8 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import OnlineConsult from "../screens/OnlineConsult";
 import FindDoctor from "../screens/FindDoctor";
 import DoCare from "../screens/DoCare";
+import UserProfile from "../screens/UserProfile";
+import OnlineMedicine from "../screens/OnlineMedicine";
 
 const Tab = createBottomTabNavigator();
 
@@ -54,7 +56,7 @@ const BottomNav = () => {
                   fontSize: 12,
                   fontFamily: "Gilroy-SemiBold",
                   marginTop: "2%",
-                  color: focused ? colors.black : colors.grey,
+                  color: focused ? colors.blue : colors.grey,
                 }}
               >
                 Home
@@ -79,23 +81,56 @@ const BottomNav = () => {
             <View style={{ alignItems: "center" }}>
               <Image
                 style={styles.home}
-                source={require("../assets/images/plans.png")}
+                source={require("../assets/images/diary2.png")}
               />
               <Text
                 style={{
                   fontSize: 12,
                   fontFamily: "Gilroy-SemiBold",
                   marginTop: "2%",
-                  color: focused ? colors.black : colors.grey,
+                  color: focused ? colors.blue : colors.grey,
                 }}
               >
-                Plans
+                Diary
+              </Text>
+            </View>
+          ),
+        }}
+        name="Diary"
+        component={OnlineConsult}
+      />
+      <Tab.Screen
+        options={{
+          headerShown: false,
+          tabBarLabelStyle: {
+            height: "40%",
+            fontSize: 12,
+            fontFamily: "OpenSans-Regular",
+          },
+          tabBarActiveBackgroundColor: colors.white,
+          tabBarActiveTintColor: colors.darkBlue,
+          tabBarIcon: ({ focused }) => (
+            <View style={{ alignItems: "center" }}>
+              <Image
+                style={styles.home}
+                source={focused?require("../assets/images/product7.png"):require("../assets/images/product.png")}
+              />
+              <Text
+                style={{
+                  fontSize: 12,
+                  fontFamily: "Gilroy-SemiBold",
+                  marginTop: "2%",
+                  color: focused ? colors.green : colors.grey,
+                }}
+              >
+                Product
               </Text>
             </View>
           ),
         }}
         name="Plans"
-        component={OnlineConsult}
+        component={OnlineMedicine}
+      // initialParams={{ id: userId }}
       />
       <Tab.Screen
         options={{
@@ -118,7 +153,7 @@ const BottomNav = () => {
                   fontSize: 12,
                   fontFamily: "Gilroy-SemiBold",
                   marginTop: "2%",
-                  color: focused ? colors.black : colors.grey,
+                  color: focused ? colors.blue : colors.grey,
                 }}
               >
                 DoCare
@@ -161,7 +196,7 @@ const BottomNav = () => {
                   fontSize: 12,
                   fontFamily: "Gilroy-SemiBold",
                   marginTop: "2%",
-                  color: focused ? colors.black : colors.grey,
+                  color: focused ? colors.blue : colors.grey,
                 }}
               >
                 Profile
@@ -171,8 +206,8 @@ const BottomNav = () => {
         }}
         name="Profile"
         // Pass the id as a param to the Profile screen
-        component={Profile}
-        initialParams={{ id: userId }}
+        component={UserProfile}
+      // initialParams={{ id: userId }}
       />
     </Tab.Navigator>
   );

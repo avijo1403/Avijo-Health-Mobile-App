@@ -9,7 +9,7 @@ const ProfileItem=(props)=>{
     return(
         <TouchableOpacity onPress={props.onPress} style={styles.container}>
             <Image style={styles.icon} source={props.icon}/>
-            <View style={[styles.textContainer,{width:props.emergency?'65%':'82%'}]}>
+            <View style={[styles.textContainer,{width:props.emergency?'50%':'82%'}]}>
             <Text style={styles.text}>{props.text}</Text>
             </View>
             {props.emergency && <Image source={require('../assets/images/emergency.png')} style={{height:20, width:56}}/>}
@@ -40,8 +40,8 @@ const styles = StyleSheet.create({
     },
     text:{
         fontSize:20,
-        fontFamily:'Gilroy-Medium',
-        color:colors.darkGrey,
+        fontFamily:'Gilroy-SemiBold',
+        color:colors.black,
         paddingLeft:5
     },
     arrow:{

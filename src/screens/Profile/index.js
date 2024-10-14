@@ -9,7 +9,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function Profile({ navigation, route }) {
 
-    const id = route.params.id;
+    const id = route?.params?.id;
 
     const [userData, setUserData] = useState([]);
 
@@ -93,15 +93,16 @@ export default function Profile({ navigation, route }) {
                     </TouchableOpacity>
                 </View> */}
                 {/* <View style={{ width: '100%', height: 1, backgroundColor: colors.grey, marginTop: '5%' }} /> */}
-                <ProfileItem icon={require('../../assets/images/order.png')} text="Order & Booking" onPress={() => navigation.navigate('Order')} />
-                <ProfileItem icon={require('../../assets/images/wallet.png')} text="Health Wallet" onPress={() => navigation.navigate('Wallet')} />
-                <ProfileItem icon={require('../../assets/images/record.png')} text="Health Records" onPress={() => navigation.navigate('HealthRecords')} />
-                <ProfileItem icon={require('../../assets/images/location2.png')} text="Manage Addresses" onPress={() => navigation.navigate('Address')} />
+                <ProfileItem icon={require('../../assets/images/profile1.png')} text="ABHA" onPress={() => navigation.navigate('Order')} />
+                <ProfileItem icon={require('../../assets/images/profile2.png')} text="Order & Booking" onPress={() => navigation.navigate('Order')} />
+                <ProfileItem icon={require('../../assets/images/profile4.png')} text="Addresses" onPress={() => navigation.navigate('Wallet')} />
+                <ProfileItem icon={require('../../assets/images/profile5.png')} text="Reminders" onPress={() => navigation.navigate('HealthRecords')} />
+                {/* <ProfileItem icon={require('../../assets/images/location2.png')} text="Manage Addresses" onPress={() => navigation.navigate('Address')} />
                 <ProfileItem icon={require('../../assets/images/reminder.png')} text="Reminder" />
                 <ProfileItem icon={require('../../assets/images/earn.png')} text="Refer and Earn" />
-                <ProfileItem icon={require('../../assets/images/article2.png')} text="Health Articles (Docare)" />
-                <ProfileItem icon={require('../../assets/images/ambulance.png')} text="Ambulance" emergency={true} />
-                <ProfileItem icon={require('../../assets/images/help.png')} text="Support and Help" onPress={() => navigation.navigate('Support')} />
+                <ProfileItem icon={require('../../assets/images/article2.png')} text="Health Articles (Docare)" /> */}
+                <ProfileItem icon={require('../../assets/images/profile6.png')} text="Ambulance" emergency={true} />
+                <ProfileItem icon={require('../../assets/images/profile7.png')} text="Support and Help" onPress={() => navigation.navigate('Support')} />
                 <TouchableOpacity style={{ margin: '5%', alignSelf: 'flex-end' }}>
                     <Image source={require('../../assets/images/setting1.png')} style={{ height: 32, width: 32, }} />
                 </TouchableOpacity>

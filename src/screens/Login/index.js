@@ -68,7 +68,7 @@ console.log("user info", userInfo);
   const handleNavigation = async()=>{
     const userId = await AsyncStorage.getItem("id");
     if(userId){
-      navigation.navigate('BottomNav');
+      navigation.replace('BottomNav');
     }
   }
 

@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
     height: 30,
     padding: 10,
     backgroundColor: colors.white,
-    borderColor: colors.blue,
+    borderColor: colors.green,
   },
   content: {
     padding: 10,
@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Gilroy-SemiBold',
     width: '90%',
     paddingLeft: '3%',
-    color: colors.blue,
+    color: colors.green,
     lineHeight: 10
   },
   itemContainer: {

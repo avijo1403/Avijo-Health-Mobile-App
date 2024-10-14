@@ -4,6 +4,7 @@ import styles from "./style";
 import HeaderItem from "../../components/HeaderItem";
 import { colors } from "../../Theme/GlobalTheme";
 import { test } from "../../assets/Data";
+import HeaderItem2 from "../../components/HeaderItem2";
 
 export default function LabOrder({ navigation }) {
 
@@ -15,21 +16,21 @@ export default function LabOrder({ navigation }) {
 
     return (
         <View style={styles.container}>
-            <HeaderItem onBack={() => navigation.goBack()} text="Order" />
+            <HeaderItem2 backgroundColor={colors.green} textColor={colors.white} onBack={() => navigation.goBack()} text="Book test" />
             <ScrollView style={{ width: '100%' }} contentContainerStyle={{ alignItems: 'center' }}>
                 <Text style={{ fontSize: 20, fontFamily: 'Gilroy-SemiBold', color: colors.black, alignSelf: 'flex-start', paddingLeft: '5%', paddingTop: '5%' }}>Most Common Medical Tests</Text>
                 <ScrollView horizontal={true} contentContainerStyle={{ flexDirection: 'row', alignItems: 'center', paddingLeft: '5%', marginTop: '5%' }} showsHorizontalScrollIndicator={false}>
-                    <TouchableOpacity onPress={() => handleSelect(1)} style={[styles.tabContainer, { backgroundColor: select === 1 ? colors.blue : colors.white }]}>
-                        <Text style={{ fontFamily: 'Gilroy-Medium', fontSize: 12, color: select === 1 ? colors.white : colors.blue }}>All Body Tests</Text>
+                    <TouchableOpacity onPress={() => handleSelect(1)} style={[styles.tabContainer, { backgroundColor: select === 1 ? colors.green : colors.white }]}>
+                        <Text style={{ fontFamily: 'Gilroy-Medium', fontSize: 12, color: select === 1 ? colors.white : colors.green }}>All Body Tests</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => handleSelect(2)} style={[styles.tabContainer, { backgroundColor: select === 2 ? colors.blue : colors.white }]}>
-                        <Text style={{ fontFamily: 'Gilroy-Medium', fontSize: 12, color: select === 2 ? colors.white : colors.blue }}>Cardiac Catheterization</Text>
+                    <TouchableOpacity onPress={() => handleSelect(2)} style={[styles.tabContainer, { backgroundColor: select === 2 ? colors.green : colors.white }]}>
+                        <Text style={{ fontFamily: 'Gilroy-Medium', fontSize: 12, color: select === 2 ? colors.white : colors.green }}>Cardiac Catheterization</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => handleSelect(3)} style={[styles.tabContainer, { backgroundColor: select === 3 ? colors.blue : colors.white }]}>
-                        <Text style={{ fontFamily: 'Gilroy-Medium', fontSize: 12, color: select === 3 ? colors.white : colors.blue }}>Blood Tests</Text>
+                    <TouchableOpacity onPress={() => handleSelect(3)} style={[styles.tabContainer, { backgroundColor: select === 3 ? colors.green : colors.white }]}>
+                        <Text style={{ fontFamily: 'Gilroy-Medium', fontSize: 12, color: select === 3 ? colors.white : colors.green }}>Blood Tests</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => handleSelect(4)} style={[styles.tabContainer, { backgroundColor: select === 4 ? colors.blue : colors.white }]}>
-                        <Text style={{ fontFamily: 'Gilroy-Medium', fontSize: 12, color: select === 4 ? colors.white : colors.blue, }}>Analysis of Body Fluids</Text>
+                    <TouchableOpacity onPress={() => handleSelect(4)} style={[styles.tabContainer, { backgroundColor: select === 4 ? colors.green : colors.white }]}>
+                        <Text style={{ fontFamily: 'Gilroy-Medium', fontSize: 12, color: select === 4 ? colors.white : colors.green, }}>Analysis of Body Fluids</Text>
                     </TouchableOpacity>
                 </ScrollView>
                 <View style={{ width: '100%', marginTop: '5%', paddingBottom: '5%' }}>
@@ -42,8 +43,8 @@ export default function LabOrder({ navigation }) {
                                 <Text style={{ fontSize: 14, fontFamily: 'Gilroy-SemiBold', color: colors.black }}>Cardiac enzyme test</Text>
                                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
                                     <View style={{ backgroundColor: colors.aqua, flexDirection: 'row', width: '55%', alignItems: 'center', justifyContent: 'space-between', borderRadius: 5, marginTop: '5%' }}>
-                                        <Text style={{ fontSize: 12, fontFamily: 'Gilroy-Medium', color: colors.blue, padding: '2%' }}>Includes 90 tests</Text>
-                                        <Text style={{ fontSize: 12, fontFamily: 'Gilroy-Medium', color: colors.blue, padding: '2%' }}>Show all</Text>
+                                        <Text style={{ fontSize: 12, fontFamily: 'Gilroy-Medium', color: colors.green, padding: '2%' }}>Includes 90 tests</Text>
+                                        <Text style={{ fontSize: 12, fontFamily: 'Gilroy-Medium', color: colors.green, padding: '2%' }}>Show all</Text>
                                     </View>
                                     <View>
                                         <Text style={{ fontSize: 10, fontFamily: 'Gilroy-SemiBold', color: colors.darkGrey, paddingLeft: '3%' }}>Available at</Text>
@@ -64,7 +65,7 @@ export default function LabOrder({ navigation }) {
                                         <Text style={{ fontSize: 12, fontFamily: 'Gilroy-Regular', color: colors.darkGrey, paddingLeft: '1%', marginTop: '3%' }}>$700/-</Text>
                                         <Text style={{ fontSize: 12, fontFamily: 'Gilroy-Medium', color: colors.black, paddingLeft: '1%', marginTop: '3%' }}>$499/-   <Text style={{ color: colors.green, fontFamily: 'Gilroy-SemiBold' }}>37% off</Text></Text>
                                     </View>
-                                    <TouchableOpacity onPress={() => navigation.navigate('LabReview')} style={{ backgroundColor: colors.blue, borderRadius: 8 }}>
+                                    <TouchableOpacity onPress={() => navigation.navigate('LabReview')} style={{ backgroundColor: colors.green, borderRadius: 8 }}>
                                         <Text style={{ fontSize: 14, fontFamily: 'Gilroy-Medium', color: colors.white, padding: '3%', paddingLeft: '7%', paddingRight: '7%' }}>Book</Text>
                                     </TouchableOpacity>
                                 </View>
@@ -72,6 +73,9 @@ export default function LabOrder({ navigation }) {
                         )}
                     />
                 </View>
+                <TouchableOpacity style={{padding:'1%', borderWidth:1, borderColor:colors.green, paddingLeft:'5%', paddingRight:'5%', borderRadius:5, alignSelf:'flex-end', marginRight:'5%', marginBottom:'5%'}}>
+                <Text style={{ fontFamily: 'Gilroy-SemiBold', fontSize: 12, color: colors.green }}>View All</Text>
+                </TouchableOpacity>
             </ScrollView>
         </View>
     )

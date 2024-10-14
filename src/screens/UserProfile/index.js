@@ -81,7 +81,28 @@ export default function UserProfile({ navigation }) {
                     </View>
                 </View>
                 <View style={{ width: '90%', alignItems: 'center', borderWidth: 1, elevation: 5, borderColor: colors.lightgrey, padding: '5%', marginTop: '5%', padding: '3%', backgroundColor: colors.white, marginBottom: '5%' }}>
-
+                    <View style={{ width: '95%', alignItems: 'center', flexDirection: 'row', alignItems: 'flex-start', justifyContent: 'space-between' }}>
+                        <Text style={{ fontSize: 14, fontFamily: 'Gilroy-SemiBold', color: colors.black, width: "99%" }}>Do real fighter pilots really fly around with their masks hanging loose half the time like they do in the movies?</Text>
+                    </View>
+                    <Text style={{ fontSize: 12, fontFamily: 'Gilroy-Medium', color: colors.blue, width: "95%", marginTop: '5%' }}>No answer yet . Last followed 14m</Text>
+                    <View style={{ width: '100%', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginTop: '3%', }}>
+                        <View style={{ flexDirection: 'row', alignItems: 'center', width: '80%', justifyContent: 'space-between', }}>
+                            <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center', marginTop: '5%', width: '30%', backgroundColor: colors.lightgrey, borderRadius: 50, padding: '2%' }}>
+                                <Image source={require('../../assets/images/ans.png')} style={{ height: 12, width: 12, marginLeft: '5%' }} />
+                                <Text style={{ marginLeft: '5%', fontSize: 12, fontWeight: '500', color: colors.darkGrey }}>Answer</Text>
+                            </TouchableOpacity>
+                        </View>
+                        <View style={{ flexDirection: 'row', alignItems: 'center', width: '15%', justifyContent: 'space-between', marginTop: '4%' }}>
+                            <TouchableOpacity>
+                                <Image source={require('../../assets/images/greyDown.png')} style={{ height: 16, width: 16, marginLeft: '5%' }} />
+                            </TouchableOpacity>
+                            <TouchableOpacity>
+                                <Image source={require('../../assets/images/horizontalDots.png')} style={{ height: 20, width: 20 }} />
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+                </View>
+                <View style={{ width: '90%', alignItems: 'center', borderWidth: 1, elevation: 5, borderColor: colors.lightgrey, padding: '5%', marginTop: '5%', padding: '3%', backgroundColor: colors.white, marginBottom: '5%' }}>
                     <View style={{ width: '95%', alignItems: 'center', flexDirection: 'row', alignItems: 'flex-start', justifyContent: 'space-between' }}>
                         <Text style={{ fontSize: 14, fontFamily: 'Gilroy-SemiBold', color: colors.black, width: "99%" }}>Do real fighter pilots really fly around with their masks hanging loose half the time like they do in the movies?</Text>
                     </View>
@@ -241,18 +262,18 @@ export default function UserProfile({ navigation }) {
 
     return (
         <View style={styles.container}>
-            <HeaderItem text="Dr. Sunil Puraswani" onBack={() => navigation.goBack()} />
+            <HeaderItem text="Dr. Sunil Puraswani" onBack={() => navigation.goBack()} showSearch={true} right={<Image source={require('../../assets/images/lines.png')} style={{ height: 24, width: 24 }}/>} image={<Image source={require('../../assets/images/whiteAdd2.png')} style={{ height: 24, width: 24 }} />} />
             <ScrollView
                 style={{ width: '100%' }}
                 contentContainerStyle={{ alignItems: 'center' }}
                 showsVerticalScrollIndicator={false}
             >
                 <View style={{ width: '90%', alignItems: 'center', flexDirection: 'row', marginTop: "10%", padding: '3%', borderWidth: 1, borderRadius: 8, borderColor: colors.lightgrey, elevation: 5, backgroundColor: colors.white }}>
-                    <Image source={require('../../assets/images/appDoc.png')} style={{ height: 84, width: 64 }} />
+                    <Image source={require('../../assets/images/healthrecord.png')} style={{ height: 72, width: 72 }} />
                     <View style={{ paddingLeft: '5%' }}>
-                        <Text style={{ fontSize: 18, fontFamily: "Gilroy-SemiBold", color: colors.black }}>Dr. Sunil Puraswani</Text>
-                        <Text style={{ fontSize: 10, fontFamily: "Gilroy-Medium", color: colors.darkGrey, marginTop: '3%' }}>-070676-35032</Text>
-                        <Text style={{ fontSize: 10, fontFamily: "Gilroy-Medium", color: colors.darkGrey, marginTop: '3%' }}>Pediatrician</Text>
+                        <Text style={{ fontSize: 18, fontFamily: "Gilroy-SemiBold", color: colors.black }}>Alicia Johns</Text>
+                        {/* <Text style={{ fontSize: 10, fontFamily: "Gilroy-Medium", color: colors.darkGrey, marginTop: '3%' }}>-070676-35032</Text> */}
+                        <Text style={{ fontSize: 14, fontFamily: "Gilroy-Medium", color: colors.darkGrey, marginTop: '3%' }}>24 Years Old</Text>
                     </View>
                 </View>
                 <View style={{ width: "90%", alignItems: 'center', flexDirection: 'row', justifyContent: 'space-between', marginLeft: "2%", marginTop: '5%' }}>

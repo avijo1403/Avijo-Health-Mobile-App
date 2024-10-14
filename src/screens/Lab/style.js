@@ -14,6 +14,19 @@ const styles = StyleSheet.create({
         padding: hp(1),
         borderRadius: 8,
         marginRight: wp(3)
+    },
+    buttonSubContainer:{
+        height:34,
+        width:'48%',
+        alignItems:'center',
+        borderRadius:5,
+        marginTop:'5%',
+        justifyContent:'center'
+    },
+    buttonText:{
+        fontSize:14,
+        fontFamily:'Gilroy-SemiBold',
+        color:colors.white,
     }
 })
 export default styles;

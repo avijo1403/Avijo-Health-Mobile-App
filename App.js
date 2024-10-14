@@ -66,6 +66,8 @@ import AddQuestion from './src/screens/AddQuestion';
 import UserProfile from './src/screens/UserProfile';
 import DoCare from './src/screens/DoCare';
 import Notification from './src/screens/Notification';
+import AllCategories from './src/screens/AllCategories';
+import Search from './src/screens/Search';
 
 const Stack = createNativeStackNavigator();
 
@@ -135,6 +137,8 @@ const App = () => {
         <Stack.Screen name='UserProfile' component={UserProfile} options={{ headerShown: false }} />
         <Stack.Screen name='DoCare' component={DoCare} options={{ headerShown: false }} />
         <Stack.Screen name='Notification' component={Notification} options={{ headerShown: false }} />
+        <Stack.Screen name='AllCategories' component={AllCategories} options={{ headerShown: false }} />
+        <Stack.Screen name='Search' component={Search} options={{ headerShown: false }} />
       </Stack.Navigator>
     </NavigationContainer>
   )

@@ -6,7 +6,7 @@ export default function HeaderItem(props) {
 
     return (
         <View style={styles.container}>
-            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+            <View style={{ flexDirection: 'row', alignItems: 'center', width:'75%' }}>
                 <TouchableOpacity onPress={props.onBack}>
                     <Image source={require('../assets/images/leftWhite.png')} style={{ width: 15, height: 14 }} />
                 </TouchableOpacity>

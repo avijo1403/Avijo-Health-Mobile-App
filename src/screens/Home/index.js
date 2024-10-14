@@ -57,8 +57,8 @@ export default function Home({ navigation }) {
                         <SymptomCard2 image={require('../../assets/images/videoCall.png')} image2={require('../../assets/images/rightCircle.png')} text="Instant Video Consultation" bottomText="UP TO 10 % OFF" bottomBackground={colors.skyblue} bottomColor={colors.blue} onPress={() => navigation.navigate('OnlineConsult')} />
                     </View>
                     <View style={{ width: '90%', alignSelf: 'center', flexDirection: 'row', justifyContent: 'space-between', marginRight: '2%', marginTop: '5%' }}>
-                        <SymptomCard2 image={require('../../assets/images/orderMed.png')} image2={require('../../assets/images/rightCircle.png')} text="Book In-Clinic Appointment" bottomText="UP TO 10 % OFF" bottomBackground={colors.lightGreen2} bottomColor={colors.green} onPress={() => navigation.navigate('FindDoctor')} />
-                        <SymptomCard2 image={require('../../assets/images/bookTest.png')} image2={require('../../assets/images/rightCircle.png')} text="Instant Video Consultation" bottomText="UP TO 10 % OFF" bottomBackground={colors.lightGreen2} bottomColor={colors.green} onPress={() => navigation.navigate('OnlineConsult')} />
+                        <SymptomCard2 image={require('../../assets/images/orderMed.png')} image2={require('../../assets/images/rightCircle.png')} text="Order Medicine & Product" bottomText="UP TO 10 % OFF" bottomBackground={colors.lightGreen2} bottomColor={colors.green} onPress={() => navigation.navigate('OnlineMedicine')} />
+                        <SymptomCard2 image={require('../../assets/images/bookTest.png')} image2={require('../../assets/images/rightCircle.png')} text="Book Lab Tests" bottomText="UP TO 10 % OFF" bottomBackground={colors.lightGreen2} bottomColor={colors.green} onPress={() => navigation.navigate('Lab')} />
                     </View>
                     {/* <View style={{
                         width: '90%', alignSelf: 'center', flexDirection: 'row', justifyContent: 'space-between', marginRight: '2%', marginTop: '5%'
