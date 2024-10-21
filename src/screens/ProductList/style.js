@@ -19,14 +19,14 @@ const styles = StyleSheet.create({
         paddingRight:'3%',
     },
     optionText:{
-        color:colors.grey,
+        color:colors.black,
         fontSize:13,
         marginLeft:5,
         fontFamily:'Gilroy-SemiBold'
     },
     optionContainer2:{
         borderWidth:1,
-        borderColor:colors.green,
+        borderColor:colors.grey,
         borderRadius:6,
         flexDirection:'row',
         alignItems:'center',
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
         paddingRight:'3%',
     },
     optionText2:{
-        color:colors.green,
+        color:colors.black,
         fontSize:13,
         marginLeft:5,
         fontFamily:'Gilroy-SemiBold'

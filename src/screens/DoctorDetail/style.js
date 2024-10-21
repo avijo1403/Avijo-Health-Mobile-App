@@ -108,8 +108,8 @@ const styles = StyleSheet.create({
       },
       aboutText:{
         fontSize:12,
-        fontFamily:'Gilroy-SemiBold',
-        color:colors.grey,
+        fontFamily:'Gilroy-Medium',
+        color:colors.darkGrey,
         width:'90%'
       },
       specialization:{
@@ -121,8 +121,8 @@ const styles = StyleSheet.create({
       },
       generalMedicine:{
         fontSize:14,
-        fontFamily:'Gilroy-SemiBold',
-        color:colors.grey,
+        fontFamily:'Gilroy-Medium',
+        color:colors.darkGrey,
         width:'90%',
         marginTop:'5%'
       }

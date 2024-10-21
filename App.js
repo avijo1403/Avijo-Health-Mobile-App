@@ -68,6 +68,8 @@ import DoCare from './src/screens/DoCare';
 import Notification from './src/screens/Notification';
 import AllCategories from './src/screens/AllCategories';
 import Search from './src/screens/Search';
+import Ambulance from './src/screens/Ambulance';
+import MedicalRecord from './src/screens/MedicalRecord';
 
 const Stack = createNativeStackNavigator();
 
@@ -139,6 +141,8 @@ const App = () => {
         <Stack.Screen name='Notification' component={Notification} options={{ headerShown: false }} />
         <Stack.Screen name='AllCategories' component={AllCategories} options={{ headerShown: false }} />
         <Stack.Screen name='Search' component={Search} options={{ headerShown: false }} />
+        <Stack.Screen name='Ambulance' component={Ambulance} options={{ headerShown: false }} />
+        <Stack.Screen name='MedicalRecord' component={MedicalRecord} options={{ headerShown: false }} />
       </Stack.Navigator>
     </NavigationContainer>
   )

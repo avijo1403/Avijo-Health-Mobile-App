@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
   },
   textHeading: {
     width: '90%',
-    fontSize: 18,
+    fontSize: 14,
     fontFamily: 'Gilroy-Medium',
     padding: '1%',
     paddingLeft: 0,

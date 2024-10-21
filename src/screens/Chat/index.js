@@ -10,8 +10,11 @@ import RNFS from 'react-native-fs';
 
 const Chat = ({ navigation }) => {
     const [messages, setMessages] = useState([
-        { id: 1, sender: 'You', text: 'Hello Emilli I hope you remember about your appoinment today with us.', time: '12:15 pm' },
-        { id: 2, sender: 'Jane', text: 'Hello Doctor, Yes i remember. I will be there right on time', time: '12:15 pm' },
+        { id: 1, sender: 'You', text: 'Hi, Dr.Jii', time: '12:00 pm' },
+        { id: 2, sender: 'Jane', text: 'Hi, Dr.Jii, your AI health expert. Youre in a safe space to ask anything or express any concerns you might have.', time: '12:00 pm' },
+        { id: 2, sender: 'Jane', text: 'Im ready to assist you on your health journey in a deeper way. Heres what I can do for you:🤔 Health Q&A: Feel free to ask anything. I can even understand voice notes and multiple languages. 🔍 Visual Symptom Checker: Snap a photo or describe your symptoms, and Ill help identify potential causes.🔬 Lab Report & Prescription Analysis: Send me a picture or pdf of your report for clear explanations of your medications and lab results.🧘 Mental Health Support: Lets talk about your mental well-being.🍏 Meal & Fitness Plans: Customized meal and workout programs designed just for you.🌿 Calories & Nutritional Insights - Learn the nutritional content of your meals just by sending a photo.👩‍⚕👨‍⚕ Your health is my priority.', time: '12:00 pm' },
+        { id: 1, sender: 'Jane', text: 'By messaging further, you agree to t&c: bit.ly/august-privacy.I only provide health information, consult a health care professional before applying any info.', time: '12:00 pm' },
+        { id: 1, sender: 'Jane', text: 'Whats on your mind?', time: '12:00 pm' },
     ]);
 
     const [newMessage, setNewMessage] = useState('');
@@ -76,7 +79,7 @@ const Chat = ({ navigation }) => {
 
     return (
         <View style={styles.Container}>
-            <HeaderItem2 center={true} name="Dr. Wilson" onPress={() => navigation.goBack()} right={<Image source={require('../../assets/images/dotBlue.png')} style={{ height: 20, width: 4.5 }} />} />
+            <HeaderItem2 center={true} name="Dr. Jii" backgroundColor={colors.blue} onPress={() => navigation.goBack()} right={<Image source={require('../../assets/images/whiteDot.png')} style={{ height: 24, width: 24 }} />} />
             <ScrollView
                 contentContainerStyle={styles.messageContainer}
                 showsVerticalScrollIndicator={false}
@@ -95,41 +98,89 @@ const Chat = ({ navigation }) => {
                         style={[
                             styles.message,
                             message.sender === 'You' ? styles.sentMessage : styles.receivedMessage,
-                        ]}
-                    >
-                        <Text style={[styles.messageText, { color: message.sender === 'You' ? colors.black : colors.white }]}>{message.text}</Text>
-                        <Text style={[styles.messageSender, { color: message.sender === 'You' ? colors.blue : colors.white }]}>{message.time}</Text>
+                        ]}>
+                        <Text style={[styles.messageText, { color: message.sender === 'You' ? colors.black : colors.black }]}>{message.text}</Text>
+                        <View style={{ alignItems: 'center', flexDirection: 'row', justifyContent: 'flex-end' }}>
+                            <Text style={[styles.messageSender, { color: colors.black, alignSelf: 'flex-end' }]}>{message.time}</Text>
+                            <Image source={require('../../assets/images/doubleTick.png')} style={{ height: 15, width: 15 }} />
+                        </View>
                     </View>
                 ))}
+                <View style={{ backgroundColor: colors.white, width: '70%', borderRadius: 22, borderBottomRightRadius: 0, padding: '1%', paddingTop: '3%', alignItems: 'center', marginTop: '5%', alignSelf: 'flex-end' }}>
+                    <Image source={require('../../assets/images/checkup.png')} style={{ height: 150, width: '95%', borderTopLeftRadius: 12, borderTopRightRadius: 12 }} />
+                    <View style={{ flexDirection: 'row', alignItems: 'center', width: '100%', borderRadius: 14, backgroundColor: colors.white, padding: '5%', paddingBottom: '2%', justifyContent: 'space-between', paddingLeft: '2%' }}>
+                        <View style={{ width: 100, marginLeft: '3%', flexDirection: 'row', alignItems: 'center' }}>
+                            <Image source={require('../../assets/images/flask2.png')} style={{ height: 15, width: 15 }} />
+                            <Text style={{ fontSize: 14, fontFamily: 'Gilroy-SemiBold', color: colors.black, marginLeft: '5%' }}>Prescription</Text>
+                        </View>
+                        <Image source={require('../../assets/images/dots2.png')} style={{ height: 15, width: 15 }} />
+                    </View>
+                    <Text style={{ fontSize: 12, fontFamily: 'Gilroy-SemiBold', color: colors.darkGrey, width: '90%', paddingBottom: '3%', marginLeft: '2%' }}>Upload on 15Oct 2024</Text>
+                </View>
+                <View style={{ backgroundColor: "#D3F1FF", width: '70%', borderRadius: 22, borderBottomLeftRadius: 0, padding: '3%', alignItems: 'center', marginTop: '5%' }}>
+                    <View style={{
+                        flexDirection
+                            : 'row', alignItems: 'center', width: '100%', borderRadius: 14, backgroundColor: colors.white, padding: '2%'
+                    }}>
+                        <Image source={require('../../assets/images/clipcall1.png')} style={{ height: 76, width: 76 }} />
+                        <View style={{ width: 100, marginLeft: '3%' }}>
+                            <Text style={{ fontSize: 18, fontFamily: 'Gilroy-SemiBold', color: colors.black }}>Clipcal 500 Tablet 15</Text>
+                            <Text style={{ fontSize: 12, fontFamily: 'Gilroy-SemiBold', color: colors.darkGrey }}>30mg </Text>
+                        </View>
+                    </View>
+                    <View style={{ flexDirection: 'row', alignItems: 'center', width: '100%', backgroundColor: colors.white, padding: '2%', borderRadius: 14, marginTop: '2%' }}>
+                        <Image source={require('../../assets/images/clipcall2.png')} style={{ height: 76, width: 76 }} />
+                        <View style={{ width: 100, marginLeft: '3%' }}>
+                            <Text style={{ fontSize: 18, fontFamily: 'Gilroy-SemiBold', color: colors.black }}>Clipcal 500 Tablet 15</Text>
+                            <Text style={{ fontSize: 12, fontFamily: 'Gilroy-SemiBold', color: colors.darkGrey }}>30mg </Text>
+                        </View>
+                    </View>
+                    <TouchableOpacity style={{ padding: '2%' }}>
+                        <Text style={{ fontSize: 13, fontFamily: 'Gilroy-SemiBold', color: colors.blue }}>See more</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={{ height: 35, width: '90%', backgroundColor: colors.blue, alignItems: 'center', justifyContent: 'center', borderRadius: 10 }}>
+                        <Text style={{ fontSize: 15, fontFamily: 'Gilroy-SemiBold', color: colors.white }}>Order now</Text>
+                    </TouchableOpacity>
+                </View>
             </ScrollView>
-            {uploads && <View style={{ width: '100%', borderTopRightRadius: 16, borderTopLeftRadius: 16, borderWidth: 1, borderColor: colors.lightgrey }}>
+            {uploads && <View style={{ width: '100%', borderTopRightRadius: 16, borderTopLeftRadius: 16, borderWidth: 1, borderColor: colors.white, backgroundColor: colors.white }}>
                 <Text style={{ padding: '5%', fontSize: 22, color: colors.darkGrey, fontFamily: 'Gilroy-SemiBold' }}>Uploads</Text>
-                <View style={{ height: 1, width: '90%', backgroundColor: colors.lightgrey }} />
-                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', width: '90%', marginTop: '5%', alignSelf:'center', marginBottom:'5%' }}>
-                    <TouchableOpacity style={{width:'24%', borderWidth:1, borderColor:colors.lightgrey, height:100, borderRadius:8, backgroundColor:colors.skyblue, alignItems:'center', justifyContent:'center'}}>
-                        <Image source={require('../../assets/images/rx.png')} style={{height:36, width:36}}/>
-                        <Text style={{fontSize:10, fontFamily:'Gilroy-Medium', color:colors.blue}}>Prescription</Text>
+                <View style={{ height: 1, width: '90%', backgroundColor: colors.lightgrey, alignSelf: 'center' }} />
+                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', width: '90%', marginTop: '5%', alignSelf: 'center', marginBottom: '2%' }}>
+                    <TouchableOpacity style={{ width: '32%', borderWidth: 1, borderColor: colors.lightgrey, height: 100, borderRadius: 8, backgroundColor: colors.lightgrey, alignItems: 'center', justifyContent: 'center' }}>
+                        <Image source={require('../../assets/images/rx.png')} style={{ height: 36, width: 36 }} />
+                        <Text style={{ fontSize: 12, fontFamily: 'Gilroy-SemiBold', color: colors.darkGrey }}>Prescription</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={{width:'24%', borderWidth:1, borderColor:colors.lightgrey, height:100, borderRadius:8, backgroundColor:colors.skyblue, alignItems:'center', justifyContent:'center'}}>
-                        <Image source={require('../../assets/images/report.png')} style={{height:36, width:36}}/>
-                        <Text style={{fontSize:10, fontFamily:'Gilroy-Medium', color:colors.blue}}>Reports</Text>
+                    <TouchableOpacity style={{ width: '32%', borderWidth: 1, borderColor: colors.lightgrey, height: 100, borderRadius: 8, backgroundColor: colors.lightgrey, alignItems: 'center', justifyContent: 'center' }}>
+                        <Image source={require('../../assets/images/rx.png')} style={{ height: 36, width: 36 }} />
+                        <Text style={{ fontSize: 12, fontFamily: 'Gilroy-SemiBold', color: colors.darkGrey, width: '70%', textAlign: 'center' }}>Past Prescription</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={{width:'24%', borderWidth:1, borderColor:colors.lightgrey, height:100, borderRadius:8, backgroundColor:colors.skyblue, alignItems:'center', justifyContent:'center'}}>
-                        <Image source={require('../../assets/images/gallery.png')} style={{height:36, width:36}}/>
-                        <Text style={{fontSize:10, fontFamily:'Gilroy-Medium', color:colors.blue}}>Images</Text>
+                    <TouchableOpacity style={{ width: '32%', borderWidth: 1, borderColor: colors.lightgrey, height: 100, borderRadius: 8, backgroundColor: colors.lightgrey, alignItems: 'center', justifyContent: 'center' }}>
+                        <Image source={require('../../assets/images/report.png')} style={{ height: 36, width: 36 }} />
+                        <Text style={{ fontSize: 12, fontFamily: 'Gilroy-SemiBold', color: colors.darkGrey, }}>Reports</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={{width:'24%', borderWidth:1, borderColor:colors.lightgrey, height:100, borderRadius:8, backgroundColor:colors.skyblue, alignItems:'center', justifyContent:'center'}}>
-                        <Image source={require('../../assets/images/camera.png')} style={{height:36, width:36}}/>
-                        <Text style={{fontSize:10, fontFamily:'Gilroy-Medium', color:colors.blue}}>Camera</Text>
+                </View>
+                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', width: '90%', marginTop: '1%', alignSelf: 'center', marginBottom: '5%' }}>
+                    <TouchableOpacity style={{ width: '32%', borderWidth: 1, borderColor: colors.lightgrey, height: 100, borderRadius: 8, backgroundColor: colors.lightgrey, alignItems: 'center', justifyContent: 'center' }}>
+                        <Image source={require('../../assets/images/gallery.png')} style={{ height: 36, width: 36 }} />
+                        <Text style={{ fontSize: 12, fontFamily: 'Gilroy-SemiBold', color: colors.darkGrey }}>Gallery</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={{ width: '32%', borderWidth: 1, borderColor: colors.lightgrey, height: 100, borderRadius: 8, backgroundColor: colors.lightgrey, alignItems: 'center', justifyContent: 'center' }}>
+                        <Image source={require('../../assets/images/camera.png')} style={{ height: 36, width: 36 }} />
+                        <Text style={{ fontSize: 12, fontFamily: 'Gilroy-SemiBold', color: colors.darkGrey, width: '70%', textAlign: 'center' }}>Camera</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={{ width: '32%', borderWidth: 1, borderColor: colors.lightgrey, height: 100, borderRadius: 8, backgroundColor: colors.lightgrey, alignItems: 'center', justifyContent: 'center' }}>
+                        <Image source={require('../../assets/images/camera.png')} style={{ height: 36, width: 36 }} />
+                        <Text style={{ fontSize: 12, fontFamily: 'Gilroy-SemiBold', color: colors.darkGrey, }}>Documents</Text>
                     </TouchableOpacity>
                 </View>
             </View>}
             {!showEditor && <View style={styles.inputContainer}>
-                <TouchableOpacity style={{ margin: 5 }} onPress={()=>setUploads(!uploads)}>
-                    {uploads?<Image source={require('../../assets/images/cross.png')} style={{ height: 36, width: 36 }} />:
-                    <Image source={require('../../assets/images/add5.png')} style={{ height: 38, width: 38 }} />}
+                <TouchableOpacity style={{ margin: 5 }} onPress={() => setUploads(!uploads)}>
+                    {uploads ? <Image source={require('../../assets/images/cross.png')} style={{ height: 36, width: 36 }} /> :
+                        <Image source={require('../../assets/images/add5.png')} style={{ height: 42, width: 42 }} />}
                 </TouchableOpacity>
-                <View style={{ width: '65%', backgroundColor: colors.blue, borderRadius: 100, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
+                <View style={{ width: '65%', backgroundColor: colors.grey, borderRadius: 100, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
                     <TextInput
                         ref={textInputRef}
                         placeholder="Message"

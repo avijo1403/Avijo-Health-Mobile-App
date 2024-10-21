@@ -12,10 +12,10 @@ export default function ProductDetail({ navigation }) {
 
     return (
         <View style={styles.container}>
-            <ArticleHeader onBack={() => navigation.goBack()} text="Medicine Detail" />
+            <ArticleHeader onBack={() => navigation.goBack()} text="Medicine Detail" showSearch={true} image={<Image source={require('../../assets/images/whiteSearch.png')} style={{ height: 24, width: 24, marginRight:10 }} />} onRightPress2={()=>navigation.navigate('MyCart')} image2={<Image source={require('../../assets/images/whiteCart.png')} style={{ height: 24, width: 24 }} />} />
             <ScrollView style={{ width: '100%' }} contentContainerStyle={{ alignItems: 'center' }}>
                 <View style={{ flexDirection: 'column', width: "90%", alignItems: 'flex-start', marginTop: '5%', marginBottom: "5%" }}>
-                    <Image source={require('../../assets/images/skinCare4.png')} style={{ height: 190, width: '100%', borderRadius: 5 }} />
+                    <Image source={require('../../assets/images/medDetail.png')} resizeMode="cover" style={{ height: 190, width: '100%', borderRadius: 5 }} />
                     <View style={{ paddingLeft: '5%', width: "90%", marginTop: '5%' }}>
                         <Text style={{ fontSize: 20, color: colors.black, fontFamily: "Gilroy-SemiBold" }}>Crocin Advance Tablet 20 mg</Text>
                         <Text style={{ fontSize: 14, color: colors.darkGrey, fontFamily: "Gilroy-SemiBold", marginTop: '2%' }}>Glaxosmithcline Pharmaceuticals Ltd.</Text>

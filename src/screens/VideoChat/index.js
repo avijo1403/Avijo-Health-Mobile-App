@@ -51,14 +51,14 @@ const VideoChat = ({ navigation }) => {
 
 
     const callbacks = {
-        EndCall: () => navigation.goBack(),
+        EndCall: () => navigation.navigate('Chat'),
     };
 
     return (
         <View style={{ flex: 1, width: '100%' }}>
             {videoCall ? (
                 <View style={{ flex: 1, width: '100%' }}>
-                    <TouchableOpacity onPress={() => navigation.goBack()} style={{ position: 'absolute', zIndex: 2, backgroundColor: 'rgba(0, 0, 0, 0.2)', height: 48, width: 48, borderRadius: 14, alignItems: 'center', justifyContent: 'center', top: '5%', left: '3%' }}>
+                    <TouchableOpacity onPress={() => navigation.navigate('Chat')} style={{ position: 'absolute', zIndex: 2, backgroundColor: 'rgba(0, 0, 0, 0.2)', height: 48, width: 48, borderRadius: 14, alignItems: 'center', justifyContent: 'center', top: '5%', left: '3%' }}>
                         <Image
                             source={require('../../assets/images/leftWhite.png')}
                             style={{ height: 16, width: 16 }}

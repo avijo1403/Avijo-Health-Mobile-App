@@ -547,6 +547,26 @@ const profileOption = [
         text: 'Records'
     }
 ]
+const detailOption = [
+    {
+        id: 0,
+        text: 'About'
+
+    },
+    {
+        id: 1,
+        text: 'Answers'
+    },
+    {
+        id: 2,
+        text: 'Questions'
+    },
+    {
+        id: 3,
+        text: 'Followers'
+    }
+]
+
 
 
 const notiData = [
@@ -749,58 +769,58 @@ const allCategory = [
         id: 0,
         image: require('../assets/images/all1.png'),
         text: 'Allergy Relief',
-        subText:'Top Diabetic Care, Vitam..',
-        color:colors.lightPink,
+        subText: 'Top Diabetic Care, Vitam..',
+        color: colors.lightPink,
     },
     {
         id: 1,
         image: require('../assets/images/all2.png'),
         text: 'Diabetes Care',
-        subText:'Homeopathy Care..',
-        color:colors.darkPink,
+        subText: 'Homeopathy Care..',
+        color: colors.darkPink,
     },
     {
         id: 2,
         image: require('../assets/images/all3.png'),
         text: 'Heart Health',
-        subText:'Glucometer, BP M...',
-        color:colors.skin,
+        subText: 'Glucometer, BP M...',
+        color: colors.skin,
     },
     {
         id: 3,
         image: require('../assets/images/all4.png'),
         text: 'Diabetes Care',
-        subText:'Top Diabetic Care, Vitam..',
-        color:colors.lightGreen2,
+        subText: 'Top Diabetic Care, Vitam..',
+        color: colors.lightGreen2,
     },
     {
         id: 4,
         image: require('../assets/images/all5.png'),
         text: 'Joint & Bone Health',
-        subText:'Top Diabetic Care, Vitam..',
-        color:colors.skyblue,
+        subText: 'Top Diabetic Care, Vitam..',
+        color: colors.skyblue,
     },
     {
         id: 5,
         image: require('../assets/images/all6.png'),
         text: 'Immune Support',
-        subText:'Immunity Boosters..',
-        color:colors.darkPink,
+        subText: 'Immunity Boosters..',
+        color: colors.darkPink,
     },
     {
         id: 6,
 
         image: require('../assets/images/all7.png'),
         text: 'Digestive Health',
-        subText:'Diabetic & Ortho F..',
-        color:colors.lightPink,
+        subText: 'Diabetic & Ortho F..',
+        color: colors.lightPink,
     },
     {
         id: 7,
         image: require('../assets/images/all8.png'),
         text: 'Respiratory Health',
-        subText:'Stomach care,Skin..',
-        color:colors.lightPurple,
+        subText: 'Stomach care,Skin..',
+        color: colors.lightPurple,
     }
 ]
 
@@ -829,6 +849,18 @@ const newSearch = [
     }
 ]
 
+const recordData = [
+    {
+        id: 0,
+        image: require('../assets/images/record1.png'),
+        text: 'Medications'
+    },
+    {
+        id: 1,
+        image: require('../assets/images/record2.png'),
+        text: 'Lab Report'
+    }
+]
 
 // const BaseUrl = "https://avijobackendtest-production-6295.up.railway.app";
 const BaseUrl2 = "https://avijobackend-production.up.railway.app";
@@ -860,6 +892,8 @@ export {
     conditions,
     allCategory,
     newSearch,
+    detailOption,
+    recordData,
     hp,
     wp,
 };

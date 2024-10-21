@@ -16,9 +16,9 @@ export default function DoCare({ navigation }) {
 
     return (
         <View style={styles.container}>
-            <HomeHeader heading="Docare" headingColor={colors.black} profile={true} onPress={() => navigation.navigate('Profile', { id: id })} createPress={() => navigation.navigate('AbhaLogin')} />
+            <HomeHeader heading="Docare" headingColor={colors.black} profile={true} right={<Image source={require('../../assets/images/blackSearch.png')} style={{ height: 24, width: 24, marginRight: '15%' }} />} right2={<Image source={require('../../assets/images/addRound.png')} style={{ height: 24, width: 24, marginRight: '15%' }} />} onPress={() => navigation.navigate('Profile', { id: id })} createPress={() => navigation.navigate('AbhaLogin')} />
             <ScrollView style={{ width: '100%' }} contentContainerStyle={{ alignItems: 'center' }}>
-                <View style={{ flexDirection: 'row', alignItems: 'start', backgroundColor:colors.white, width:'100%', padding:'5%' }}>
+                <View style={{ flexDirection: 'row', alignItems: 'start', backgroundColor: colors.white, width: '100%', paddingTop: '7%', padding: '5%' }}>
                     <Image source={require('../../assets/images/profile.png')} style={{ height: 44, width: 44, borderRadius: 100 }} />
                     <View style={{ width: '80%' }}>
                         <TouchableOpacity onPress={() => navigation.navigate('AddQuestion')}>
@@ -64,7 +64,7 @@ export default function DoCare({ navigation }) {
                             </TouchableOpacity>
                         </View>
                         <Text style={{ fontSize: 16, fontFamily: 'Gilroy-Medium', color: colors.darkGrey, width: "100%", marginTop: '3%', paddingLeft: '2%' }}>How do I build a social media app: A Comprehensive Guide? There are so many freelancer who can help you with that</Text>
-                        <View style={{ width: '100%', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginTop: '2%', }}>
+                        <View style={{ width: '100%', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginTop: '2%' }}>
                             <View style={{ flexDirection: 'row', alignItems: 'center', padding: '2%' }}>
                                 <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center', padding: '3%', borderRadius: 7, borderWidth: 1, borderColor: colors.grey }}>
                                     <Image source={require('../../assets/images/blueUp.png')} style={{ height: 16, width: 16, marginRight: '5%' }} />
@@ -101,6 +101,10 @@ export default function DoCare({ navigation }) {
                         <Text style={{ fontSize: 16, fontFamily: 'Gilroy-Medium', color: colors.black, width: "100%", marginTop: '3%', paddingLeft: '2%' }}>New jeevan Akshay Lic’s</Text>
                         <Text style={{ fontSize: 16, fontFamily: 'Gilroy-Medium', color: colors.darkGrey, width: "100%", marginTop: '3%', paddingLeft: '2%' }}>An immediate annuity paln that can be purchase by payinga lump ammount.</Text>
                         <Image source={require('../../assets/images/doCare2.png')} style={{ width: '95%', height: 90, borderRadius: 5, marginTop: '5%' }} />
+                        <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center', padding:'2%', width:'90%', borderColor:colors.blue, borderWidth:1, borderRadius:50, marginTop:'5%', marginBottom:'2%' }}>
+                            <Text style={{width:'90%', textAlign:'center', fontSize:12, fontFamily:'Gilroy-Medium', color:colors.blue}}>Learn More</Text>
+                            <Image source={require('../../assets/images/blueEdit.png')} style={{ height: 12, width: 12 }} />
+                        </TouchableOpacity>
                         <View style={{ width: '100%', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginTop: '2%', }}>
                             <View style={{ flexDirection: 'row', alignItems: 'center', padding: '2%' }}>
                                 <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center', padding: '3%', borderRadius: 7, borderWidth: 1, borderColor: colors.grey }}>
@@ -120,7 +124,7 @@ export default function DoCare({ navigation }) {
                             </TouchableOpacity>
                         </View>
                     </View>
-                    <View style={{width:'90%', alignItems:'center', backgroundColor:colors.white, marginTop:'5%', marginBottom:'5%', padding:'2%'}}>
+                    <View style={{ width: '90%', alignItems: 'center', backgroundColor: colors.white, marginTop: '5%', marginBottom: '5%', padding: '2%' }}>
                         <View style={{ flexDirection: 'row', width: '100%', alignItems: 'center', marginTop: '5%', borderBottomWidth: 1, paddingBottom: '5%', borderColor: colors.grey }}>
                             <Image source={require('../../assets/images/question2.png')} style={{ height: 20, width: 20 }} />
                             <Text style={{ fontSize: 14, fontFamily: 'Gilroy-SemiBold', color: colors.black, marginLeft: '5%' }}>Questions for you</Text>
@@ -136,16 +140,16 @@ export default function DoCare({ navigation }) {
                             <View style={{ width: '100%', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginTop: '3%', }}>
                                 <View style={{ flexDirection: 'row', alignItems: 'center', width: '80%', justifyContent: 'space-between', }}>
                                     <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center', marginTop: '5%', width: '28%', backgroundColor: colors.lightgrey, padding: '2%' }}>
-                                        <Image source={require('../../assets/images/question.png')} style={{ height: 12, width: 12, marginLeft: '5%' }} />
-                                        <Text style={{ marginLeft: '5%', fontSize: 12, fontWeight: '500', color: colors.darkGrey }}>Ask</Text>
+                                        <Image source={require('../../assets/images/answer.png')} style={{ height: 12, width: 12, marginLeft: '5%' }} />
+                                        <Text style={{ marginLeft: '5%', fontSize: 12, fontWeight: '400', color: colors.darkGrey }}>Answer</Text>
                                     </TouchableOpacity>
                                     <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center', marginTop: '5%', width: '28%', backgroundColor: colors.lightgrey, padding: '2%' }}>
-                                        <Image source={require('../../assets/images/ask.png')} style={{ height: 12, width: 12, marginLeft: '5%' }} />
-                                        <Text style={{ marginLeft: '5%', fontSize: 12, fontWeight: '500', color: colors.darkGrey }}>Answer</Text>
+                                        <Image source={require('../../assets/images/follow2.png')} style={{ height: 12, width: 12, marginLeft: '5%' }} />
+                                        <Text style={{ marginLeft: '5%', fontSize: 12, fontWeight: '400', color: colors.darkGrey }}>Follow</Text>
                                     </TouchableOpacity>
                                     <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center', marginTop: '5%', width: '28%', backgroundColor: colors.lightgrey, padding: '2%' }}>
-                                        <Image source={require('../../assets/images/post2.png')} style={{ height: 12, width: 12, marginLeft: '5%' }} />
-                                        <Text style={{ marginLeft: '5%', fontSize: 12, fontWeight: '500', color: colors.darkGrey }}>Post</Text>
+                                        <Image source={require('../../assets/images/pass.png')} style={{ height: 12, width: 12, marginLeft: '5%' }} />
+                                        <Text style={{ marginLeft: '5%', fontSize: 12, fontWeight: '400', color: colors.darkGrey }}>Pass</Text>
                                     </TouchableOpacity>
                                 </View>
                                 <View style={{ flexDirection: 'row', alignItems: 'center', width: '15%', justifyContent: 'space-between', marginTop: '4%' }}>

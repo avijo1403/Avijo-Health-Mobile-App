@@ -78,11 +78,11 @@ export default function Notification({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <HeaderItem2 onPress={() => navigation.goBack()} text="Notifications" right={<Text style={{ color: colors.white, fontSize: 14, fontFamily: 'Gilroy-SemiBold', width: 100, paddingRight: wp(10) }}>New Chat</Text>} />
+      <HeaderItem onBack={() => navigation.goBack()} text="Message" right={<Text style={{ color: colors.white, fontSize: 14, fontFamily: 'Gilroy-SemiBold', width: 100, paddingRight: wp(10) }}>New Chat</Text>} />
       <ScrollView style={{ width: '100%' }} contentContainerStyle={{ alignItems: 'center', paddingBottom: '5%' }}>
-        {select === 2 && <View style={{ width: '100%', alignItems: 'center', marginTop: '5%' }}>
+        {/* {<View style={{ width: '100%', alignItems: 'center', marginTop: '5%' }}>
           <SearchItem />
-        </View>}
+        </View>} */}
         <View style={{ flexDirection: 'row', alignItems: 'center', width: '90%', justifyContent: 'space-between', marginTop: '5%' }}>
           <TouchableOpacity onPress={() => setSelect(1)} style={{ borderBottomWidth: select === 1 ? 3 : 0, borderColor: colors.black, width: '49%', alignItems: 'center' }}>
             <Text style={{ color: colors.black, fontSize: 18, fontFamily: 'Gilroy-SemiBold', padding: 5, paddingTop: 0, }}>Chats</Text>
@@ -91,7 +91,7 @@ export default function Notification({ navigation }) {
             <Text style={{ color: colors.black, fontSize: 18, fontFamily: 'Gilroy-SemiBold', padding: 5, paddingTop: 0 }}>Notifications</Text>
           </TouchableOpacity>
         </View>
-        {select === 1 && <View style={{ width: '100%', alignItems: 'center', marginTop: '5%' }}>
+        {<View style={{ width: '100%', alignItems: 'center', marginTop: '5%' }}>
           <SearchItem />
         </View>}
         {select === 1 && <Chats />}

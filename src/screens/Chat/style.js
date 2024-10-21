@@ -4,7 +4,7 @@ import { colors } from '../../Theme/GlobalTheme';
 const styles = StyleSheet.create({
     Container: {
         flex: 1,
-        backgroundColor: 'white',
+        backgroundColor: colors.lightgrey,
         width:'100%'
     },
     messageContainer: {
@@ -13,20 +13,21 @@ const styles = StyleSheet.create({
     },
     message: {
         maxWidth: '70%',
+        minWidth:'40%',
         alignSelf: 'flex-start',
         borderRadius: 8,
-        padding: 10,
+        padding: 5,
         marginVertical: 5,
     },
     sentMessage: {
         alignSelf: 'flex-end',
-        backgroundColor: '#EAEAEA',
+        backgroundColor: '#D3F1FF',
         borderBottomRightRadius:0,
-        borderRadius:22
+        borderRadius:22,
     },
     receivedMessage: {
-        backgroundColor: colors.blue,
-        borderBottomLeftRadius:0,
+        backgroundColor: colors.white,
+        borderTopLeftRadius:0,
         borderRadius:22
     },
     messageText: {
@@ -46,8 +47,11 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingHorizontal: 10,
         paddingVertical: 5,
-        marginBottom: '5%',
-        justifyContent:'space-between'
+        // marginBottom: '5%',
+        paddingBottom:'2%',
+        paddingTop:'5%',
+        justifyContent:'space-between',
+        backgroundColor:colors.white,
     },
     input: {
         flex: 1,

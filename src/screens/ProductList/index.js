@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FlatList, Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
+import { FlatList, Image, ScrollView, Text, TextInput, TouchableOpacity, View } from "react-native";
 import styles from "./style";
 import ArticleHeader from "../../components/ArticleHeader";
 import { colors } from "../../Theme/GlobalTheme";
@@ -19,12 +19,12 @@ export default function ProductList({ navigation }) {
     const Categories = () => {
         return (
             <View style={styles.container}>
-                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', width: '90%', marginTop: "5%" }}>
+                {/* <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', width: '90%', marginTop: "5%" }}>
                     <Text style={{ fontSize: 16, fontFamily: 'Gilroy-SemiBold', color: colors.black }}>Skin Care</Text>
                     <TouchableOpacity>
                         <Text style={{ fontSize: 10, fontFamily: 'Gilroy-Medium', color: colors.green }}>Veiw All</Text>
                     </TouchableOpacity>
-                </View>
+                </View> */}
                 <View style={{ width: '100%', alignItems: 'center' }}>
                     <FlatList
                         style={{ width: '100%' }}
@@ -64,17 +64,31 @@ export default function ProductList({ navigation }) {
 
     return (
         <View style={styles.container}>
-            <ArticleHeader onBack={() => navigation.goBack()} text="Products List" showSearch={true} image={<Image source={require('../../assets/images/whiteSearch.png')} style={{ height: 24, width: 24 }} />} />
+            {/* <ArticleHeader onBack={() => navigation.goBack()} text="Products List" showSearch={true} image={<Image source={require('../../assets/images/whiteSearch.png')} style={{ height: 24, width: 24 }} />} /> */}
+            <View style={{ width: '90%', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginTop: '8%', padding: "4%", backgroundColor: colors.lightgrey, borderRadius: 8 }}>
+                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                    <TouchableOpacity onPress={()=>navigation.goBack()}>
+                        <Image source={require('../../assets/images/blackLeft.png')} style={{ height: 20, width: 20 }} />
+                    </TouchableOpacity>
+                    <Text style={{ fontSize: 20, fontFamily: 'Gilroy-SemiBold', color: colors.black, marginLeft: '10%' }}>Pharmacy</Text>
+                </View>
+                <TouchableOpacity>
+                    <Image source={require('../../assets/images/redCross.png')} style={{ height: 20, width: 20 }} />
+                </TouchableOpacity>
+            </View>
             <ScrollView style={{ width: '100%' }} contentContainerStyle={{ alignItems: 'center' }}>
-                <View style={{ flexDirection: 'row', marginRight: 15, marginTop: '7%', marginLeft: '7%', justifyContent: 'space-between', width: '90%' }}>
+                <View style={{ flexDirection: 'row', marginRight: 15, marginTop: '7%', marginLeft: '7%', justifyContent: 'space-evenly', width: '95%', alignSelf: 'flex-end' }}>
                     <TouchableOpacity onPress={() => handleSelect(2)} style={select === 2 ? styles.optionContainer2 : styles.optionContainer}>
-                        <Text style={select === 2 ? styles.optionText2 : styles.optionText}>Categories</Text>
+                        <Text style={select === 2 ? styles.optionText2 : styles.optionText}>Filters</Text>
+                        <Image source={require('../../assets/images/down.png')} style={{ height: 12, width: 12 }} />
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => handleSelect(3)} style={select === 3 ? styles.optionContainer2 : styles.optionContainer}>
-                        <Text style={select === 3 ? styles.optionText2 : styles.optionText}>Sub categories</Text>
+                        <Text style={select === 3 ? styles.optionText2 : styles.optionText}>Price</Text>
+                        <Image source={require('../../assets/images/down.png')} style={{ height: 12, width: 12 }} />
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => handleSelect(4)} style={select === 4 ? styles.optionContainer2 : styles.optionContainer}>
-                        <Text style={select === 4 ? styles.optionText2 : styles.optionText}>Brand</Text>
+                        <Text style={select === 4 ? styles.optionText2 : styles.optionText}>Antiseptic</Text>
+                        <Image source={require('../../assets/images/down.png')} style={{ height: 12, width: 12 }} />
                     </TouchableOpacity>
                 </View>
                 <Categories />

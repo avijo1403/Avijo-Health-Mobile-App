@@ -45,13 +45,10 @@ export default function Home({ navigation }) {
 
     return (
         <View style={styles.container}>
-            <HomeHeader profile={true} heading="avijo" headingColor={colors.blue} onPress={() => navigation.navigate('Profile', { id: id })} createPress={() => navigation.navigate('AbhaLogin')} />
+            <HomeHeader bottomText={true} showChat={true} showQr={true} profile={true} heading="avijo" colors={['#FFFFFF','#0095D9']} showSearch={true} headingColor={colors.blue} onPress={() => navigation.navigate('Profile', { id: id })} createPress={() => navigation.navigate('AbhaLogin')} />
             <ScrollView style={{ width: '100%' }} contentContainerStyle={{ alignItems: 'center', paddingBottom: '5%' }}>
-                <View style={{ width: '100%', backgroundColor: colors.white, paddingBottom: '10%' }}>
+                <View style={{ width: '100%', backgroundColor: colors.white, paddingBottom: '10%', marginTop: '5%' }}>
                     {/* <Text style={styles.heading}>Your Medication Services Partner</Text> */}
-                    <View style={{width:'100%', alignItems:'center', marginTop:'5%', marginBottom:'5%'}}>
-                        <SearchItem2 right={require('../../assets/images/micGrey2.png')} rightHeight={32} rightWidth={32}/>
-                    </View>
                     <View style={{ width: '90%', alignSelf: 'center', flexDirection: 'row', justifyContent: 'space-between', marginRight: '2%' }}>
                         <SymptomCard2 image={require('../../assets/images/bookClinic.png')} image2={require('../../assets/images/rightCircle.png')} text="Book In-Clinic Appointment" bottomText="UP TO 10 % OFF" bottomBackground={colors.skyblue} bottomColor={colors.blue} onPress={() => navigation.navigate('FindDoctor')} />
                         <SymptomCard2 image={require('../../assets/images/videoCall.png')} image2={require('../../assets/images/rightCircle.png')} text="Instant Video Consultation" bottomText="UP TO 10 % OFF" bottomBackground={colors.skyblue} bottomColor={colors.blue} onPress={() => navigation.navigate('OnlineConsult')} />
@@ -187,13 +184,13 @@ export default function Home({ navigation }) {
                     <Text style={{ fontSize: 24, fontFamily: 'Gilroy-Bold', color: colors.grey, width: wp(80) }}>India's Best Health Guardian</Text>
                     <Image source={require('../../assets/images/avijo.png')} style={{ height: 35, width: 54, marginTop: 5 }} />
                 </View>
-                <View style={{ flexDirection: 'row', width: '100%', padding: 15, alignItems: 'center', borderTopWidth: 1, borderColor: colors.lightgrey, paddingTop: '5%' }}>
+                {/* <View style={{ flexDirection: 'row', width: '100%', padding: 15, alignItems: 'center', borderTopWidth: 1, borderColor: colors.lightgrey, paddingTop: '5%' }}>
                     <Image source={require('../../assets/images/delivery.png')} style={{ width: 74, height: 72 }} />
                     <View style={{ paddingLeft: '5%' }}>
                         <Text style={{ fontSize: 15, fontFamily: 'Gilroy-SemiBold', color: colors.black }}>Get Free Delivery</Text>
                         <Text style={{ fontSize: 12, fontFamily: 'Gilroy-Medium', color: colors.black }}>Offer valid for a limited time only!</Text>
                     </View>
-                </View>
+                </View> */}
             </ScrollView>
         </View>
     );

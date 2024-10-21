@@ -65,13 +65,13 @@ export default function OnlineConsult({ navigation }) {
                     <Text style={{ fontSize: 24, fontFamily: 'Gilroy-Bold', color: colors.grey }}>India's Best Health Guardian</Text>
                     <Image source={require('../../assets/images/avijo.png')} style={{ height: 35, width: 54, marginTop: 5 }} />
                 </View>
-                <View style={{ flexDirection: 'row', width: '100%', padding: 15, alignItems: 'center', borderTopWidth: 1, borderColor: colors.lightgrey, paddingTop: '5%' }}>
+                {/* <View style={{ flexDirection: 'row', width: '100%', padding: 15, alignItems: 'center', borderTopWidth: 1, borderColor: colors.lightgrey, paddingTop: '5%' }}>
                     <Image source={require('../../assets/images/delivery.png')} style={{ width: 74, height: 72 }} />
                     <View style={{ paddingLeft: '5%' }}>
                         <Text style={{ fontSize: 15, fontFamily: 'Gilroy-SemiBold', color: colors.black }}>Get Free Delivery</Text>
                         <Text style={{ fontSize: 12, fontFamily: 'Gilroy-Medium', color: colors.black }}>Offer valid for a limited time only!</Text>
                     </View>
-                </View>
+                </View> */}
             </ScrollView>
         </View>
     )

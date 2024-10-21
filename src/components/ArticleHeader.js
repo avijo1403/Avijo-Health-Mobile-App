@@ -10,7 +10,7 @@ export default function ArticleHeader(props) {
                 <TouchableOpacity onPress={props.onBack}>
                     <Image source={require('../assets/images/leftWhite.png')} style={{ width: 15, height: 14 }} />
                 </TouchableOpacity>
-                <View style={{flexDirection:'column'}}>
+                <View style={{ flexDirection: 'column' }}>
                     <Text style={styles.text}>{props.text}</Text>
                     {props.showBottomText && <TouchableOpacity onPress={props.createPress} style={styles.textContainer}>
                         <Text style={styles.CreateText}>Other <Text style={{ color: colors.white, fontSize: 12 }}>- Mahalaxmi</Text></Text>

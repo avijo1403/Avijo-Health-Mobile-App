@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { FlatList, ScrollView, Text, Touchable, TouchableOpacity, View } from "react-native";
+import { FlatList, Modal, Pressable, ScrollView, Text, Touchable, TouchableOpacity, View } from "react-native";
 import styles from "./style";
 import { colors } from "../../Theme/GlobalTheme";
 import { Image } from "react-native";
@@ -12,6 +12,7 @@ import Button3 from "../../components/Button3";
 export default function UserProfile({ navigation }) {
 
     const [select, setSelect] = useState(0);
+    const [modalVisible, setModalVisible] = useState(false);
 
     const Profile = () => {
         return (
@@ -230,55 +231,69 @@ export default function UserProfile({ navigation }) {
         }, []);
 
         return (
-            <View style={styles.container}>
-                <ScrollView style={{ width: '100%' }} contentContainerStyle={{ alignItems: 'center' }}>
-                    <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', width: '90%', marginTop: '8%' }}>
+            <View style={{ flex: 1, width: "100%", alignItems: 'center' }}>
+                {/* <ScrollView style={{ width: '100%' }} contentContainerStyle={{ alignItems: 'center' }}> */}
+                {/* <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', width: '90%', marginTop: '8%' }}>
                         <Text style={{ fontSize: 18, fontFamily: 'Gilroy-SemiBold', color: colors.black }}>Members</Text>
-                        <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', padding: 5, paddingLeft: 10, paddingRight: 10, backgroundColor: colors.blue, borderRadius: 6 }}>
-                            <Text style={{ fontSize: 12, fontFamily: 'Gilroy-SemiBold', color: colors.white }}>Add</Text>
+                        <TouchableOpacity onPress={() => navigation.navigate('AddNewUser')} style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', padding: 7, paddingLeft: 12, paddingRight: 12, backgroundColor: colors.blue, borderRadius: 6 }}>
+                            <Text style={{ fontSize: 10, fontFamily: 'Gilroy-SemiBold', color: colors.white }}>Add</Text>
                         </TouchableOpacity>
-                    </View>
-                    <View style={{ width: '100%', alignItems: 'center' }}>
-                        <FlatList
-                            nestedScrollEnabled={true}
-                            contentContainerStyle={{ paddingBottom: '5%', marginTop: '5%', width: '90%', alignItems: 'center', }}
-                            data={userRecord}
-                            renderItem={({ item }) => (
-                                <TouchableOpacity onPress={() => navigation.navigate('SaveUser', { id: item._id })} style={{ borderWidth: 1, width: '100%', flexDirection: 'row', padding: '5%', borderColor: colors.lightgrey }}>
-                                    <Image source={require('../../assets/images/healthrecord.png')} style={{ height: 72, width: 72 }} />
-                                    <View style={{ paddingLeft: '5%', width: '70%' }}>
-                                        <Text style={{ fontSize: 16, fontFamily: 'Gilroy-SemiBold', color: colors.black }}>{item.name}</Text>
-                                        <Text style={{ fontSize: 12, fontFamily: 'Gilroy-SemiBold', color: colors.blue, marginTop: '3%' }}>{item.relation}</Text>
-                                    </View>
-                                    <Image source={require('../../assets/images/right2.png')} style={{ height: 32, width: 32, alignSelf: 'center' }} />
-                                </TouchableOpacity>
-                            )}
-                        />
-                    </View>
-                </ScrollView>
+                    </View> */}
+                <View style={{ width: '100%', alignItems: 'center' }}>
+                    <FlatList
+                        nestedScrollEnabled={true}
+                        contentContainerStyle={{ paddingBottom: '5%', marginTop: '5%', width: '90%', alignItems: 'center', }}
+                        data={userRecord}
+                        renderItem={({ item, index }) => (
+                            <TouchableOpacity onPress={() => navigation.navigate('MedicalRecord')} style={{ width: '100%', flexDirection: 'row', padding: '5%', alignItems: 'flex-start' }}>
+                                <Image source={require('../../assets/images/healthrecord.png')} style={{ height: 50, width: 50 }} />
+                                <View style={{ paddingLeft: '5%', width: '80%' }}>
+                                    <Text style={{ fontSize: 16, fontFamily: 'Gilroy-SemiBold', color: colors.black }}>{item.name}</Text>
+                                    <Text style={{ fontSize: 12, fontFamily: 'Gilroy-SemiBold', color: colors.darkGrey, marginTop: '3%' }}>{item.relation}</Text>
+                                </View>
+                                {index === 0 ? <Image source={require('../../assets/images/redTick.png')} style={{ height: 20, width: 20, alignSelf: 'center' }} /> : <View style={{ height: 20, width: 20, alignSelf: 'center' }} />}
+                            </TouchableOpacity>
+                        )}
+                    />
+                </View>
+                <TouchableOpacity style={{ width: '100%', alignItems: 'center', justifyContent: 'center', flexDirection: 'row', marginBottom: '5%' }}>
+                    <Image source={require('../../assets/images/add5.png')} style={{ height: 40, width: 40 }} />
+                    <Text style={{ fontSize: 18, fontFamily: 'Gilroy-SemiBold', color: colors.black, marginLeft:'2%' }}>Add Health Account</Text>
+                </TouchableOpacity>
+                {/* </ScrollView> */}
             </View>
         )
     }
 
     return (
         <View style={styles.container}>
-            <HeaderItem text="Dr. Sunil Puraswani" onBack={() => navigation.goBack()} showSearch={true} right={<Image source={require('../../assets/images/lines.png')} style={{ height: 24, width: 24 }}/>} image={<Image source={require('../../assets/images/whiteAdd2.png')} style={{ height: 24, width: 24 }} />} />
+            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', width: '100%', padding: '5%', backgroundColor: colors.white, paddingTop: '10%' }}>
+                <TouchableOpacity onPress={() => setModalVisible(true)} style={{ flexDirection: 'row', alignItems: 'center' }}>
+                    <Text style={{ fontSize: 20, fontFamily: 'Gilroy-SemiBold', color: colors.black }}>Alicia</Text>
+                    <Image source={require('../../assets/images/down.png')} style={{ height: 10, width: 10, marginLeft: 5, marginTop: '3%' }} />
+                </TouchableOpacity>
+                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                    <Image source={require('../../assets/images/blackAdd.png')} style={{ height: 26, width: 26, }} />
+                    <Image source={require('../../assets/images/blackLines.png')} style={{ height: 26, width: 26, marginLeft: 10 }} />
+                </View>
+            </View>
             <ScrollView
                 style={{ width: '100%' }}
                 contentContainerStyle={{ alignItems: 'center' }}
                 showsVerticalScrollIndicator={false}
             >
-                <View style={{ width: '90%', alignItems: 'center', flexDirection: 'row', marginTop: "10%", padding: '3%', borderWidth: 1, borderRadius: 8, borderColor: colors.lightgrey, elevation: 5, backgroundColor: colors.white }}>
+                <TouchableOpacity onPress={() => navigation.navigate('Profile')} style={{ width: '90%', alignItems: 'center', flexDirection: 'row', marginTop: "10%", padding: '3%', borderWidth: 1, borderRadius: 8, borderColor: colors.lightgrey, elevation: 5, backgroundColor: colors.white }}>
                     <Image source={require('../../assets/images/healthrecord.png')} style={{ height: 72, width: 72 }} />
                     <View style={{ paddingLeft: '5%' }}>
                         <Text style={{ fontSize: 18, fontFamily: "Gilroy-SemiBold", color: colors.black }}>Alicia Johns</Text>
                         {/* <Text style={{ fontSize: 10, fontFamily: "Gilroy-Medium", color: colors.darkGrey, marginTop: '3%' }}>-070676-35032</Text> */}
                         <Text style={{ fontSize: 14, fontFamily: "Gilroy-Medium", color: colors.darkGrey, marginTop: '3%' }}>24 Years Old</Text>
                     </View>
-                </View>
+
+                </TouchableOpacity>
                 <View style={{ width: "90%", alignItems: 'center', flexDirection: 'row', justifyContent: 'space-between', marginLeft: "2%", marginTop: '5%' }}>
                     <View style={{ width: "52%" }}>
-                        <Button3 left={<Image source={require('../../assets/images/edit2.png')} style={{ height: 16, width: 16, marginRight: '5%' }} />} Text="Edit Profile" />
+                        <Button3 onPress={() => navigation.navigate('Profile')} left={<Image source={require('../../assets/images/edit2.png')} style={{ height: 16, width: 16, marginRight: '5%' }} />} Text="Edit Profile" />
                     </View>
                     <View style={{ width: "52%" }}>
                         <Button3 left={<Image source={require('../../assets/images/blueShare2.png')} style={{ height: 20, width: 20, marginRight: '5%' }} />} Text="Share" />
@@ -303,6 +318,22 @@ export default function UserProfile({ navigation }) {
                 {select === 2 && <Followers />}
                 {select === 3 && <HealthRecords />}
             </ScrollView>
+
+            <Modal
+                // animationType="slide"
+                transparent={true}
+                visible={modalVisible}
+                onRequestClose={() => {
+                    setModalVisible(!modalVisible);
+                }}>
+                <Pressable onPress={() => setModalVisible(!modalVisible)} style={{ flex: 1, width: '100%', alignItems: 'center', justifyContent: 'flex-end', backgroundColor: colors.blackTrasparent }}>
+                    <View style={{ width: '100%', borderTopRightRadius: 16, borderTopLeftRadius: 16, borderWidth: 1, borderColor: colors.white, backgroundColor: colors.white, maxHeight: '70%' }}>
+                        <ScrollView style={{ width: '100%' }} contentContainerStyle={{ alignItems: 'center' }}>
+                            <HealthRecords />
+                        </ScrollView>
+                    </View>
+                </Pressable>
+            </Modal>
         </View>
     )
 }

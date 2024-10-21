@@ -104,9 +104,9 @@ export default function FindDoctor({ navigation }) {
 
     return (
         <View style={styles.container}>
-            <HeaderItem text="Find Doctor" onBack={() => navigation.goBack()} showSearch={true} image={<Image source={require('../../assets/images/whiteSearch.png')} style={{ height: 32, width: 32 }} />} />
+            <HeaderItem text="Find Doctor" onBack={() => navigation.goBack()} showSearch={true} image={<Image source={require('../../assets/images/whiteSearch.png')} style={{ height: 26, width: 26 }} />} />
             <ScrollView style={{ width: '100%' }} contentContainerStyle={{ alignItems: 'center' }}>
-                <ScrollView
+                {/* <ScrollView
                     showsHorizontalScrollIndicator={false}
                     style={{ width: '100%' }}
                     contentContainerStyle={{ flexDirection: 'row', alignItems: 'center', marginTop: '5%', marginLeft: '5%' }}
@@ -132,41 +132,43 @@ export default function FindDoctor({ navigation }) {
                             <Text style={select === 5 ? styles.optionText2 : styles.optionText}>Others</Text>
                         </TouchableOpacity>
                     </View>
-                </ScrollView>
+                </ScrollView> */}
                 <Text style={styles.mapHeading}>Search By Map</Text>
                 <TouchableOpacity onPress={() => navigation.navigate('DoctorDetail')} style={{ width: '100%', alignItems: 'center' }}>
                     <Image source={require('../../assets/images/map.png')} style={styles.map} />
                 </TouchableOpacity>
-                <TouchableOpacity style={{ borderBottomWidth: 1, borderColor: colors.lightgrey, width: '90%', marginTop: '5%', backgroundColor: colors.white }}>
-                    <View style={{ flexDirection: 'row' }}>
-                        <Image source={require('../../assets/images/dr5.png')} style={{ height: 72, width: 72, borderRadius: 10 }} />
-                        <View style={{ paddingLeft: '2%', width: '90%' }}>
-                            <Text style={{ fontSize: 16, fontFamily: 'Gilroy-SemiBold', color: colors.black, paddingLeft: '5%' }}>Dr. Wilson</Text>
-                            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                                <Text style={{ fontSize: 12, fontFamily: 'Gilroy-SemiBold', color: colors.darkGrey, paddingTop: '2%', paddingLeft: '4%' }}>General Pulmonologist</Text>
+                {/* <View style={{ width: '100%', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginRight: '20%' }}>
+                    <TouchableOpacity style={{ width: '70%', marginTop: '5%', flexDirection: 'row' }}>
+                        <Image source={require('../../assets/images/dr6.png')} style={{ width: 56, height: 58, borderRadius: 5, alignSelf: 'center' }} />
+                        <View style={{ marginLeft: '5%', width: '70%' }}>
+                            <Text style={{ fontFamily: 'Gilroy-SemiBold', fontSize: 12, color: colors.blue }}>Dr. Jane Copper</Text>
+                            <Text style={{ fontFamily: 'Gilroy-Medium', fontSize: 12, color: colors.darkGrey, paddingTop: '3%' }}>Dermatologist</Text>
+                            <View style={{ flexDirection: 'row', marginTop: '1%', width: '90%', alignItems: 'center', justifyContent: 'space-between' }}>
+                                <Text style={{ fontSize: 9, fontFamily: 'Gilroy-Medium', color: colors.darkGrey }}>Exp. <Text style={{ fontSize: 9, fontFamily: 'Gilroy-SemiBold', color: colors.black }}>22 years</Text></Text>
+                                <Text style={{ fontSize: 9, fontFamily: 'Gilroy-Medium', color: colors.darkGrey }}>fees. <Text style={{ fontSize: 9, fontFamily: 'Gilroy-SemiBold', color: colors.black }}>$ 100</Text></Text>
                             </View>
-                            <View style={{ flexDirection: 'row', width: '90%', justifyContent: 'space-between', alignItems: 'center', marginTop: '0%', width: '90%', paddingBottom: '5%' }}>
-                                <View style={{ flexDirection: 'column' }}>
-                                    <View style={{ flexDirection: 'row', padding: 5, alignItems: 'center', borderRadius: 6 }}>
-                                        <Image source={require('../../assets/images/time2.png')} style={{ width: 24, height: 24 }} />
-                                        <Text style={{ paddingLeft: 5, fontSize: 10, color: colors.black, fontFamily: 'Gilroy-SemiBold' }}>01:00 - 08:00 PM</Text>
-                                    </View>
-                                    <Text style={{ fontSize: 10, fontFamily: 'Gilroy-Medium', color: colors.darkGrey, paddingLeft: '6%' }}>Distance. <Text style={{ color: colors.black, fontSize: 10, fontFamily: 'Gilroy-Medium' }}>30 Km away</Text></Text>
-                                </View>
-                                <View style={{ justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
-                                    <TouchableOpacity style={styles.buttonContainer}>
-                                        <Text style={styles.bText1}>Book Now</Text>
-                                    </TouchableOpacity>
-                                    <View style={{ flexDirection: 'row', padding: 0, paddingBottom: 0, alignItems: 'center', borderRadius: 6, marginTop: '15%', marginRight: '7%', }}>
-                                        <Image source={require('../../assets/images/calendar2.png')} style={{ width: 14, height: 14 }} />
-                                        <Text style={{ paddingLeft: 5, fontSize: 12, color: colors.green }}>Available Today</Text>
-                                    </View>
-                                </View>
+                            <View style={{ flexDirection: 'row', marginTop: '1%', width: '90%', alignItems: 'center', justifyContent: 'space-between' }}>
+                                <Text style={{ fontSize: 10, fontFamily: 'Gilroy-Medium', color: colors.darkGrey }}>Distance.</Text>
+                                <Text style={{ fontSize: 10, fontFamily: 'Gilroy-SemiBold', color: colors.black }}>30 Km away</Text>
+                            </View>
+                            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                                <Image source={require('../../assets/images/stars.png')} style={{ height: 12, width: 73, marginTop: '2%' }} />
+                                <Text style={{ fontSize: 10, fontFamily: 'Gilroy-Medium', color: colors.darkGrey, marginLeft: '2%', marginTop: '2%' }}>(152)</Text>
                             </View>
                         </View>
-                    </View>
-                </TouchableOpacity>
-                <View style={styles.calendarContainer}>
+                        <View style={{ width: '30%', justifyContent: 'space-between', alignSelf: 'flex-start', marginTop: '5%' }}>
+                            <View style={styles.availableContainer}>
+                                <Image source={require('../../assets/images/calendar2.png')} style={{ height: 12, width: 12 }} />
+                                <Text style={styles.available}>Available Today</Text>
+                            </View>
+                            <TouchableOpacity style={styles.buttonContainer}>
+                                <Text style={styles.bText1}>Book clinic Visit</Text>
+                                <Text style={styles.bText2}>No Booking Fee</Text>
+                            </TouchableOpacity>
+                        </View>
+                    </TouchableOpacity>
+                </View> */}
+                {/* <View style={styles.calendarContainer}>
                     <TouchableOpacity onPress={goToPrevious} style={styles.arrowButton}>
                         <Image source={require('../../assets/images/left.png')} style={{ height: 24, width: 24 }} />
                     </TouchableOpacity>
@@ -181,53 +183,63 @@ export default function FindDoctor({ navigation }) {
                     <TouchableOpacity onPress={goToNext} style={styles.arrowButton}>
                         <Image source={require('../../assets/images/rightBlack.png')} style={{ height: 24, width: 24 }} />
                     </TouchableOpacity>
-                </View>
-                <View style={styles.moonContainer}>
+                </View> */}
+                {/* <View style={styles.moonContainer}>
                     <Image source={require('../../assets/images/moon.png')} style={{ height: 24, width: 24 }} />
                     <Text style={styles.moonText}>Evening Slope</Text>
-                </View>
-                <View style={{ flexDirection: 'row', width: '90%', alignItems: 'center', justifyContent: 'flex-start', marginTop: '5%' }}>
+                </View> */}
+                {/* <View style={{ flexDirection: 'row', width: '90%', alignItems: 'center', justifyContent: 'flex-start', marginTop: '5%' }}>
                     <TouchableOpacity onPress={handleTime1} style={{ borderWidth: time1 ? 2 : 0, padding: '2%', width: '30%', alignItems: 'center', justifyContent: 'center', borderRadius: 4, borderColor: colors.orange }}>
                         <Text style={{ fontSize: 10, fontFamily: 'Gilroy-Regular', color: time1 ? colors.orange : colors.darkGrey }}>07.00 PM</Text>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={handleTime2} style={{ borderWidth: time2 ? 2 : 0, padding: '2%', width: '30%', alignItems: 'center', justifyContent: 'center', borderRadius: 4, borderColor: colors.orange }}>
                         <Text style={{ fontSize: 10, fontFamily: 'Gilroy-Regular', color: time2 ? colors.orange : colors.darkGrey }}>08.00 PM</Text>
                     </TouchableOpacity>
-                </View>
-                <FlatList
-                    data={doctorData}
-                    renderItem={({ item }) => (
-                        <TouchableOpacity onPress={() => navigation.navigate('ConfirmBooking', { id: item._id })} style={{ padding: 10, borderBottomWidth: 1, borderColor: colors.lightgrey, width: '100%', marginTop: '5%', backgroundColor: colors.white }}>
-                            <View style={{ flexDirection: 'row' }}>
-                                <Image source={require('../../assets/images/dr5.png')} style={{ height: 72, width: 72, borderRadius: 10 }} />
-                                <View style={{ paddingLeft: '2%', width: '90%' }}>
-                                    <Text style={{ fontSize: 16, fontFamily: 'Gilroy-SemiBold', color: colors.black, paddingLeft: '5%' }}>{item.fullName}</Text>
-                                    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                                        <Text style={{ fontSize: 12, fontFamily: 'Gilroy-SemiBold', color: colors.darkGrey, paddingTop: '2%', paddingLeft: '4%' }}>{item.speciality}</Text>
+                </View> */}
+                <View style={{ width: '90%', alignItems: 'center', }}>
+                    <FlatList
+                        style={{ width: '100%' }}
+                        data={doctorData}
+                        renderItem={({ item }) => (
+                            // <View style={{ width: '100%', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
+                            <TouchableOpacity onPress={() => navigation.navigate('DoctorDetail')} style={{ width: '90%', marginTop: '5%', flexDirection: 'row', paddingTop: '5%', justifyContent: 'space-between' }}>
+                                <Image source={require('../../assets/images/dr6.png')} style={{ width: 56, height: 58, borderRadius: 5 }} />
+                                <View style={{ marginLeft: '5%', width: '60%', }}>
+                                    
+                                    <Text style={{ fontFamily: 'Gilroy-SemiBold', fontSize: 12, color: colors.blue }}>{item?.fullName}</Text>
+                                    <Text style={{ fontFamily: 'Gilroy-Medium', fontSize: 12, color: colors.darkGrey, paddingTop: '3%' }}>{item?.specialization}</Text>
+                                    <View style={{ flexDirection: 'row', marginTop: '1%', width: '90%', alignItems: 'center', justifyContent: 'space-between' }}>
+                                        <Text style={{ fontSize: 9, fontFamily: 'Gilroy-Medium', color: colors.darkGrey }}>Exp. <Text style={{ fontSize: 9, fontFamily: 'Gilroy-SemiBold', color: colors.black }}>22 years</Text></Text>
+                                        <Text style={{ fontSize: 9, fontFamily: 'Gilroy-Medium', color: colors.darkGrey }}>fees. <Text style={{ fontSize: 9, fontFamily: 'Gilroy-SemiBold', color: colors.black }}>$ 100</Text></Text>
                                     </View>
-                                    <View style={{ flexDirection: 'row', width: '90%', justifyContent: 'space-between', alignItems: 'center', marginTop: '0%', width: '80%', }}>
-                                        <View style={{ flexDirection: 'column', }}>
-                                            <View style={{ flexDirection: 'row', padding: 5, alignItems: 'center', borderRadius: 6 }}>
-                                                <Image source={require('../../assets/images/time2.png')} style={{ width: 24, height: 24 }} />
-                                                <Text style={{ paddingLeft: 5, fontSize: 10, color: colors.black, fontFamily: 'Gilroy-SemiBold' }}>01:00 - 08:00 PM</Text>
-                                            </View>
-                                            <Text style={{ fontSize: 10, fontFamily: 'Gilroy-Medium', color: colors.darkGrey, paddingLeft: '6%' }}>Distance. <Text style={{ color: colors.black, fontSize: 10, fontFamily: 'Gilroy-Medium' }}>30 Km away</Text></Text>
-                                        </View>
-                                        <View style={{ justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
-                                            <TouchableOpacity style={styles.buttonContainer}>
-                                                <Text style={styles.bText1}>Book Now</Text>
-                                            </TouchableOpacity>
-                                            <View style={{ flexDirection: 'row', padding: 0, paddingBottom: 0, alignItems: 'center', borderRadius: 6, marginTop: '15%', marginRight: '7%', }}>
-                                                <Image source={require('../../assets/images/calendar2.png')} style={{ width: 14, height: 14 }} />
-                                                <Text style={{ paddingLeft: 5, fontSize: 12, color: colors.green }}>Available Today</Text>
-                                            </View>
-                                        </View>
+                                    <View style={{ flexDirection: 'row', marginTop: '1%', width: '90%', alignItems: 'center', justifyContent: 'space-between' }}>
+                                        <Text style={{ fontSize: 10, fontFamily: 'Gilroy-Medium', color: colors.darkGrey }}>Distance.</Text>
+                                        <Text style={{ fontSize: 10, fontFamily: 'Gilroy-SemiBold', color: colors.black }}>30 Km away</Text>
+                                    </View>
+                                    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                                        <Image source={require('../../assets/images/stars.png')} style={{ height: 12, width: 73, marginTop: '2%' }} />
+                                        <Text style={{ fontSize: 10, fontFamily: 'Gilroy-Medium', color: colors.darkGrey, marginLeft: '2%', marginTop: '2%' }}>(152)</Text>
                                     </View>
                                 </View>
-                            </View>
-                        </TouchableOpacity>
-                    )}
-                />
+                                <View style={{ width: '20%', justifyContent: 'space-between', alignSelf: 'flex-start', marginTop: '5%', }}>
+                                    <View style={styles.availableContainer}>
+                                        <Image source={require('../../assets/images/calendar2.png')} style={{ height: 12, width: 12 }} />
+                                        <Text style={styles.available}>Available Today</Text>
+                                    </View>
+                                    <TouchableOpacity onPress={() => { navigation.navigate('ConfirmBooking', { id: item._id }) }} style={styles.buttonContainer1}>
+                                        <Image source={require('../../assets/images/video2.png')} style={{height:12, width:12, marginRight:3}}/>
+                                        <Text style={styles.bText1}>Online Consult</Text>
+                                    </TouchableOpacity>
+                                    <TouchableOpacity onPress={() => { navigation.navigate('ConfirmBooking', { id: item._id }) }} style={styles.buttonContainer}>
+                                    <Image source={require('../../assets/images/inClinic2.png')} style={{height:12, width:12, marginRight:3}}/>
+                                    <Text style={styles.bText1}>Book Visit</Text>
+                                    </TouchableOpacity>
+                                </View>
+                            </TouchableOpacity>
+                            // </View>
+                        )}
+                    />
+                </View>
             </ScrollView>
         </View>
     )

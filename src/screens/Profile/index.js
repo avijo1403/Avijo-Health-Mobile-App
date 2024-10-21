@@ -7,9 +7,9 @@ import ProfileItem from "../../components/ProfileItem";
 import { BaseUrl2 } from "../../assets/Data";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-export default function Profile({ navigation, route }) {
+export default function Profile({ navigation }) {
 
-    const id = route?.params?.id;
+    // const id = route?.params?.id;
 
     const [userData, setUserData] = useState([]);
 
@@ -101,7 +101,7 @@ export default function Profile({ navigation, route }) {
                 <ProfileItem icon={require('../../assets/images/reminder.png')} text="Reminder" />
                 <ProfileItem icon={require('../../assets/images/earn.png')} text="Refer and Earn" />
                 <ProfileItem icon={require('../../assets/images/article2.png')} text="Health Articles (Docare)" /> */}
-                <ProfileItem icon={require('../../assets/images/profile6.png')} text="Ambulance" emergency={true} />
+                <ProfileItem icon={require('../../assets/images/profile6.png')} text="Ambulance" onPress={()=> navigation.navigate('Ambulance')} emergency={true} />
                 <ProfileItem icon={require('../../assets/images/profile7.png')} text="Support and Help" onPress={() => navigation.navigate('Support')} />
                 <TouchableOpacity style={{ margin: '5%', alignSelf: 'flex-end' }}>
                     <Image source={require('../../assets/images/setting1.png')} style={{ height: 32, width: 32, }} />

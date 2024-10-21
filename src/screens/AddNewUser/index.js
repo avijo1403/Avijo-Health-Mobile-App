@@ -8,7 +8,7 @@ import Button2 from "../../components/Button2";
 import { BaseUrl2 } from "../../assets/Data";
 import HeaderItem from "../../components/HeaderItem";
 
-export default function AddNewUser({ navigation}) {
+export default function AddNewUser({ navigation }) {
 
 
     const [name, setName] = useState('');
@@ -38,7 +38,7 @@ export default function AddNewUser({ navigation}) {
             bloodPressure,
             temperature,
         };
-    
+
         try {
             console.log('Sending data:', data);  // Log the data being sent
             const response = await fetch(`${BaseUrl2}/user/ElectronicHealth/create`, {
@@ -48,35 +48,35 @@ export default function AddNewUser({ navigation}) {
                 },
                 body: JSON.stringify(data),
             });
-    
+
             if (!response.ok) {
                 const errorResponse = await response.json();
                 console.log('Error response:', errorResponse); // Log the error response
                 throw new Error(errorResponse.message || 'Failed to save user');
             }
-    
+
             const jsonResponse = await response.json();
             console.log('Response data:', jsonResponse); // Log the response data
-    
+
             // Check if the response contains the expected data and an _id field
-            if(email && name && mobileNo && gender && weight && relation && bloodPressure && temperature ){
-            if (jsonResponse && jsonResponse.data && jsonResponse.data._id) {
-                Alert.alert('Success', 'User saved successfully');
-                navigation.navigate('SaveUser',{id:jsonResponse.data._id});
+            if (email && name && mobileNo && gender && weight && relation && bloodPressure && temperature) {
+                if (jsonResponse && jsonResponse.data && jsonResponse.data._id) {
+                    Alert.alert('Success', 'User saved successfully');
+                    navigation.navigate('SaveUser', { id: jsonResponse.data._id });
+                } else {
+                    Alert.alert('Error', jsonResponse.message || 'Unexpected response structure');
+                }
             } else {
-                Alert.alert('Error', jsonResponse.message || 'Unexpected response structure');
+                navigation.navigate('SaveUser', { id: '669500cdc84a50ef685495c9' });
             }
-        }else{
-            navigation.navigate('SaveUser',{id:'669500cdc84a50ef685495c9'});
-        }
         } catch (error) {
             console.error('Error:', error);
             Alert.alert('Error', error.message || 'An error occurred while saving the user');
         }
     };
-    
-    
-    
+
+
+
 
     return (
         <View style={styles.container}>
@@ -91,15 +91,15 @@ export default function AddNewUser({ navigation}) {
                     </View>
                 </View>
                 <Text style={{ fontSize: 21, fontFamily: 'Gilroy-SemiBold', color: colors.black, width: '90%', marginTop: '5%' }}>User Detail</Text>
-                <Text style={{ fontSize: 18, fontFamily: 'Gilroy-Medium', color: colors.black, width: '90%', marginTop: '5%' }}>NAME</Text>
+                {/* <Text style={{ fontSize: 14, fontFamily: 'Gilroy-Medium', color: colors.black, width: '90%', marginTop: '5%' }}>NAME</Text>
                 <TextInput
                     style={styles.input}
                     placeholder="Enter Name "
                     placeholderTextColor={colors.darkGrey}
                     value={name}
                     onChangeText={setName}
-                />
-                <Text style={{ fontSize: 18, fontFamily: 'Gilroy-Medium', color: colors.black, width: '90%', marginTop: '5%' }}>EMAIL</Text>
+                /> */}
+                <Text style={{ fontSize: 14, fontFamily: 'Gilroy-Medium', color: colors.black, width: '90%', marginTop: '5%' }}>EMAIL</Text>
                 <TextInput
                     style={styles.input}
                     placeholder="Enter your Email "
@@ -107,7 +107,7 @@ export default function AddNewUser({ navigation}) {
                     value={email}
                     onChangeText={setEmail}
                 />
-                <Text style={{ fontSize: 18, fontFamily: 'Gilroy-Medium', color: colors.black, width: '90%', marginTop: '5%' }}>Mobile number</Text>
+                <Text style={{ fontSize: 14, fontFamily: 'Gilroy-Medium', color: colors.black, width: '90%', marginTop: '5%' }}>Mobile number</Text>
                 <TextInput
                     style={styles.input}
                     placeholder="Enter your Mobile number"
@@ -115,8 +115,13 @@ export default function AddNewUser({ navigation}) {
                     value={mobileNo}
                     onChangeText={setMobileNo}
                 />
+                <Collapsible2 heading="Date of Birth" content={['jan', 'feb', 'mar']} text="Select your date" />
                 <Collapsible2 heading="Gender" content={["Male", "Female"]} text="Select your Gender" />
-                <Text style={{ fontSize: 18, fontFamily: 'Gilroy-Medium', color: colors.black, width: '90%', marginTop: '5%' }}>Weight</Text>
+                <View style={{flexDirection:'row', alignItems:'center', width:'90%', marginTop:'5%'}}>
+                    <Image source={require('../../assets/images/vitals.png')} style={{ height: 24, width: 24 }} />
+                    <Text style={{ fontSize: 18, fontFamily: 'Gilroy-SemiBold', color: colors.black, width: '90%', marginLeft:'3%' }}>Vitals</Text>
+                    </View>
+                <Text style={{ fontSize: 14, fontFamily: 'Gilroy-Medium', color: colors.black, width: '90%', marginTop: '5%' }}>Weight</Text>
                 <View style={{ width: '90%', flexDirection: 'row', justifyContent: 'center', marginTop: '3%', alignItems: 'center', borderWidth: 1, height: 48, borderRadius: 5, borderColor: colors.grey }}>
                     <TextInput
                         style={{ width: '70%', fontSize: 16, fontFamily: 'Gilroy-Medium', color: colors.black }}
@@ -127,7 +132,7 @@ export default function AddNewUser({ navigation}) {
                     />
                     <Text style={{ width: '20%', fontSize: 14, fontFamily: 'Gilroy-Medium', color: colors.darkGrey, textAlign: 'right' }}>KG</Text>
                 </View>
-                <Text style={{ fontSize: 18, fontFamily: 'Gilroy-Medium', color: colors.black, width: '90%', marginTop: '5%' }}>Height</Text>
+                <Text style={{ fontSize: 14, fontFamily: 'Gilroy-Medium', color: colors.black, width: '90%', marginTop: '5%' }}>Height</Text>
                 <View style={{ width: '90%', flexDirection: 'row', justifyContent: 'center', marginTop: '3%', alignItems: 'center', borderWidth: 1, height: 48, borderRadius: 5, borderColor: colors.grey }}>
                     <TextInput
                         style={{ width: '70%', fontSize: 16, fontFamily: 'Gilroy-Medium', color: colors.black }}
@@ -138,7 +143,7 @@ export default function AddNewUser({ navigation}) {
                     />
                     <Text style={{ width: '20%', fontSize: 14, fontFamily: 'Gilroy-Medium', color: colors.darkGrey, textAlign: 'right' }}>CM</Text>
                 </View>
-                <Text style={{ fontSize: 18, fontFamily: 'Gilroy-Medium', color: colors.black, width: '90%', marginTop: '5%' }}>Blood Pressure</Text>
+                <Text style={{ fontSize: 14, fontFamily: 'Gilroy-Medium', color: colors.black, width: '90%', marginTop: '5%' }}>Blood Pressure</Text>
                 <View style={{ width: '90%', flexDirection: 'row', justifyContent: 'center', marginTop: '3%', alignItems: 'center', borderWidth: 1, height: 48, borderRadius: 5, borderColor: colors.grey }}>
                     <TextInput
                         style={{ width: '60%', fontSize: 16, fontFamily: 'Gilroy-Medium', color: colors.black }}
@@ -149,7 +154,7 @@ export default function AddNewUser({ navigation}) {
                     />
                     <Text style={{ width: '32%', fontSize: 14, fontFamily: 'Gilroy-Medium', color: colors.darkGrey, textAlign: 'right' }}>70/120mmHg</Text>
                 </View>
-                <Text style={{ fontSize: 18, fontFamily: 'Gilroy-Medium', color: colors.black, width: '90%', marginTop: '5%' }}>Temperature</Text>
+                <Text style={{ fontSize: 14, fontFamily: 'Gilroy-Medium', color: colors.black, width: '90%', marginTop: '5%' }}>Temperature</Text>
                 <View style={{ width: '90%', flexDirection: 'row', justifyContent: 'center', marginTop: '3%', alignItems: 'center', borderWidth: 1, height: 48, borderRadius: 5, borderColor: colors.grey }}>
                     <TextInput
                         style={{ width: '70%', fontSize: 16, fontFamily: 'Gilroy-Medium', color: colors.black }}
@@ -160,14 +165,14 @@ export default function AddNewUser({ navigation}) {
                     />
                     <Text style={{ width: '20%', fontSize: 14, fontFamily: 'Gilroy-Medium', color: colors.darkGrey, textAlign: 'right' }}>*F</Text>
                 </View>
-                <Text style={{ fontSize: 18, fontFamily: 'Gilroy-Medium', color: colors.black, width: '90%', marginTop: '5%' }}>Relation</Text>
+                {/* <Text style={{ fontSize: 14, fontFamily: 'Gilroy-Medium', color: colors.black, width: '90%', marginTop: '5%' }}>Relation</Text>
                 <TextInput
                     style={styles.input}
                     placeholder="Enter your Relation"
                     placeholderTextColor={colors.darkGrey}
                     value={relation}
                     onChangeText={setRelation}
-                />
+                /> */}
                 <View style={{ width: '100%', alignItems: 'center', marginTop: '10%', marginBottom: '5%' }}>
                     <Button2 Text="Save Users" backgroundColor={colors.blue} onPress={handleSaveUser} />
                 </View>

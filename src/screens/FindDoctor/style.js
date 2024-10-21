@@ -94,14 +94,44 @@ const styles = StyleSheet.create({
           borderRadius:3,
           backgroundColor:colors.blue,
           padding:hp(1),
+          marginTop:'10%',
+          alignSelf:'center',
+          flexDirection:'row',
+      },
+      buttonContainer1:{
+          width:wp(20),
+          alignItems:'center',
+          justifyContent:'center',
+          borderRadius:3,
+          backgroundColor:colors.grey,
+          padding:hp(1),
         //   marginTop:'15%',
           alignSelf:'center',
+          flexDirection:'row',
       },
       bText1:{
           color:colors.white,
-          fontSize:8,
+          fontSize:7,
           fontFamily: 'Gilroy-SemiBold',
-      }
+      },
+      bText2:{
+          color:colors.white,
+          fontSize:6,
+          fontFamily: 'Gilroy-SemiBold',
+      },
+      available: {
+          fontSize: 9,
+          fontFamily: 'Gilroy-Medium',
+          paddingLeft: '5%',
+          color: colors.green,
+      },
+      availableContainer: {
+        width: '100%',
+        alignItems: 'center',
+        flexDirection: 'row',
+        justifyContent: 'flex-end',
+        marginBottom: '10%'
+    }
 })
 
 export default styles;

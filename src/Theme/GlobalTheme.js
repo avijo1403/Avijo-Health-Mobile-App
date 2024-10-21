@@ -36,6 +36,7 @@ const colors = {
         aqua:'#E2EFF4',
         torquish:'#39D2C0',
         parrot:'#9FCB08',
+        blackTrasparent:'rgba(0, 0, 0, 0.5)',
 }
 
 export {colors, hp, wp};

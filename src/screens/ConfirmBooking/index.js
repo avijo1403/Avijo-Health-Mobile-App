@@ -50,7 +50,7 @@ export default function ConfirmBooking({ navigation, route }) {
 
             // Parse the JSON response
             const result = await response.json();
-            navigation.navigate('AppointmentConfirm', {id: id});
+            navigation.navigate('AppointmentConfirm', { id: id });
             console.log('Success:', result);
         } catch (e) {
             console.log('error submitting...', e);
@@ -83,36 +83,39 @@ export default function ConfirmBooking({ navigation, route }) {
         <View style={styles.container}>
             <HeaderItem2 onPress={() => navigation.goBack()} />
             <ScrollView contentContainerStyle={{ alignItems: 'center' }} style={{ width: '100%' }}>
-                <View style={{ width: '100%', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginRight: '20%' }}>
-                    <TouchableOpacity onPress={() => navigation.navigate('Reviews', { id: singleData?.consultation?._id })} style={{ width: '70%', marginTop: '5%', flexDirection: 'row' }}>
-                        <Image source={require('../../assets/images/dr6.png')} style={{ width: 56, height: 58, borderRadius: 5, alignSelf: 'center' }} />
-                        <View style={{ marginLeft: '5%', width: '70%' }}>
+                <View style={{ width: '100%', flexDirection: 'row', alignItems: 'center', alignSelf: 'center', justifyContent: 'center', }}>
+                    <View style={{ width: '90%', marginTop: '5%', flexDirection: 'row' }}>
+                        <Image source={require('../../assets/images/dr6.png')} style={{ width: 56, height: 58, borderRadius: 5, }} />
+                        <View style={{ marginLeft: '5%', width: '80%' }}>
                             <Text style={{ fontFamily: 'Gilroy-SemiBold', fontSize: 12, color: colors.blue }}>{singleData?.fullName}</Text>
                             <Text style={{ fontFamily: 'Gilroy-Medium', fontSize: 12, color: colors.darkGrey, paddingTop: '3%' }}>{singleData?.specialization}</Text>
-                            <View style={{ flexDirection: 'row', marginTop: '1%', width: '90%', alignItems: 'center', justifyContent: 'space-between' }}>
+                            <View style={{ flexDirection: 'row', marginTop: '1%', width: '60%', alignItems: 'center', justifyContent: 'space-between' }}>
                                 <Text style={{ fontSize: 9, fontFamily: 'Gilroy-Medium', color: colors.darkGrey }}>Exp. <Text style={{ fontSize: 9, fontFamily: 'Gilroy-SemiBold', color: colors.black }}>22 years</Text></Text>
-                                <Text style={{ fontSize: 9, fontFamily: 'Gilroy-Medium', color: colors.darkGrey }}>fees. <Text style={{ fontSize: 9, fontFamily: 'Gilroy-SemiBold', color: colors.black }}>$ 100</Text></Text>
+                                <Text style={{ fontSize: 9, fontFamily: 'Gilroy-Medium', color: colors.darkGrey }}>fees. <Text style={{ fontSize: 9, fontFamily: 'Gilroy-SemiBold', color: colors.black }}>$30</Text></Text>
                             </View>
-                            <View style={{ flexDirection: 'row', marginTop: '1%', width: '90%', alignItems: 'center', justifyContent: 'space-between' }}>
-                                <Text style={{ fontSize: 10, fontFamily: 'Gilroy-Medium', color: colors.darkGrey }}>Distance.</Text>
-                                <Text style={{ fontSize: 10, fontFamily: 'Gilroy-SemiBold', color: colors.black }}>30 Km away</Text>
+                            <View style={{ flexDirection: 'row', marginTop: '1%', width: '90%', alignItems: 'center', justifyContent: 'space-between', marginTop: '5%', marginBottom: '5%' }}>
+                                <TouchableOpacity style={{ backgroundColor: colors.blue, padding: 5, paddingLeft: 10, paddingRight: 10, borderRadius: 25, flexDirection: 'row', alignItems: 'center' }}>
+                                    <Image source={require('../../assets/images/follow.png')} style={{ height: 8, width: 8, marginRight: 5 }} />
+                                    <Text style={{ fontSize: 10, fontFamily: 'Gilroy-Medium', color: colors.white }}>Follow</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity style={{ backgroundColor: colors.white, padding: 5, paddingLeft: 10, paddingRight: 10, borderRadius: 25, flexDirection: 'row', alignItems: 'center', borderWidth: 1, borderColor: colors.grey }}>
+                                    <Image source={require('../../assets/images/notify.png')} style={{ height: 10, width: 10, marginRight: 5 }} />
+                                    <Text style={{ fontSize: 10, fontFamily: 'Gilroy-Medium', color: colors.darkGrey }}>Notify me</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity style={{ backgroundColor: colors.white, padding: 5, paddingLeft: 10, paddingRight: 10, borderRadius: 25, flexDirection: 'row', alignItems: 'center', borderWidth: 1, borderColor: colors.grey }}>
+                                    <Image source={require('../../assets/images/ask2.png')} style={{ height: 8, width: 8, marginRight: 5 }} />
+                                    <Text style={{ fontSize: 10, fontFamily: 'Gilroy-Medium', color: colors.darkGrey }}>Ask</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity>
+                                    <Image source={require('../../assets/images/dot1.png')} style={{ height: 25, width: 25 }} />
+                                </TouchableOpacity>
                             </View>
                             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                                 <Image source={require('../../assets/images/stars.png')} style={{ height: 12, width: 73, marginTop: '2%' }} />
                                 <Text style={{ fontSize: 10, fontFamily: 'Gilroy-Medium', color: colors.darkGrey, marginLeft: '2%', marginTop: '2%' }}>(152)</Text>
                             </View>
                         </View>
-                        <View style={{ width: '30%', justifyContent: 'space-between', alignSelf: 'flex-start', marginTop: '5%' }}>
-                            <View style={styles.availableContainer}>
-                                <Image source={require('../../assets/images/calendar2.png')} style={{ height: 12, width: 12 }} />
-                                <Text style={styles.available}>Available Today</Text>
-                            </View>
-                            <TouchableOpacity style={styles.buttonContainer}>
-                                <Text style={styles.bText1}>Book clinic Visit</Text>
-                                <Text style={styles.bText2}>No Booking Fee</Text>
-                            </TouchableOpacity>
-                        </View>
-                    </TouchableOpacity>
+                    </View>
                 </View>
                 <Text style={{ fontSize: 14, fontFamily: 'Gilroy-SemiBold', color: colors.black, width: '90%', marginTop: '15%' }}>Who is this consultation for?</Text>
                 <View style={{ width: '100%' }}>
@@ -144,7 +147,7 @@ export default function ConfirmBooking({ navigation, route }) {
                     <Text style={styles.totalOption}>$40.00</Text>
                 </View>
                 <View style={{ width: '100%', alignItems: 'center', marginTop: '5%', marginBottom: '5%' }}>
-                    <Button1 Text="Confirm booking" onPress={handleSubmit} />
+                    <Button1 Text="Confirm booking" onPress={() => navigation.navigate('Slot', { name: singleData?.fullName, id: id })} />
                 </View>
             </ScrollView>
         </View>

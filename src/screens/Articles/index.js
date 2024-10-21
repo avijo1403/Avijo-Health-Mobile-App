@@ -27,7 +27,7 @@ export default function Articles({ navigation }) {
                         <View style={{ width: '90%', height: 1, backgroundColor: colors.grey, marginTop: '5%' }} />
                         <View style={{ flexDirection: 'row', width: '90%', justifyContent: 'space-between' }}>
                             <View style={{ marginTop: '2%' }}>
-                                <Text style={{ fontSize: 14, fontFamily: 'Gilroy-SemiBold', color: colors.grey }}>By <Text style={{ color: colors.lightGreen }}>Dr.Divya Mandial</Text></Text>
+                                <Text style={{ fontSize: 14, fontFamily: 'Gilroy-SemiBold', color: colors.grey }}>By <Text style={{ color: colors.green }}>Dr.Divya Mandial</Text></Text>
                                 <Text style={{ fontSize: 16, fontFamily: 'Gilroy-SemiBold', color: colors.black, marginTop: '5%' }}>04 jun, 2024</Text>
                             </View>
                             <View style={{ flexDirection: 'row', width: '25%', justifyContent: 'space-between', marginTop: '4%', paddingBottom: '5%' }}>
@@ -59,9 +59,9 @@ export default function Articles({ navigation }) {
                             <View style={{ width: '90%', height: 1, backgroundColor: colors.grey, marginTop: '5%' }} />
                             <View style={{ flexDirection: 'row', width: '90%', justifyContent: 'space-between' }}>
                                 <View style={{ marginTop: '2%' }}>
-                                    <Text style={{ fontSize: 14, fontFamily: 'Gilroy-SemiBold', color: colors.grey }}>By <Text style={{ color: colors.lightGreen }}>Dr.Divya Mandial</Text></Text>
+                                    <Text style={{ fontSize: 14, fontFamily: 'Gilroy-SemiBold', color: colors.grey }}>By <Text style={{ color: colors.green }}>Dr.Divya Mandial</Text></Text>
                                     <Text style={{ fontSize: 16, fontFamily: 'Gilroy-SemiBold', color: colors.black, marginTop: '5%' }}>04 jun, 2024</Text>
-                                </View>
+                                </View>                     
                                 <View style={{ flexDirection: 'row', width: '25%', justifyContent: 'space-between', marginTop: '4%', paddingBottom: '5%' }}>
                                     <TouchableOpacity>
                                         <Image source={require('../../assets/images/share1.png')} style={{ height: 32, width: 32 }} />
@@ -90,7 +90,7 @@ export default function Articles({ navigation }) {
                         <View style={{ width: '90%', height: 1, backgroundColor: colors.grey, marginTop: '5%' }} />
                         <View style={{ flexDirection: 'row', width: '90%', justifyContent: 'space-between' }}>
                             <View style={{ marginTop: '2%' }}>
-                                <Text style={{ fontSize: 14, fontFamily: 'Gilroy-SemiBold', color: colors.grey }}>By <Text style={{ color: colors.lightGreen }}>Dr.Divya Mandial</Text></Text>
+                                <Text style={{ fontSize: 14, fontFamily: 'Gilroy-SemiBold', color: colors.grey }}>By <Text style={{ color: colors.green }}>Dr.Divya Mandial</Text></Text>
                                 <Text style={{ fontSize: 16, fontFamily: 'Gilroy-SemiBold', color: colors.black, marginTop: '5%' }}>04 jun, 2024</Text>
                             </View>
                             <View style={{ flexDirection: 'row', width: '25%', justifyContent: 'space-between', marginTop: '4%', paddingBottom: '5%' }}>
@@ -124,7 +124,7 @@ export default function Articles({ navigation }) {
             style={{ height: 28, width: 28 }} />}
             onRightPress2={()=>navigation.navigate('AddQuestion')}
              />
-            <View style={{ flexDirection: 'row', width: '100%', backgroundColor: colors.lightGreen, height: '5%', alignItems: 'center', justifyContent: 'center' }}>
+            <View style={{ flexDirection: 'row', width: '100%', backgroundColor: colors.green, height: '5%', alignItems: 'center', justifyContent: 'center' }}>
                 <View style={{ flexDirection: 'row', width: '90%', alignItems: 'center', justifyContent: 'space-between' }}>
                     <TouchableOpacity onPress={() => handleSelect(1)} style={{ borderBottomWidth: select === 1 ? 3 : 0, padding: 5, borderColor: colors.white }}>
                         <Text style={{ fontSize: 16, fontFamily: 'Gilroy-SemiBold', color: colors.white }}>For You</Text>
@@ -143,7 +143,7 @@ export default function Articles({ navigation }) {
                 {select === 3 && <Favourites />}
             </View>
             <FloatingAction
-            color={colors.lightGreen}
+            color={colors.green}
             onPressMain={()=>{
                 navigation.navigate('AddQuestion')
             }}
