@@ -189,7 +189,7 @@ export default function UserProfile({ navigation }) {
     }
 
 
-    const Followers = () => {
+    const Followings = () => {
         return (
             <>
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', width: '90%', marginTop: '8%' }}>
@@ -215,6 +215,73 @@ export default function UserProfile({ navigation }) {
         )
     }
 
+    
+    const Followers = () => {
+        return (
+            <>
+                {profileOption && profileOption.length > 0 && profileOption.map((item) => (
+                    <View style={[styles.container, { marginTop: '5%' }]}>
+                        {/* <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', width: '90%', marginTop: '8%' }}>
+                        <Text style={{ fontSize: 18, fontFamily: 'Gilroy-SemiBold', color: colors.black }}>Profile</Text>
+                        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
+                            <Text style={{ fontSize: 12, fontFamily: 'Gilroy-SemiBold', color: colors.black }}>Most Recent</Text>
+                            <Image source={require('../../assets/images/downGrey.png')} style={{ height: 16, width: 16 }} />
+                        </View>
+                    </View> */}
+                        <View style={{ width: '90%', alignItems: 'center', borderWidth: 1, borderColor: colors.lightgrey, borderRadius: 5, marginTop: '3%', padding: '3%', elevation: 5, backgroundColor: colors.white }}>
+                            <View style={{ width: '100%', flexDirection: 'row', alignItems: 'center' }}>
+                                <Image source={require('../../assets/images/profile.png')} style={{ height: 40, width: 40 }} />
+                                <View style={{ width: '65%', alignItems: 'center', paddingLeft: '5%' }}>
+                                    <Text style={{ fontSize: 14, fontFamily: 'Gilroy-SemiBold', color: colors.black, width: "100%", marginTop: '2%' }}>Nancy Johnson</Text>
+                                    <Text style={{ fontSize: 12, fontFamily: 'Gilroy-Medium', color: colors.darkGrey, width: "100%", marginTop: '2%' }}>studied at Cambridge (2012)</Text>
+                                    <Text style={{ fontSize: 10, fontFamily: 'Gilroy-Medium', color: colors.grey, width: "100%", marginTop: '2%' }}>6.3k views last week</Text>
+                                </View>
+                                <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center', padding: '2%', borderRadius: 6, borderWidth: 1, borderColor: colors.blue }}>
+                                    <Image source={require('../../assets/images/addAccBlue.png')} style={{ height: 12, width: 10, marginRight: '2%' }} />
+                                    <Text style={{ fontSize: 12, fontFamily: 'Gilroy-Medium', color: colors.blue, paddingLeft: 5 }}>Follow</Text>
+                                </TouchableOpacity>
+                            </View>
+                        </View>
+                    </View>))}
+            </>
+        )
+    }
+
+    
+    const Posts = () => {
+
+        return (
+            <View style={styles.container}>
+                <View style={{ width: '100%', alignItems: 'center' }}>
+                    <FlatList
+                        style={{ width: '90%' }}
+                        contentContainerStyle={{ marginTop: '5%' }}
+                        data={profileOption}
+                        renderItem={({ item }) => (
+                            <View style={{ flexDirection: 'column', width: '100%', marginBottom: '5%', marginTop: '5%' }}>
+                                <Image source={require('../../assets/images/post1.png')} style={{ height: 200, width: '100%', borderRadius: 24 }} />
+                                <Text style={{ fontSize: 16, fontFamily: 'Gilroy-Medium', color: colors.darkGrey, marginTop: '2%', width: '100%', borderBottomWidth: 1, borderColor: colors.grey, paddingBottom: '5%' }}>Several essential oil besides curirg ailments can aid overall vision health know about 5 essential</Text>
+                                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', width: '100%', marginTop: '2%' }}>
+                                    <View>
+                                        <Text style={{ fontSize: 14, fontFamily: 'Gilroy-SemiBold', color: colors.grey }}>By <Text style={{ color: colors.blue }}>Dr.Divya Mandial</Text></Text>
+                                        <Text style={{ fontSize: 14, fontFamily: 'Gilroy-SemiBold', color: colors.darkGrey, marginTop: '4%' }}>04 jun, 2024</Text>
+                                    </View>
+                                    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                                        <TouchableOpacity style={{ marginRight: '5%' }}>
+                                            <Image source={require('../../assets/images/blueShare2.png')} style={{ height: 32, width: 32 }} />
+                                        </TouchableOpacity>
+                                        <TouchableOpacity>
+                                            <Image source={require('../../assets/images/redHeart.png')} style={{ height: 32, width: 32 }} />
+                                        </TouchableOpacity>
+                                    </View>
+                                </View>
+                            </View>
+                        )} />
+                </View>
+            </View>
+        )
+    }
+
     function HealthRecords() {
 
         const [userRecord, setUserRecord] = useState([]);
@@ -222,7 +289,7 @@ export default function UserProfile({ navigation }) {
         const fetchUserRecord = async () => {
             const response = await fetch(`${BaseUrl2}/user/ElectronicHealth/all`);
             const json = await response.json();
-            setUserRecord(json.data);
+            setUserRecord(json.data.slice(0, 5));
             console.log('json:', json.data);
         }
 
@@ -258,7 +325,7 @@ export default function UserProfile({ navigation }) {
                 </View>
                 <TouchableOpacity style={{ width: '100%', alignItems: 'center', justifyContent: 'center', flexDirection: 'row', marginBottom: '5%' }}>
                     <Image source={require('../../assets/images/add5.png')} style={{ height: 40, width: 40 }} />
-                    <Text style={{ fontSize: 18, fontFamily: 'Gilroy-SemiBold', color: colors.black, marginLeft:'2%' }}>Add Health Account</Text>
+                    <Text style={{ fontSize: 18, fontFamily: 'Gilroy-SemiBold', color: colors.black, marginLeft: '2%' }}>Add Health Account</Text>
                 </TouchableOpacity>
                 {/* </ScrollView> */}
             </View>
@@ -270,11 +337,11 @@ export default function UserProfile({ navigation }) {
             <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', width: '100%', padding: '5%', backgroundColor: colors.white, paddingTop: '10%' }}>
                 <TouchableOpacity onPress={() => setModalVisible(true)} style={{ flexDirection: 'row', alignItems: 'center' }}>
                     <Text style={{ fontSize: 20, fontFamily: 'Gilroy-SemiBold', color: colors.black }}>Alicia</Text>
-                    <Image source={require('../../assets/images/down.png')} style={{ height: 10, width: 10, marginLeft: 5, marginTop: '3%' }} />
+                    <Image source={require('../../assets/images/down.png')} style={{ height: 10, width: 10, marginLeft: 2, marginTop: '3%' }} />
                 </TouchableOpacity>
                 <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                     <Image source={require('../../assets/images/blackAdd.png')} style={{ height: 26, width: 26, }} />
-                    <Image source={require('../../assets/images/blackLines.png')} style={{ height: 26, width: 26, marginLeft: 10 }} />
+                    <Image source={require('../../assets/images/setting1.png')} style={{ height: 30, width: 30, marginLeft: 10 }} />
                 </View>
             </View>
             <ScrollView
@@ -307,16 +374,17 @@ export default function UserProfile({ navigation }) {
                         style={{ width: '100%' }}
                         contentContainerStyle={{ marginLeft: '5%', paddingRight: '5%', marginTop: "7%" }}
                         renderItem={({ item }) => (
-                            <TouchableOpacity onPress={() => setSelect(item.id)} style={{ width: 110, alignItems: 'center', borderBottomWidth: 2, borderColor: colors.grey }}>
-                                <Text style={{ width: 110, textAlign: 'center', paddingBottom: '5%', fontSize: 14, fontFamily: 'Gilory-Medium', borderBottomWidth: 2, borderColor: select === item.id ? colors.blue : colors.white, color: select === item.id ? colors.blue : colors.black }}>{item.text}</Text>
+                            <TouchableOpacity onPress={() => setSelect(item.id)} style={{alignItems: 'center', borderBottomWidth: 2, borderColor: colors.grey }}>
+                                <Text style={{ textAlign: 'center', paddingLeft:10, paddingRight:10, paddingBottom: '5%', fontSize: 14, fontFamily: 'Gilory-Medium', borderBottomWidth: 2, borderColor: select === item.id ? colors.blue : colors.white, color: select === item.id ? colors.blue : colors.black }}>{item.text}</Text>
                             </TouchableOpacity>
                         )}
                     />
                 </View>
                 {select === 0 && <Questions />}
                 {select === 1 && <Answers />}
-                {select === 2 && <Followers />}
-                {select === 3 && <HealthRecords />}
+                {select === 2 && <Followings />}
+                {select === 3 && <Followers />}
+                {select === 4 && <Posts />}
             </ScrollView>
 
             <Modal
@@ -328,7 +396,10 @@ export default function UserProfile({ navigation }) {
                 }}>
                 <Pressable onPress={() => setModalVisible(!modalVisible)} style={{ flex: 1, width: '100%', alignItems: 'center', justifyContent: 'flex-end', backgroundColor: colors.blackTrasparent }}>
                     <View style={{ width: '100%', borderTopRightRadius: 16, borderTopLeftRadius: 16, borderWidth: 1, borderColor: colors.white, backgroundColor: colors.white, maxHeight: '70%' }}>
-                        <ScrollView style={{ width: '100%' }} contentContainerStyle={{ alignItems: 'center' }}>
+                        <ScrollView
+                         style={{ width: '100%' }} 
+                         contentContainerStyle={{ alignItems: 'center' }}
+                         showsVerticalScrollIndicator={false}>
                             <HealthRecords />
                         </ScrollView>
                     </View>

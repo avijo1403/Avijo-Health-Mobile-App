@@ -204,7 +204,7 @@ const BottomNav = () => {
             </View>
           ),
         }}
-        name="Profile"
+        name="UserProfile"
         // Pass the id as a param to the Profile screen
         component={UserProfile}
       // initialParams={{ id: userId }}

@@ -544,7 +544,11 @@ const profileOption = [
     },
     {
         id: 3,
-        text: 'Records'
+        text: 'Followers'
+    },
+    {
+        id: 4,
+        text: 'Posts'
     }
 ]
 const detailOption = [

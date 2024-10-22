@@ -10,11 +10,11 @@ import RNFS from 'react-native-fs';
 
 const Chat = ({ navigation }) => {
     const [messages, setMessages] = useState([
-        { id: 1, sender: 'You', text: 'Hi, Dr.Jii', time: '12:00 pm' },
-        { id: 2, sender: 'Jane', text: 'Hi, Dr.Jii, your AI health expert. Youre in a safe space to ask anything or express any concerns you might have.', time: '12:00 pm' },
-        { id: 2, sender: 'Jane', text: 'Im ready to assist you on your health journey in a deeper way. Heres what I can do for you:🤔 Health Q&A: Feel free to ask anything. I can even understand voice notes and multiple languages. 🔍 Visual Symptom Checker: Snap a photo or describe your symptoms, and Ill help identify potential causes.🔬 Lab Report & Prescription Analysis: Send me a picture or pdf of your report for clear explanations of your medications and lab results.🧘 Mental Health Support: Lets talk about your mental well-being.🍏 Meal & Fitness Plans: Customized meal and workout programs designed just for you.🌿 Calories & Nutritional Insights - Learn the nutritional content of your meals just by sending a photo.👩‍⚕👨‍⚕ Your health is my priority.', time: '12:00 pm' },
-        { id: 1, sender: 'Jane', text: 'By messaging further, you agree to t&c: bit.ly/august-privacy.I only provide health information, consult a health care professional before applying any info.', time: '12:00 pm' },
-        { id: 1, sender: 'Jane', text: 'Whats on your mind?', time: '12:00 pm' },
+        // { id: 1, sender: 'You', text: 'Hi, Dr.Jii', time: '12:00 pm' },
+        // { id: 2, sender: 'Jane', text: 'Hi, Dr.Jii, your AI health expert. Youre in a safe space to ask anything or express any concerns you might have.', time: '12:00 pm' },
+        // { id: 2, sender: 'Jane', text: 'Im ready to assist you on your health journey in a deeper way. Heres what I can do for you:🤔 Health Q&A: Feel free to ask anything. I can even understand voice notes and multiple languages. 🔍 Visual Symptom Checker: Snap a photo or describe your symptoms, and Ill help identify potential causes.🔬 Lab Report & Prescription Analysis: Send me a picture or pdf of your report for clear explanations of your medications and lab results.🧘 Mental Health Support: Lets talk about your mental well-being.🍏 Meal & Fitness Plans: Customized meal and workout programs designed just for you.🌿 Calories & Nutritional Insights - Learn the nutritional content of your meals just by sending a photo.👩‍⚕👨‍⚕ Your health is my priority.', time: '12:00 pm' },
+        // { id: 1, sender: 'Jane', text: 'By messaging further, you agree to t&c: bit.ly/august-privacy.I only provide health information, consult a health care professional before applying any info.', time: '12:00 pm' },
+        // { id: 1, sender: 'Jane', text: 'Whats on your mind?', time: '12:00 pm' },
     ]);
 
     const [newMessage, setNewMessage] = useState('');
@@ -138,7 +138,7 @@ const Chat = ({ navigation }) => {
                     <TouchableOpacity style={{ padding: '2%' }}>
                         <Text style={{ fontSize: 13, fontFamily: 'Gilroy-SemiBold', color: colors.blue }}>See more</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={{ height: 35, width: '90%', backgroundColor: colors.blue, alignItems: 'center', justifyContent: 'center', borderRadius: 10 }}>
+                    <TouchableOpacity onPress={()=>navigation.navigate('OnlineMedicine')} style={{ height: 35, width: '90%', backgroundColor: colors.blue, alignItems: 'center', justifyContent: 'center', borderRadius: 10 }}>
                         <Text style={{ fontSize: 15, fontFamily: 'Gilroy-SemiBold', color: colors.white }}>Order now</Text>
                     </TouchableOpacity>
                 </View>

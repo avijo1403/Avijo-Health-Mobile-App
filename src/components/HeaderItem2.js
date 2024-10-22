@@ -35,7 +35,6 @@ const styles = StyleSheet.create({
         padding: '5%',
         alignItems: 'center',
         justifyContent: 'space-between',
-        marginTop: '5%'
     },
     headerText: {
         fontSize: 20,
