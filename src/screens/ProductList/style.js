@@ -40,18 +40,21 @@ const styles = StyleSheet.create({
         marginLeft:5,
         fontFamily:'Gilroy-SemiBold'
     },
-    buttonSubContainer:{
-        height:25,
-        width:60,
-        alignItems:'center',
-        borderRadius:3,
-        marginTop:'8%',
-        justifyContent:'center',
+    buttonSubContainer: {
+        // padding:10,
+        width:'30%',
+        height:16,
+        alignItems: 'center',
+        borderRadius: 3,
+        marginTop: '8%',
+        justifyContent: 'center',
+        borderWidth:1,
+        borderColor:colors.green,
     },
-    buttonText:{
-        fontSize:8,
-        fontFamily:'Gilroy-SemiBold',
-        color:colors.white,
+    buttonText: {
+        fontSize: 8,
+        fontFamily: 'Gilroy-SemiBold',
+        color: colors.green,
     }
 })
 export default styles;

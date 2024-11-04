@@ -56,17 +56,17 @@ export default function AppointmentConfirm({navigation, route}) {
             <Text style={{ fontSize: 16, fontFamily: 'Gilroy-SemiBold', color: colors.black, width: '100%', paddingLeft: '5%', marginTop: '5%' }}>{singleData?.registrationCouncil}</Text>
             <Text style={{ fontSize: 14, fontFamily: 'Gilroy-Medium', color: colors.darkGrey, width: '100%', paddingLeft: '5%', marginTop: '5%' }}>3rd Floor,Headquarter Building,Satya Sai Square,Indore</Text>
             <Text style={{ fontSize: 14, fontFamily: 'Gilroy-SemiBold', color: colors.blue, width: '100%', paddingLeft: '5%', marginTop: '5%' }}>Get Directions</Text>
-            <View style={styles.buttonContainer}>
+            {/* <View style={styles.buttonContainer}>
                 <TouchableOpacity onPress={()=>navigation.navigate('AppointmentCancel')} style={[styles.buttonSubContainer, { backgroundColor: colors.grey }]}>
                     <Text style={styles.buttonText}>Cancel Appointment</Text>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => navigation.navigate('Reschedule')} style={[styles.buttonSubContainer, { backgroundColor: colors.blue }]}>
                     <Text style={styles.buttonText}>Reshedule</Text>
                 </TouchableOpacity>
-            </View>
+            </View> */}
             <Text style={{fontSize:13, fontFamily:'Gilroy-Medium', color:colors.grey, width:'90%', marginTop:'10%'}}>You can follow up or check your Consultations Details by clicking my consultations button.</Text>
             <View style={{width:'100%', alignItems:'center', marginTop:'10%'}}>
-                <Button1 Text="My Consultations" onPress={()=>navigation.navigate('Consultation')}/>
+                <Button1 Text="Chat" left={<Image source={require('../../assets/images/chat6.png')} style={{height:20, width:20, marginRight:10}}/>} onPress={()=>navigation.navigate('Chat2')}/>
             </View>
         </View>
     )

@@ -199,20 +199,20 @@ export default function FindDoctor({ navigation }) {
                 <View style={{ width: '90%', alignItems: 'center', }}>
                     <FlatList
                         style={{ width: '100%' }}
+                        contentContainerStyle={{alignItems:'center'}}
                         data={doctorData}
                         renderItem={({ item }) => (
                             // <View style={{ width: '100%', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
-                            <TouchableOpacity onPress={() => navigation.navigate('DoctorDetail')} style={{ width: '90%', marginTop: '5%', flexDirection: 'row', paddingTop: '5%', justifyContent: 'space-between' }}>
-                                <Image source={require('../../assets/images/dr6.png')} style={{ width: 56, height: 58, borderRadius: 5 }} />
+                            <TouchableOpacity onPress={() => navigation.navigate('DoctorDetail')} style={{ width: '90%', marginTop: '2%', flexDirection: 'row', paddingTop:'5%', justifyContent: 'center' }}>
+                                <Image source={require('../../assets/images/dr6.png')} style={{ width: 45, height: 56, borderRadius: 5 }} />
                                 <View style={{ marginLeft: '5%', width: '60%', }}>
-                                    
-                                    <Text style={{ fontFamily: 'Gilroy-SemiBold', fontSize: 12, color: colors.blue }}>{item?.fullName}</Text>
-                                    <Text style={{ fontFamily: 'Gilroy-Medium', fontSize: 12, color: colors.darkGrey, paddingTop: '3%' }}>{item?.specialization}</Text>
-                                    <View style={{ flexDirection: 'row', marginTop: '1%', width: '90%', alignItems: 'center', justifyContent: 'space-between' }}>
+                                    <Text style={{ fontFamily: 'Gilroy-SemiBold', fontSize: 12, color: colors.blue, width:"90%" }}>{item?.fullName}</Text>
+                                    <Text style={{ fontFamily: 'Gilroy-Medium', fontSize: 12, color: colors.darkGrey, paddingTop: '1%', width:"90%", }}>{item?.specialization}</Text>
+                                    <View style={{ flexDirection: 'row', marginTop: '0%', width: '65%', alignItems: 'center', justifyContent: 'space-between', }}>
                                         <Text style={{ fontSize: 9, fontFamily: 'Gilroy-Medium', color: colors.darkGrey }}>Exp. <Text style={{ fontSize: 9, fontFamily: 'Gilroy-SemiBold', color: colors.black }}>22 years</Text></Text>
                                         <Text style={{ fontSize: 9, fontFamily: 'Gilroy-Medium', color: colors.darkGrey }}>fees. <Text style={{ fontSize: 9, fontFamily: 'Gilroy-SemiBold', color: colors.black }}>$ 100</Text></Text>
                                     </View>
-                                    <View style={{ flexDirection: 'row', marginTop: '1%', width: '90%', alignItems: 'center', justifyContent: 'space-between' }}>
+                                    <View style={{ flexDirection: 'row', marginTop: '1%', width: '65%', alignItems: 'center', justifyContent: 'space-between' }}>
                                         <Text style={{ fontSize: 10, fontFamily: 'Gilroy-Medium', color: colors.darkGrey }}>Distance.</Text>
                                         <Text style={{ fontSize: 10, fontFamily: 'Gilroy-SemiBold', color: colors.black }}>30 Km away</Text>
                                     </View>
@@ -221,18 +221,18 @@ export default function FindDoctor({ navigation }) {
                                         <Text style={{ fontSize: 10, fontFamily: 'Gilroy-Medium', color: colors.darkGrey, marginLeft: '2%', marginTop: '2%' }}>(152)</Text>
                                     </View>
                                 </View>
-                                <View style={{ width: '20%', justifyContent: 'space-between', alignSelf: 'flex-start', marginTop: '5%', }}>
+                                <View style={{ width: '28%', alignSelf: 'flex-start', marginTop: '5%', }}>
                                     <View style={styles.availableContainer}>
                                         <Image source={require('../../assets/images/calendar2.png')} style={{ height: 12, width: 12 }} />
                                         <Text style={styles.available}>Available Today</Text>
                                     </View>
                                     <TouchableOpacity onPress={() => { navigation.navigate('ConfirmBooking', { id: item._id }) }} style={styles.buttonContainer1}>
-                                        <Image source={require('../../assets/images/video2.png')} style={{height:12, width:12, marginRight:3}}/>
+                                        <Image source={require('../../assets/images/video2.png')} style={{ height: 12, width: 12, marginRight: 3 }} />
                                         <Text style={styles.bText1}>Online Consult</Text>
                                     </TouchableOpacity>
                                     <TouchableOpacity onPress={() => { navigation.navigate('ConfirmBooking', { id: item._id }) }} style={styles.buttonContainer}>
-                                    <Image source={require('../../assets/images/inClinic2.png')} style={{height:12, width:12, marginRight:3}}/>
-                                    <Text style={styles.bText1}>Book Visit</Text>
+                                        <Image source={require('../../assets/images/inClinic2.png')} style={{ height: 12, width: 12, marginRight: 3 }} />
+                                        <Text style={styles.bText1}>Book Visit</Text>
                                     </TouchableOpacity>
                                 </View>
                             </TouchableOpacity>

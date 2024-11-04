@@ -3,7 +3,7 @@ import { FlatList, Image, ScrollView, Text } from "react-native";
 import { View } from "react-native";
 import styles from "./style";
 import { colors } from "../../Theme/GlobalTheme";
-import { notiData, wp } from "../../assets/Data";
+import { chatData, notiData, wp } from "../../assets/Data";
 import { TouchableOpacity } from "react-native";
 import SearchItem from "../../components/SearchItem";
 import HeaderItem from "../../components/HeaderItem";
@@ -33,21 +33,29 @@ export default function Notification({ navigation }) {
     );
   };
 
+
   const Chats = () => {
     return (
-      <TouchableOpacity onPress={()=>navigation.navigate('Chat')} style={{ width: '100%', alignItems: 'center', marginTop: '5%', flexDirection: 'row', padding: '5%', backgroundColor: colors.lightgrey, borderBottomWidth: 1, borderColor: colors.grey }}>
-        <Image source={require('../../assets/images/appDoc.png')} style={{ height: 56, width: 56, borderRadius: 100 }} />
-        <View style={{ width: '85%', paddingLeft: '3%' }}>
-          <View style={{ width: '100%', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
-            <Text style={{ fontSize: 20, fontFamily: 'Gilroy-SemiBold', color: colors.black }}>Dr. Jii</Text>
-            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-              <Text style={{ fontSize: 16, fontFamily: 'Gilroy-SemiBold', color: colors.grey, paddingRight: '2%' }}>Fri</Text>
-              <Image source={require('../../assets/images/rightBlack.png')} style={{ height: 16, width: 16 }} />
+      <FlatList
+        style={{ width: '100%' }}
+        contentContainerStyle={{ alignItems: 'center', marginTop: '5%' }}
+        data={chatData}
+        renderItem={({ item }) => (
+          <TouchableOpacity onPress={() => navigation.navigate('Chat',{name:item.name})} style={{ width: '100%', alignItems: 'center', flexDirection: 'row', padding: '5%', backgroundColor: '#FBFBFB', borderBottomWidth: 1, borderColor: colors.lightgrey }}>
+            <Image source={item.image} style={{ height: 46, width: 46, borderRadius: 100 }} />
+            <View style={{ width: '85%', paddingLeft: '3%' }}>
+              <View style={{ width: '100%', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
+                <Text style={{ fontSize: 20, fontFamily: 'Gilroy-SemiBold', color: colors.black }}>{item.name}</Text>
+                {item?.pin ? <Image source={require('../../assets/images/blackPin.png')} style={{ height: 20, width: 20 }} />
+                  : <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                    <Text style={{ fontSize: 14, fontFamily: 'Gilroy-Medium', color: colors.grey, paddingRight: '2%' }}>Sat</Text>
+                    <Image source={require('../../assets/images/rightBlack.png')} style={{ height: 16, width: 16 }} />
+                  </View>}
+              </View>
+              <Text style={{ fontSize: 14, fontFamily: 'Gilroy-Regular', color: colors.darkGrey, paddingRight: '2%', marginTop: '2%' }}>Emilli, Congratulations on creating your new Space! Your Space is the place for you to share answers,...</Text>
             </View>
-          </View>
-          <Text style={{ fontSize: 14, fontFamily: 'Gilroy-Regular', color: colors.darkGrey, paddingRight: '2%', marginTop: '2%' }}>Emilli, Congratulations on creating your new Space! Your Space is the place for you to share answers,...</Text>
-        </View>
-      </TouchableOpacity>
+          </TouchableOpacity>
+        )} />
     )
   }
 

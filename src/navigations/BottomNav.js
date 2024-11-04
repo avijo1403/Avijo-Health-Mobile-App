@@ -11,6 +11,7 @@ import FindDoctor from "../screens/FindDoctor";
 import DoCare from "../screens/DoCare";
 import UserProfile from "../screens/UserProfile";
 import OnlineMedicine from "../screens/OnlineMedicine";
+import Diary from "../screens/Diary";
 
 const Tab = createBottomTabNavigator();
 
@@ -97,7 +98,7 @@ const BottomNav = () => {
           ),
         }}
         name="Diary"
-        component={OnlineConsult}
+        component={Diary}
       />
       <Tab.Screen
         options={{
@@ -113,7 +114,7 @@ const BottomNav = () => {
             <View style={{ alignItems: "center" }}>
               <Image
                 style={styles.home}
-                source={focused?require("../assets/images/product7.png"):require("../assets/images/product.png")}
+                source={focused ? require("../assets/images/product7.png") : require("../assets/images/product.png")}
               />
               <Text
                 style={{
@@ -144,20 +145,12 @@ const BottomNav = () => {
           tabBarActiveTintColor: colors.darkBlue,
           tabBarIcon: ({ focused }) => (
             <View style={{ alignItems: "center" }}>
-              <Image
+              {/* <Image
                 style={styles.home}
-                source={require("../assets/images/doCareGrey.png")}
-              />
-              <Text
-                style={{
-                  fontSize: 12,
-                  fontFamily: "Gilroy-SemiBold",
-                  marginTop: "2%",
-                  color: focused ? colors.blue : colors.grey,
-                }}
-              >
-                DoCare
-              </Text>
+                source={focused ? require("../assets/images/doCareBlue.png") : require("../assets/images/doCareGrey.png")}
+              /> */}
+              <Text style={{ fontSize: 24, width: 20, fontFamily: 'akuina-bold-slanted', color: focused ? '#3CA2A5' : colors.grey, }}>D</Text>
+              <Text style={{ fontSize: 12, fontFamily: 'akuina-bold-slanted', color: focused ? '#3CA2A5' : colors.grey, }}>D<Text style={{ fontSize: 10 }}>OCARE</Text></Text>
             </View>
           ),
         }}

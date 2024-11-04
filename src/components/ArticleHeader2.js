@@ -8,7 +8,7 @@ export default function ArticleHeader2(props) {
 
     return (
         <>
-            <LinearGradient colors={['#FFFFFF99', '#2C851199']} style={{ width: '100%' }}>
+            <LinearGradient colors={['white', 'white']} style={{ width: '100%' }}>
                 <View style={styles.container}>
                     <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                         <TouchableOpacity onPress={props.onBack}>
@@ -17,7 +17,7 @@ export default function ArticleHeader2(props) {
                         <View style={{ flexDirection: 'column' }}>
                             <Text style={styles.text}>{props.text}</Text>
                             {props.showBottomText && <TouchableOpacity onPress={props.createPress} style={styles.textContainer}>
-                                <Text style={styles.CreateText}>Other <Text style={{ color: colors.black, fontSize: 12 }}>- Mahalaxmi</Text></Text>
+                                <Text style={styles.CreateText}>Other <Text style={{ color: colors.darkGrey, fontSize: 12, fontFamily:'Gilroy-Medium' }}>- Mahalaxmi</Text></Text>
                                 <Image source={require('../assets/images/down.png')} style={{ height: 8, width: 8, marginLeft: '3%' }} />
                             </TouchableOpacity>}
                         </View>

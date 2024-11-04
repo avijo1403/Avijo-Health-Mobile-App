@@ -5,14 +5,14 @@ import { colors } from "../../Theme/GlobalTheme";
 import { TouchableOpacity } from "react-native";
 import { recordData } from "../../assets/Data";
 
-export default function MedicalRecord() {
+export default function MedicalRecord({navigation}) {
     const [modalVisible, setModalVisible] = useState(false);
 
     return (
         <View style={styles.container}>
             <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', width: '100%', padding: '5%', backgroundColor: colors.white, paddingTop: '10%' }}>
                 <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={()=>navigation.goBack()}>
                         <Image source={require('../../assets/images/blackLeft.png')} style={{ height: 14, width: 14, marginRight: '10%' }} />
                     </TouchableOpacity>
                     <Text style={{ fontSize: 20, fontFamily: 'Gilroy-SemiBold', color: colors.black }}>Records</Text>

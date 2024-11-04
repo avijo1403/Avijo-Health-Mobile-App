@@ -88,24 +88,26 @@ const styles = StyleSheet.create({
           color:colors.black
       },
       buttonContainer:{
-          width:wp(20),
+          width:'95%',
           alignItems:'center',
           justifyContent:'center',
           borderRadius:3,
           backgroundColor:colors.blue,
-          padding:hp(1),
+          height:30,
           marginTop:'10%',
           alignSelf:'center',
           flexDirection:'row',
       },
       buttonContainer1:{
-          width:wp(20),
+          width:'95%',
           alignItems:'center',
           justifyContent:'center',
           borderRadius:3,
           backgroundColor:colors.grey,
-          padding:hp(1),
-        //   marginTop:'15%',
+          height:30,
+          paddingLeft:10,
+          paddingRight:10,
+        //   marginTop:'3%',
           alignSelf:'center',
           flexDirection:'row',
       },
@@ -120,8 +122,8 @@ const styles = StyleSheet.create({
           fontFamily: 'Gilroy-SemiBold',
       },
       available: {
-          fontSize: 9,
-          fontFamily: 'Gilroy-Medium',
+          fontSize: 7,
+          fontFamily: 'Gilroy-SemiBold',
           paddingLeft: '5%',
           color: colors.green,
       },
@@ -129,7 +131,7 @@ const styles = StyleSheet.create({
         width: '100%',
         alignItems: 'center',
         flexDirection: 'row',
-        justifyContent: 'flex-end',
+        // justifyContent: 'flex-end',
         marginBottom: '10%'
     }
 })

@@ -1,15 +1,18 @@
 import React, { useState } from "react";
-import { FlatList, Image, ScrollView, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { Dimensions, FlatList, Image, ScrollView, Text, TextInput, TouchableOpacity, View } from "react-native";
 import styles from "./style";
 import ArticleHeader from "../../components/ArticleHeader";
 import { colors } from "../../Theme/GlobalTheme";
 import { Rating } from "react-native-ratings";
-import { product } from "../../assets/Data";
+import { personalCare, product, productCategory } from "../../assets/Data";
+import HeaderItem2 from "../../components/HeaderItem2";
 
 export default function ProductList({ navigation }) {
 
     const [select, setSelect] = useState(2);
     const [columns, setColumns] = useState(3);
+    const [category, setCategory] = useState(0);
+    const screenWidth = Dimensions.get('window').width;
 
 
     const handleSelect = (number) => {
@@ -19,41 +22,42 @@ export default function ProductList({ navigation }) {
     const Categories = () => {
         return (
             <View style={styles.container}>
-                {/* <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', width: '90%', marginTop: "5%" }}>
-                    <Text style={{ fontSize: 16, fontFamily: 'Gilroy-SemiBold', color: colors.black }}>Skin Care</Text>
-                    <TouchableOpacity>
-                        <Text style={{ fontSize: 10, fontFamily: 'Gilroy-Medium', color: colors.green }}>Veiw All</Text>
-                    </TouchableOpacity>
-                </View> */}
-                <View style={{ width: '100%', alignItems: 'center' }}>
+                <View style={{ width: '100%' }}>
+                    <FlatList
+                        contentContainerStyle={{ alignItems: 'flex-start', marginLeft: '5%', marginTop: '2%', paddingRight: '5%' }}
+                        horizontal={true}
+                        data={personalCare}
+                        showsHorizontalScrollIndicator={false}
+                        keyExtractor={(item) => item.id}
+                        renderItem={({ item, index }) => (
+                            <TouchableOpacity onPress={()=>setCategory(item.id)} style={{ alignItems: 'center', padding: 5, paddingRight:10, borderBottomWidth:2, borderColor:item.id === category ?colors.blue : colors.lightgrey }}>
+                                <Image source={item.image} style={{ height: 68, width: 68, borderRadius: 100 }} />
+                                <Text style={{ color: colors.black, fontSize: 14, fontFamily: 'Gilroy-SemiBold', marginTop: 5 }}>{item.text}</Text>
+                            </TouchableOpacity>
+                        )}
+                    />
+                </View>
+                <View style={{ width: '100%', alignItems: 'center', marginTop:'5%' }}>
                     <FlatList
                         style={{ width: '100%' }}
-                        contentContainerStyle={{ alignItems: 'center' }}
-                        data={product}
+                        contentContainerStyle={{ alignItems: 'flex-start' }}
+                        data={productCategory}
+                        numColumns={columns}
                         renderItem={({ item }) => (
-                            <View style={{ flexDirection: 'row', width: "90%", alignItems: 'center', borderRadius: 12, marginTop: '3%', paddingBottom: '2%', borderWidth: 1, padding: 5, borderColor: colors.lightgrey }}>
-                                <Image source={item} style={{ height: 100, width: '30%', borderRadius: 4 }} />
-                                <View style={{ marginLeft: '3%', width: '45%', alignSelf: 'flex-start' }}>
-                                    <Text style={{ fontSize: 14, fontFamily: 'Gilroy-SemiBold', color: colors.black, width: '100%', paddingTop: "5%" }}>Dry Apricot </Text>
-                                    <Text style={{ fontSize: 12, fontFamily: 'Gilroy-SemiBold', color: colors.black, width: '100%', paddingTop: "3%" }}>$40.56 </Text>
-                                    <View style={{ flexDirection: 'row', alignItems: 'center', width: "100%", marginTop: '5%' }}>
-                                        <Image source={require('../../assets/images/clock.png')} style={{ height: 16, width: 16 }} />
-                                        <Text style={{ fontSize: 12, fontFamily: 'Gilroy-Medium', color: colors.darkGrey, marginLeft: '2%', marginTop: '2%' }}>15 mins</Text>
-                                        {/* <Rating
-                                            type="star"
-                                            ratingCount={5}
-                                            imageSize={11}
-                                            startingValue={3.0}
-                                            readonly={true}
-                                            style={{ height: 8, width: 70 }}
-                                            ratingBackgroundColor={colors.white}
-                                        /> */}
-                                    </View>
+                            <View style={{ flexDirection: 'column', width: screenWidth / 3.2, borderRadius: 12, marginTop: '3%', paddingBottom: '2%', borderWidth: 1, padding: 5, borderColor: colors.lightgrey, marginLeft: '1%' }}>
+                                <Image source={item.image} style={{ height: 75, width: '100%', borderRadius: 4 }} />
+                                <View style={{ flexDirection: 'row', alignItems: 'center', width: "100%", marginTop: '5%' }}>
+                                    <Image source={require('../../assets/images/clock.png')} style={{ height: 16, width: 16 }} />
+                                    <Text style={{ fontSize: 12, fontFamily: 'Gilroy-Medium', color: colors.darkGrey, marginLeft: '2%', marginTop: '2%' }}>15 mins</Text>
                                 </View>
-                                <View style={{ justifyContent: 'space-between', height: 70, width: '20%' }}>
-                                    <Text style={{ fontSize: 10, fontFamily: 'Gilroy-Medium', color: colors.green, backgroundColor: colors.lightgrey, padding: 5, textAlign: 'center', borderRadius: 50 }}>200 ml</Text>
-                                    <TouchableOpacity onPress={() => navigation.navigate('ProductDetail')} style={[styles.buttonSubContainer, { backgroundColor: colors.green }]}>
-                                        <Text style={styles.buttonText}>Add to Cart</Text>
+                                <Text style={{ fontSize: 14, fontFamily: 'Gilroy-SemiBold', color: colors.black, width: '100%', paddingTop: "5%" }}>Dry Apricot </Text>
+                                <View style={{ flexDirection: 'row', alignItems: 'center', width: "100%", marginTop: '5%' }}>
+                                    <Text style={{ fontSize: 10, fontFamily: 'Gilroy-Medium', color: colors.black, textAlign: 'center', borderRadius: 30 }}>200 ml</Text>
+                                </View>
+                                <View style={{ justifyContent: 'space-between', width: '100%', flexDirection: 'row', alignItems: 'center' }}>
+                                    <Text style={{ fontSize: 12, fontFamily: 'Gilroy-SemiBold', color: colors.black, width: '50%', paddingTop: "3%" }}>$40.56 </Text>
+                                    <TouchableOpacity onPress={() => navigation.navigate('ProductDetail')} style={[styles.buttonSubContainer, { backgroundColor: '#2C851121' }]}>
+                                        <Text style={styles.buttonText}>Add</Text>
                                     </TouchableOpacity>
                                 </View>
                             </View>)} />
@@ -64,20 +68,18 @@ export default function ProductList({ navigation }) {
 
     return (
         <View style={styles.container}>
-            {/* <ArticleHeader onBack={() => navigation.goBack()} text="Products List" showSearch={true} image={<Image source={require('../../assets/images/whiteSearch.png')} style={{ height: 24, width: 24 }} />} /> */}
-            <View style={{ width: '90%', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginTop: '8%', padding: "4%", backgroundColor: colors.lightgrey, borderRadius: 8 }}>
+            <HeaderItem2 text="Personal Care"  onPress={() => navigation.goBack()} right={
                 <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                    <TouchableOpacity onPress={()=>navigation.goBack()}>
-                        <Image source={require('../../assets/images/blackLeft.png')} style={{ height: 20, width: 20 }} />
+                    <TouchableOpacity onPress={() => navigation.navigate('Search')}>
+                        <Image source={require('../../assets/images/blackSearch.png')} style={{ height: 24, width: 24, marginRight: 10 }} />
                     </TouchableOpacity>
-                    <Text style={{ fontSize: 20, fontFamily: 'Gilroy-SemiBold', color: colors.black, marginLeft: '10%' }}>Pharmacy</Text>
+                    <TouchableOpacity>
+                        <Image source={require('../../assets/images/cart1.png')} style={{ height: 28, width: 28 }} />
+                    </TouchableOpacity>
                 </View>
-                <TouchableOpacity>
-                    <Image source={require('../../assets/images/redCross.png')} style={{ height: 20, width: 20 }} />
-                </TouchableOpacity>
-            </View>
+            } />
             <ScrollView style={{ width: '100%' }} contentContainerStyle={{ alignItems: 'center' }}>
-                <View style={{ flexDirection: 'row', marginRight: 15, marginTop: '7%', marginLeft: '7%', justifyContent: 'space-evenly', width: '95%', alignSelf: 'flex-end' }}>
+                {/* <View style={{ flexDirection: 'row', marginRight: 15, marginTop: '7%', marginLeft: '7%', justifyContent: 'space-evenly', width: '95%', alignSelf: 'flex-end' }}>
                     <TouchableOpacity onPress={() => handleSelect(2)} style={select === 2 ? styles.optionContainer2 : styles.optionContainer}>
                         <Text style={select === 2 ? styles.optionText2 : styles.optionText}>Filters</Text>
                         <Image source={require('../../assets/images/down.png')} style={{ height: 12, width: 12 }} />
@@ -90,7 +92,7 @@ export default function ProductList({ navigation }) {
                         <Text style={select === 4 ? styles.optionText2 : styles.optionText}>Antiseptic</Text>
                         <Image source={require('../../assets/images/down.png')} style={{ height: 12, width: 12 }} />
                     </TouchableOpacity>
-                </View>
+                </View> */}
                 <Categories />
             </ScrollView>
         </View>

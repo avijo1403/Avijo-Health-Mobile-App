@@ -11,9 +11,9 @@ export default function HeaderItem2(props) {
                     <Image source={props.backgroundColor ? require('../assets/images/leftWhite.png') : require('../assets/images/blackLeft.png')} style={{ height: 14, width: 15 }} />
                 </TouchableOpacity>
                 {props.text && <Text style={[styles.headerText, { color: props.backgroundColor ? props.textColor : colors.black, }]}>{props?.text}</Text>}
-                {props.center && <View style={{ backgroundColor: colors.blue, flexDirection: 'row', alignItems: 'center', padding: '5%', marginLeft: '0%', borderRadius: 8, paddingLeft: "10%", paddingRight: "10%" }}>
-                    <Image source={require('../assets/images/healthrecord.png')} style={{ height: 46, width: 46, marginLeft: '0%' }} />
-                    <Text style={{ fontSize: 20, fontFamily: 'Gilroy-SemiBold', color: colors.white, marginLeft: '10%' }}>{props.name}</Text>
+                {props.center && <View style={{ backgroundColor: colors.blue, flexDirection: 'row', alignItems: 'center', padding: '5%', marginLeft: '0%', borderRadius: 8, paddingLeft: "5%", paddingRight: "10%" }}>
+                    {props?.profileImage && <Image source={props?.profileImage} style={{ height: 46, width: 46, borderRadius:100, }} />}
+                    <Text style={{ fontSize: 20, fontFamily: 'Gilroy-SemiBold', color: colors.white, marginLeft: '5%' }}>{props.name}</Text>
                 </View>}
             </View>
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
@@ -32,9 +32,12 @@ const styles = StyleSheet.create({
     headerContainer: {
         flexDirection: 'row',
         width: '100%',
-        padding: '5%',
+        padding: '4%',
+        paddingLeft: '5%',
+        paddingRight: '5%',
         alignItems: 'center',
         justifyContent: 'space-between',
+        // height:60
     },
     headerText: {
         fontSize: 20,

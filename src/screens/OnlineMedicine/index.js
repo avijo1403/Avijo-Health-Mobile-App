@@ -9,17 +9,17 @@ import ArticleHeader2 from "../../components/ArticleHeader2";
 
 export default function OnlineMedicine({ navigation }) {
 
-    const [columns, setColumns] = useState(3);
+    const [columns, setColumns] = useState(4);
     const [columns2, setColumns2] = useState(2);
     const [modalVisible, setModalVisible] = useState(false);
 
     return (
         <View style={styles.container}>
-            <ArticleHeader2 onBack={() => navigation.goBack()} text="Medicines & Products" showSearch={true} showBottomText={true} image={<Image source={require('../../assets/images/cart2.png')} style={{ height: 24, width: 24 }} />} />
+            <ArticleHeader2 onBack={() => navigation.goBack()} text="Medicines & Products" showSearch={true} showBottomText={true} image={<Image source={require('../../assets/images/cart1.png')} style={{ height: 24, width: 24 }} />} />
             <ScrollView style={{ width: '100%' }} contentContainerStyle={{ alignItems: 'center' }}>
                 <Text style={{ fontSize: 20, fontFamily: 'Gilroy-SemiBold', color: colors.black, width: '90%', marginTop: "5%", borderColor: colors.grey }}>Order Medicines Via</Text>
-                <View style={{ width: '90%', backgroundColor: colors.white, marginTop: '5%', padding: '2%' }}>
-                    <TouchableOpacity onPress={()=>navigation.navigate('NewAddress')} style={{ flexDirection: 'row', width: '100%', alignItems: 'center', borderBottomWidth: 1, borderColor: colors.lightgrey, paddingBottom: "10%" }}>
+                <View style={{ width: '90%', backgroundColor: colors.white, marginTop: '0%', padding: '2%' }}>
+                    {/* <TouchableOpacity onPress={() => navigation.navigate('NewAddress')} style={{ flexDirection: 'row', width: '100%', alignItems: 'center', borderBottomWidth: 1, borderColor: colors.lightgrey, paddingBottom: "10%" }}>
                         <Image source={require('../../assets/images/med1.png')} style={{ height: 100, width: 100 }} />
                         <View style={{ width: '70%' }}>
                             <Text style={{ fontSize: 16, fontFamily: 'Gilroy-SemiBold', color: colors.black, width: '100%' }}>Upload prescription</Text>
@@ -28,7 +28,7 @@ export default function OnlineMedicine({ navigation }) {
                                 <Text style={styles.buttonText}>Upload now</Text>
                             </TouchableOpacity>
                         </View>
-                    </TouchableOpacity>
+                    </TouchableOpacity> */}
                     {/* <View style={{ width: '100%', backgroundColor: colors.aqua, marginTop: "2%", flexDirection: 'row' }}>
                         <View style={{ flexDirection: 'row', width: '50%', alignItems: 'center' }}>
                             <Image source={require('../../assets/images/med2.png')} style={{ height: 44, width: 44 }} />
@@ -53,27 +53,27 @@ export default function OnlineMedicine({ navigation }) {
                         </View>
                     </View> */}
                 </View>
-                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', width: '90%', marginTop: '5%' }}>
+                {/* <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', width: '90%', marginTop: '5%' }}>
                     <View style={{ width: '30%', height: 1, backgroundColor: colors.grey }} />
                     <Text style={{ fontSize: 12, fontFamily: 'Gilroy-SemiBold', color: colors.black, width: '40%', textAlign: 'center' }}>Or you can order via</Text>
                     <View style={{ width: '30%', height: 1, backgroundColor: colors.grey }} />
+                </View> */}
+                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', width: '90%', marginTop: '0%' }}>
+                    <TouchableOpacity onPress={() => setModalVisible(true)} style={{ width: '32%', height: 76, backgroundColor: colors.white, padding: 10, borderWidth: 1, borderRadius: 8, borderColor: colors.lightgrey, flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }} >
+                        <Image source={require('../../assets/images/rx2.png')} style={{ height: 34, width: 34 }} />
+                        <Text style={{ fontSize: 10, fontFamily: 'Gilroy-SemiBold', color: colors.black, textAlign: 'center', paddingLeft: '5%', paddingTop: '5%' }}>Upload Prescription</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => setModalVisible(true)} style={{ width: '32%', height: 76, backgroundColor: colors.white, padding: 10, borderWidth: 1, borderRadius: 8, borderColor: colors.lightgrey, flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }} >
+                        <Image source={require('../../assets/images/chat5.png')} style={{ height: 34, width: 34 }} />
+                        <Text style={{ fontSize: 10, fontFamily: 'Gilroy-SemiBold', color: colors.black, textAlign: 'center', paddingLeft: '5%' }}>Call us to order medicine</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => setModalVisible(true)} style={{ width: '32%', height: 76, backgroundColor: colors.white, padding: 10, borderWidth: 1, borderRadius: 8, borderColor: colors.lightgrey, flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }} >
+                        <Image source={require('../../assets/images/call.png')} style={{ height: 34, width: 34 }} />
+                        <Text style={{ fontSize: 10, fontFamily: 'Gilroy-SemiBold', color: colors.black, textAlign: 'center', paddingLeft: '5%' }}>Book via Chat</Text>
+                    </TouchableOpacity>
                 </View>
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', width: '90%', marginTop: '5%' }}>
-                    <TouchableOpacity style={{ width: '28%', backgroundColor: colors.white, padding: 5, borderWidth: 1, borderRadius: 8, borderColor: colors.lightgrey, flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }} >
-                        <Image source={require('../../assets/images/rx2.png')} style={{ height: 13, width: 10 }} />
-                        <Text style={{ fontSize: 12, fontFamily: 'Gilroy-SemiBold', color: colors.black, textAlign: 'center', paddingLeft: '5%' }}>Prescription</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={{ width: '28%', backgroundColor: colors.white, padding: 5, borderWidth: 1, borderRadius: 8, borderColor: colors.lightgrey, flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }} >
-                        <Image source={require('../../assets/images/chat5.png')} style={{ height: 14, width: 14 }} />
-                        <Text style={{ fontSize: 12, fontFamily: 'Gilroy-SemiBold', color: colors.black, textAlign: 'center', paddingLeft: '5%' }}>Chat</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={{ width: '28%', backgroundColor: colors.white, padding: 5, borderWidth: 1, borderRadius: 8, borderColor: colors.lightgrey, flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }} >
-                        <Image source={require('../../assets/images/call.png')} style={{ height: 14, width: 14 }} />
-                        <Text style={{ fontSize: 12, fontFamily: 'Gilroy-SemiBold', color: colors.black, textAlign: 'center', paddingLeft: '5%' }}>Call</Text>
-                    </TouchableOpacity>
-                </View>
-                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', width: '90%', marginTop: '5%' }}>
-                    <Text style={{ fontSize: 16, fontFamily: 'Gilroy-SemiBold', color: colors.black, textAlign: 'center', }}>Top Selling Categories</Text>
+                    <Text style={{ fontSize: 20, fontFamily: 'Gilroy-SemiBold', color: colors.black, textAlign: 'center', }}>Personal Care</Text>
                     <TouchableOpacity onPress={() => { navigation.navigate('AllCategories') }}>
                         <Text style={{ fontSize: 12, fontFamily: 'Gilroy-SemiBold', color: colors.green, textAlign: 'center', }}>See All</Text>
                     </TouchableOpacity>
@@ -85,22 +85,30 @@ export default function OnlineMedicine({ navigation }) {
                         data={productCategory}
                         numColumns={columns}
                         renderItem={({ item }) => (
-                            <TouchableOpacity onPress={()=>navigation.navigate('ProductList')} style={{ flexDirection: 'column', width: "30%", alignItems: 'center', borderRadius: 3, marginTop: '3%', paddingBottom: '2%', borderWidth: 1, padding: 5, borderColor: colors.lightgrey, marginLeft: '2%' }}>
-                                <Image source={item.image} style={{ height: 96, width: '100%', borderRadius: 3 }} />
-                                <Text style={{ fontSize: 14, fontFamily: 'Gilroy-SemiBold', color: colors.black, width: '100%', paddingTop: "5%", textAlign: 'center' }}>Dry Apricot </Text>
+                            <TouchableOpacity onPress={() => navigation.navigate('ProductList')} style={{ flexDirection: 'column', width: "23%", alignItems: 'center', borderRadius: 3, marginTop: '3%', paddingBottom: '2%', borderWidth: 1, padding: 5, borderColor: colors.lightgrey, marginLeft: '2%' }}>
+                                <View style={{ backgroundColor: colors.lightgrey, width: '100%', height: 60 }}>
+                                    <Image source={item.image} style={{ height: 59, width: 67, borderRadius: 3 }} />
+                                </View>
+                                <Text style={{ fontSize: 12, fontFamily: 'Gilroy-SemiBold', color: colors.black, width: '100%', paddingTop: "5%", textAlign: 'center' }}>{item.text}</Text>
                             </TouchableOpacity>)} />
                 </View>
-                <Text style={{ fontSize: 20, fontFamily: 'Gilroy-SemiBold', color: colors.black, width: '90%', paddingBottom: "2%", marginTop: "5%", }}>Branded Highlights of the Season!</Text>
-                {/* <Text style={{ fontSize: 12, fontFamily: 'Gilroy-Medium', color: colors.black, width: '90%', color: colors.grey }}>Exclusive Online Consultations with Verified Specialists</Text> */}
+                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', width: '90%', marginTop: '5%' }}>
+                    <Text style={{ fontSize: 20, fontFamily: 'Gilroy-SemiBold', color: colors.black, textAlign: 'center', }}>Health Essentials</Text>
+                    <TouchableOpacity onPress={() => { navigation.navigate('AllCategories') }}>
+                        <Text style={{ fontSize: 12, fontFamily: 'Gilroy-SemiBold', color: colors.green, textAlign: 'center', }}>See All</Text>
+                    </TouchableOpacity>
+                </View>
                 <View style={{ width: '100%', alignItems: 'center' }}>
                     <FlatList
                         style={{ width: '100%' }}
                         contentContainerStyle={{ alignItems: 'center' }}
-                        data={hilight}
+                        data={productCategory}
                         numColumns={columns}
                         renderItem={({ item }) => (
-                            <TouchableOpacity onPress={() => navigation.navigate('MyCart')} style={{ flexDirection: 'column', width: "30%", alignItems: 'center', borderRadius: 12, marginTop: '3%', paddingBottom: '2%', borderWidth: 1, padding: 5, borderColor: colors.lightgrey, marginLeft: '2%' }}>
-                                <Image source={item.image} style={{ height: 84, width: '100%', borderRadius: 4 }} />
+                            <TouchableOpacity onPress={() => navigation.navigate('MyCart')} style={{ flexDirection: 'column', width: "23%", alignItems: 'center', borderRadius: 12, marginTop: '3%', paddingBottom: '2%', borderWidth: 1, padding: 5, borderColor: colors.lightgrey, marginLeft: '2%' }}>
+                                <View style={{ backgroundColor: colors.lightgrey, width: '100%', height: 60 }}>
+                                    <Image source={item.image} style={{ height: 59, width: 67, borderRadius: 3 }} />
+                                </View>
                                 <Text style={{ fontSize: 10, fontFamily: 'Gilroy-Bold', color: colors.green, width: '100%', paddingTop: "5%", textAlign: 'center', fontStyle: 'italic' }}>UP TO 20 % OFF </Text>
                             </TouchableOpacity>)} />
                 </View>
@@ -132,7 +140,7 @@ export default function OnlineMedicine({ navigation }) {
                 </View> */}
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', width: '90%', marginTop: '5%' }}>
                     <Text style={{ fontSize: 16, fontFamily: 'Gilroy-SemiBold', color: colors.black, textAlign: 'center', }}>Shop by Health Conditions</Text>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={() => setModalVisible(true)}>
                         <Text style={{ fontSize: 12, fontFamily: 'Gilroy-SemiBold', color: colors.green, textAlign: 'center', }}>See All</Text>
                     </TouchableOpacity>
                 </View>
@@ -140,11 +148,13 @@ export default function OnlineMedicine({ navigation }) {
                     <FlatList
                         style={{ width: '100%' }}
                         contentContainerStyle={{ alignItems: 'center' }}
-                        data={conditions}
+                        data={productCategory}
                         numColumns={columns}
                         renderItem={({ item }) => (
-                            <View style={{ flexDirection: 'column', width: "32%", alignItems: 'center', borderRadius: 12, marginTop: '3%', paddingBottom: '2%', borderWidth: 1, padding: 5, borderColor: colors.lightgrey }}>
-                                <Image source={item.image} style={{ height: 75, width: '100%', borderRadius: 4 }} />
+                            <View style={{ flexDirection: 'column', width: "23%", alignItems: 'center', borderRadius: 12, marginTop: '3%', paddingBottom: '2%', borderWidth: 1, padding: 5, borderColor: colors.lightgrey, marginLeft: '1%' }}>
+                                <View style={{ backgroundColor: colors.lightgrey, width: '100%', height: 60 }}>
+                                    <Image source={item.image} style={{ height: 59, width: 67, borderRadius: 3 }} />
+                                </View>
                                 <Text style={{ fontSize: 14, fontFamily: 'Gilroy-SemiBold', color: colors.black, width: '100%', paddingTop: "5%", textAlign: 'center' }}>{item.text}</Text>
                             </View>)} />
                 </View>
@@ -172,29 +182,29 @@ export default function OnlineMedicine({ navigation }) {
                         <Text style={{ padding: '5%', fontSize: 22, color: colors.darkGrey, fontFamily: 'Gilroy-SemiBold' }}>Uploads</Text>
                         <View style={{ height: 1, width: '90%', backgroundColor: colors.lightgrey, alignSelf: 'center' }} />
                         <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', width: '90%', marginTop: '5%', alignSelf: 'center', marginBottom: '2%' }}>
-                            <TouchableOpacity onPress={()=>{navigation.navigate('Chat')}} style={{ width: '32%', borderWidth: 1, borderColor: colors.lightgrey, height: 100, borderRadius: 8, backgroundColor: colors.lightgrey, alignItems: 'center', justifyContent: 'center' }}>
+                            <TouchableOpacity onPress={() => { navigation.navigate('Chat') }} style={{ width: '32%', borderWidth: 1, borderColor: colors.lightgrey, height: 100, borderRadius: 8, backgroundColor: colors.lightgrey, alignItems: 'center', justifyContent: 'center' }}>
                                 <Image source={require('../../assets/images/rx.png')} style={{ height: 36, width: 36 }} />
                                 <Text style={{ fontSize: 12, fontFamily: 'Gilroy-SemiBold', color: colors.darkGrey }}>Prescription</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity onPress={()=>{navigation.navigate('Chat')}} style={{ width: '32%', borderWidth: 1, borderColor: colors.lightgrey, height: 100, borderRadius: 8, backgroundColor: colors.lightgrey, alignItems: 'center', justifyContent: 'center' }}>
+                            <TouchableOpacity onPress={() => { navigation.navigate('Chat') }} style={{ width: '32%', borderWidth: 1, borderColor: colors.lightgrey, height: 100, borderRadius: 8, backgroundColor: colors.lightgrey, alignItems: 'center', justifyContent: 'center' }}>
                                 <Image source={require('../../assets/images/rx.png')} style={{ height: 36, width: 36 }} />
                                 <Text style={{ fontSize: 12, fontFamily: 'Gilroy-SemiBold', color: colors.darkGrey, width: '70%', textAlign: 'center' }}>Past Prescription</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity onPress={()=>{navigation.navigate('Chat')}} style={{ width: '32%', borderWidth: 1, borderColor: colors.lightgrey, height: 100, borderRadius: 8, backgroundColor: colors.lightgrey, alignItems: 'center', justifyContent: 'center' }}>
+                            <TouchableOpacity onPress={() => { navigation.navigate('Chat') }} style={{ width: '32%', borderWidth: 1, borderColor: colors.lightgrey, height: 100, borderRadius: 8, backgroundColor: colors.lightgrey, alignItems: 'center', justifyContent: 'center' }}>
                                 <Image source={require('../../assets/images/report.png')} style={{ height: 36, width: 36 }} />
                                 <Text style={{ fontSize: 12, fontFamily: 'Gilroy-SemiBold', color: colors.darkGrey, }}>Reports</Text>
                             </TouchableOpacity>
                         </View>
                         <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', width: '90%', marginTop: '1%', alignSelf: 'center', marginBottom: '5%' }}>
-                            <TouchableOpacity onPress={()=>{navigation.navigate('Chat')}} style={{ width: '32%', borderWidth: 1, borderColor: colors.lightgrey, height: 100, borderRadius: 8, backgroundColor: colors.lightgrey, alignItems: 'center', justifyContent: 'center' }}>
+                            <TouchableOpacity onPress={() => { navigation.navigate('Chat') }} style={{ width: '32%', borderWidth: 1, borderColor: colors.lightgrey, height: 100, borderRadius: 8, backgroundColor: colors.lightgrey, alignItems: 'center', justifyContent: 'center' }}>
                                 <Image source={require('../../assets/images/gallery.png')} style={{ height: 36, width: 36 }} />
                                 <Text style={{ fontSize: 12, fontFamily: 'Gilroy-SemiBold', color: colors.darkGrey }}>Gallery</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity onPress={()=>{navigation.navigate('Chat')}} style={{ width: '32%', borderWidth: 1, borderColor: colors.lightgrey, height: 100, borderRadius: 8, backgroundColor: colors.lightgrey, alignItems: 'center', justifyContent: 'center' }}>
+                            <TouchableOpacity onPress={() => { navigation.navigate('Chat') }} style={{ width: '32%', borderWidth: 1, borderColor: colors.lightgrey, height: 100, borderRadius: 8, backgroundColor: colors.lightgrey, alignItems: 'center', justifyContent: 'center' }}>
                                 <Image source={require('../../assets/images/camera.png')} style={{ height: 36, width: 36 }} />
                                 <Text style={{ fontSize: 12, fontFamily: 'Gilroy-SemiBold', color: colors.darkGrey, width: '70%', textAlign: 'center' }}>Camera</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity onPress={()=>{navigation.navigate('Chat')}} style={{ width: '32%', borderWidth: 1, borderColor: colors.lightgrey, height: 100, borderRadius: 8, backgroundColor: colors.lightgrey, alignItems: 'center', justifyContent: 'center' }}>
+                            <TouchableOpacity onPress={() => { navigation.navigate('Chat') }} style={{ width: '32%', borderWidth: 1, borderColor: colors.lightgrey, height: 100, borderRadius: 8, backgroundColor: colors.lightgrey, alignItems: 'center', justifyContent: 'center' }}>
                                 <Image source={require('../../assets/images/camera.png')} style={{ height: 36, width: 36 }} />
                                 <Text style={{ fontSize: 12, fontFamily: 'Gilroy-SemiBold', color: colors.darkGrey, }}>Documents</Text>
                             </TouchableOpacity>

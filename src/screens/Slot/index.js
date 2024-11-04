@@ -124,7 +124,7 @@ export default function Slot({ navigation, route }) {
                     </TouchableOpacity>
                 </View>
                 <View style={{ width: '100%', alignItems: 'center', marginTop: '5%', marginBottom: '5%' }}>
-                    <Button2 backgroundColor={colors.blue} onPress={handleSubmit} Text="Continue" />
+                    <Button2 backgroundColor={colors.blue} onPress={()=>navigation.navigate('AppointmentConfirm', {id: id})} Text="Continue" />
                 </View>
             </ScrollView>
         </View>

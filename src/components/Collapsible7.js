@@ -15,23 +15,24 @@ export default function Collapsible7(props) {
         setSelected(item);
         setIsCollapsed(true);
         if (onSelect) {
-          onSelect(item);
+            onSelect(item);
         }
-      };
+    };
 
     return (
-        <View style={{ width: '100%', alignItems:'flex-start' }}>
+        <View style={{ width: '100%', alignItems: 'flex-start' }}>
             <Text style={styles.textHeading}>{heading}</Text>
             <TouchableOpacity onPress={toggleCollapsed} style={styles.ButtonContainer}>
-                <Text style={styles.dropDownText}>{selected !== ''? selected : text}</Text>
+                <Image source={require('../assets/images/globe.png')} style={{ height: 16, width: 16 }} />
+                <Text style={styles.dropDownText}>{selected !== '' ? selected : text}</Text>
                 {isCollapsed ? <Image style={styles.arrow} source={require('../assets/images/down-arrow.png')} /> :
                     <Image style={styles.arrow} source={require('../assets/images/top-arrow.png')} />}
             </TouchableOpacity>
             <Collapsible collapsed={isCollapsed}>
                 <View style={styles.content}>
                     {content?.map((item, index) => (
-                        <TouchableOpacity onPress={()=>{setIsCollapsed(true); handleSelect(item);}}>
-                        <Text key={index} style={styles.itemText}>{item}</Text>
+                        <TouchableOpacity onPress={() => { setIsCollapsed(true); handleSelect(item); }}>
+                            <Text key={index} style={styles.itemText}>{item}</Text>
                         </TouchableOpacity>
                     ))}
                 </View>
@@ -41,51 +42,52 @@ export default function Collapsible7(props) {
 }
 
 const styles = StyleSheet.create({
-    textHeading:{
-        width:71,
+    textHeading: {
+        width: 71,
         fontSize: 12,
         fontFamily: 'Gilroy-SemiBold',
         color: colors.darkGrey,
     },
-    arrow:{
-        height:10,
-        width:10
+    arrow: {
+        height: 10,
+        width: 10,
+        marginTop: 5
     },
-    ButtonContainer:{
-        flexDirection:'row',
-        justifyContent:'space-between',
-        alignItems:'center',
-        borderWidth:1,
-        borderRadius:30,
-        backgroundColor:colors.white,
-        borderColor:colors.lightgrey,
-        padding:'2%',
-        paddingLeft:'5%',
-        paddingRight:'5%'
+    ButtonContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        // borderWidth:1,
+        borderRadius: 30,
+        backgroundColor: colors.white,
+        borderColor: colors.lightgrey,
+        padding: '2%',
+        paddingLeft: '5%',
+        paddingRight: '5%'
     },
     content: {
         padding: 10,
         borderRadius: 5,
-        margin:10,
-        backgroundColor:colors.white,
-        elevation:5,
-        width:60
+        margin: 10,
+        backgroundColor: colors.white,
+        elevation: 5,
+        width: 60
     },
-    dropDownText:{
-        fontSize:10,
-        fontFamily:'Gilroy-Medium',
-        color:colors.grey,
-        height:15, 
-        marginRight:"5%",
-        marginTop:'2%',
-        paddingLeft:'2%',
-        paddingRight:"1%"
+    dropDownText: {
+        fontSize: 14,
+        fontFamily: 'Gilroy-SemiBold',
+        color: colors.grey,
+        // height:15, 
+        marginRight: "5%",
+        // marginTop:'2%',
+        paddingLeft: '2%',
+        paddingRight: "1%"
     },
     itemText: {
         fontSize: 10,
         fontFamily: 'Gilroy-Regular',
         color: colors.darkGrey,
         marginBottom: 5,
-        padding:5,
+        padding: 5,
     }
 });

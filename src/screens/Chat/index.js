@@ -8,7 +8,8 @@ import { debounce } from "lodash";
 import { launchImageLibrary } from 'react-native-image-picker';
 import RNFS from 'react-native-fs';
 
-const Chat = ({ navigation }) => {
+const Chat = ({ navigation, route }) => {
+    const name = route.params.name;
     const [messages, setMessages] = useState([
         // { id: 1, sender: 'You', text: 'Hi, Dr.Jii', time: '12:00 pm' },
         // { id: 2, sender: 'Jane', text: 'Hi, Dr.Jii, your AI health expert. Youre in a safe space to ask anything or express any concerns you might have.', time: '12:00 pm' },
@@ -79,7 +80,7 @@ const Chat = ({ navigation }) => {
 
     return (
         <View style={styles.Container}>
-            <HeaderItem2 center={true} name="Dr. Jii" backgroundColor={colors.blue} onPress={() => navigation.goBack()} right={<Image source={require('../../assets/images/whiteDot.png')} style={{ height: 24, width: 24 }} />} />
+            <HeaderItem2 center={true} name={name} profileImage={name === "Dr. Jii"?require('../../assets/images/dr-ji.png'):require('../../assets/images/healthrecord.png')} backgroundColor={colors.blue} onPress={() => navigation.goBack()} right={<Image source={require('../../assets/images/whiteDot.png')} style={{ height: 24, width: 24 }} />} />
             <ScrollView
                 contentContainerStyle={styles.messageContainer}
                 showsVerticalScrollIndicator={false}

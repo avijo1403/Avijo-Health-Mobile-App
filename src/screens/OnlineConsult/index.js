@@ -10,6 +10,7 @@ import SymptomCard from "../../components/SymptomCard";
 import CategoryCard from "../../components/CategoryCard";
 
 export default function OnlineConsult({ navigation }) {
+    
     const [columns, setColumns] = useState(4);
 
     return (

@@ -70,6 +70,7 @@ import AllCategories from './src/screens/AllCategories';
 import Search from './src/screens/Search';
 import Ambulance from './src/screens/Ambulance';
 import MedicalRecord from './src/screens/MedicalRecord';
+import Chat2 from './src/screens/Chat2';
 
 const Stack = createNativeStackNavigator();
 
@@ -143,6 +144,7 @@ const App = () => {
         <Stack.Screen name='Search' component={Search} options={{ headerShown: false }} />
         <Stack.Screen name='Ambulance' component={Ambulance} options={{ headerShown: false }} />
         <Stack.Screen name='MedicalRecord' component={MedicalRecord} options={{ headerShown: false }} />
+        <Stack.Screen name='Chat2' component={Chat2} options={{ headerShown: false }} />
       </Stack.Navigator>
     </NavigationContainer>
   )

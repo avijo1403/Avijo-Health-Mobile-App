@@ -13,7 +13,7 @@ export default function HomeHeader(props) {
 
     return (
         <>
-            <LinearGradient colors={props.colors ? props.colors : ['#F7F7F7', '#F7F7F7']} style={{ width: '100%' }}>
+            <LinearGradient colors={props.colors ? props.colors : ['#F7F7F7', '#F7F7F7']} style={{ width: '100%', height: props.height && 50 }}>
                 <View style={styles.container}>
                     <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                         {props.showText && <TouchableOpacity onPress={props.onPress}>

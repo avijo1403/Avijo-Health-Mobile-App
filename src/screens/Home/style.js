@@ -70,6 +70,25 @@ const styles = StyleSheet.create({
         width: 300,
         height: 119,
         borderRadius: 15,
+      },
+      numberContainer: {
+          height: 14,
+          width: 14,
+          backgroundColor: colors.blue,
+          color: colors.white,
+          borderRadius: 13,
+          position: 'absolute',
+          zIndex: 2,
+          marginLeft: 15,
+          alignItems: 'center'
+      },
+      number: {
+          fontSize: 6,
+          textAlign: 'center',
+          fontFamily: 'Gilroy-Regular',
+          color: colors.white,
+          paddingTop: 2,
+          paddingLeft: 2
       }
 })
 

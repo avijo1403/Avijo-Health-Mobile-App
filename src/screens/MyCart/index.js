@@ -14,7 +14,7 @@ export default function MyCart({ navigation }) {
     const [select, setSelect] = useState(1);
     const [qty, setQty] = useState(1);
     const [columns, setColumns] = useState(3);
-    const [modalVisible, setModalVisible] = useState(false);
+    // const [modalVisible, setModalVisible] = useState(false);
     const [modalVisible1, setModalVisible1] = useState(false);
 
     const decrement = () => {
@@ -154,6 +154,40 @@ export default function MyCart({ navigation }) {
                     </View>
                     <Text style={{ fontSize: 14, fontFamily: 'Gilroy-Medium', paddingLeft: '3%', color: colors.darkGrey, marginTop: '3%', width: "100%", textAlign: 'left' }}>Orders cannot be cancelled once packed for delivery. In case of unexpected delays, a refund will be provided. If applicable.</Text>
                 </View>
+                <View style={{ width: '100%', alignItems: 'center', borderTopRightRadius: 16, borderTopLeftRadius: 16, borderWidth: 1, borderBottomWidth: 0, borderColor: colors.lightgrey, backgroundColor: colors.white, elevation: 5 }}>
+                    <View style={{ width: '90%', flexDirection: 'row', alignItems: 'flex-start', paddingTop: '5%', justifyContent: 'space-between' }}>
+                        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                            <Image source={require('../../assets/images/location4.png')} style={{ height: 56, width: 56 }} />
+                            <View style={{ flexDirection: 'column', width: '70%' }}>
+                                <Text style={{ paddingLeft: '5%', paddingBottom: '2%', fontSize: 16, color: colors.darkGrey, fontFamily: 'Gilroy-SemiBold' }}>Delivering to<Text style={{ fontSize: 20, fontFamily: 'Gilroy-SemiBold', color: colors.black }}> Others</Text></Text>
+                                <Text style={{ paddingLeft: '5%', fontSize: 16, color: colors.darkGrey, fontFamily: 'Gilroy-SemiBold' }}>3rd Floor,Headquarter Building.</Text>
+                            </View>
+                        </View>
+                        <TouchableOpacity onPress={() => setModalVisible1(true)}>
+                            <Text style={{ paddingTop: '2%', fontSize: 14, color: colors.green, fontFamily: 'Gilroy-Bold' }}>Change</Text>
+                        </TouchableOpacity>
+                    </View>
+                    <View style={{ width: '90%', height: 1, backgroundColor: colors.grey, marginTop: '5%' }} />
+                    <View style={{ width: '90%', flexDirection: 'row', alignItems: 'flex-start', paddingTop: '5%', justifyContent: 'space-between', marginBottom: '5%' }}>
+                        <View style={{ flexDirection: 'column', width: '50%' }}>
+                            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                                <Text style={{ paddingLeft: '5%', paddingBottom: '2%', fontSize: 16, color: colors.darkGrey, fontFamily: 'Gilroy-Medium' }}>Pay Using</Text>
+                                <Image source={require('../../assets/images/downGrey.png')} style={{ height: 24, width: 24 }} />
+                            </View>
+                            <Text style={{ paddingLeft: '5%', fontSize: 16, color: colors.black, fontFamily: 'Gilroy-SemiBold' }}>addyparkhe@axl</Text>
+                        </View>
+                        <TouchableOpacity style={{ flexDirection: 'row', width: '50%', backgroundColor: colors.green, padding: 5, paddingTop: 10, paddingBottom: 10, borderRadius: 10 }}>
+                            <View style={{ flexDirection: 'column' }}>
+                                <Text style={{ paddingLeft: '5%', fontSize: 12, color: colors.white, fontFamily: 'Gilroy-SemiBold' }}>$40.00</Text>
+                                <Text style={{ paddingLeft: '5%', fontSize: 10, color: colors.white, fontFamily: 'Gilroy-SemiBold' }}>Total</Text>
+                            </View>
+                            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                                <Text style={{ paddingLeft: '5%', paddingBottom: '2%', fontSize: 14, color: colors.white, fontFamily: 'Gilroy-Medium' }}>Place Order</Text>
+                                <Image source={require('../../assets/images/downWhite.png')} style={{ height: 12, width: 12, marginLeft: '3%', transform: [{ rotate: '270deg' }] }} />
+                            </View>
+                        </TouchableOpacity>
+                    </View>
+                </View>
             </View>
         )
     }
@@ -176,7 +210,7 @@ export default function MyCart({ navigation }) {
                 </View>
                 <Medicine />
             </ScrollView>
-            <Modal
+            {/* <Modal
                 // animationType="slide"
                 transparent={true}
                 visible={modalVisible}
@@ -219,7 +253,7 @@ export default function MyCart({ navigation }) {
                         </View>
                     </View>
                 </Pressable>
-            </Modal>
+            </Modal> */}
             <Modal
                 // animationType="slide"
                 transparent={true}
@@ -229,17 +263,17 @@ export default function MyCart({ navigation }) {
                 }}>
                 <Pressable style={{ flex: 1, width: '100%', alignItems: 'center', justifyContent: 'flex-end', backgroundColor: colors.blackTrasparent }}>
                     <TouchableOpacity onPress={() => setModalVisible1(!modalVisible1)}>
-                        <Image source={require('../../assets/images/blackCross.png')} style={{height:35, width:35, marginBottom:'2%'}}/>
+                        <Image source={require('../../assets/images/blackCross.png')} style={{ height: 35, width: 35, marginBottom: '2%' }} />
                     </TouchableOpacity>
                     <View style={{ width: '100%', alignItems: 'center', borderTopRightRadius: 16, borderTopLeftRadius: 16, borderWidth: 1, borderBottomWidth: 0, borderColor: colors.grey, backgroundColor: colors.white }}>
-                        <Text style={{ fontSize: 20, fontFamily: 'Gilroy-SemiBold', color: colors.black, marginLeft: '5%', width:'90%', paddingTop:'5%' }}>Select Location</Text>
-                        <View style={{ flexDirection: 'row', alignItems: 'center', width: '90%', borderWidth: 1, borderColor: colors.lightgrey, padding: '5%', borderRadius: 12, backgroundColor: colors.white, elevation: 5, marginTop:'5%' }}>
+                        <Text style={{ fontSize: 20, fontFamily: 'Gilroy-SemiBold', color: colors.black, marginLeft: '5%', width: '90%', paddingTop: '5%' }}>Select Location</Text>
+                        <View style={{ flexDirection: 'row', alignItems: 'center', width: '90%', borderWidth: 1, borderColor: colors.lightgrey, padding: '5%', borderRadius: 12, backgroundColor: colors.white, elevation: 5, marginTop: '5%' }}>
                             <TouchableOpacity onPress={() => navigation.goBack()}>
                                 <Image source={require('../../assets/images/blackLeft.png')} style={{ height: 16, width: 16 }} />
                             </TouchableOpacity>
                             <Text style={{ marginLeft: '5%', fontSize: 14, fontFamily: 'Gilroy-SemiBold', color: colors.grey }}>Search for Medicine/Health products</Text>
                         </View>
-                        <ScrollView nestedScrollEnabled={true} style={{ width: '100%' }} contentContainerStyle={{alignItems: "center"}}>
+                        <ScrollView nestedScrollEnabled={true} style={{ width: '100%' }} contentContainerStyle={{ alignItems: "center" }}>
                             <TouchableOpacity style={{ width: '90%', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', borderWidth: 1, borderColor: colors.lightgrey, borderRadius: 5, padding: '3%', marginTop: '5%' }}>
                                 <View style={{ flexDirection: 'row', alignItems: 'center', width: '90%' }}>
                                     <Image source={require('../../assets/images/detect.png')} style={{ height: 32, width: 32 }} />

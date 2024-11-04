@@ -13,6 +13,7 @@ import SearchItem from "../../components/SearchItem";
 import SearchItem2 from "../../components/SearchItem2";
 
 export default function Home({ navigation }) {
+
     const [position, setPosition] = useState(0);
     const [columns, setColumns] = useState(4);
     const commonLimit = common.slice(0, 8);
@@ -41,11 +42,29 @@ export default function Home({ navigation }) {
         fetchDoctorData();
         getData('token').then(token => console.log('token:', token));
         getData('id').then(id => setId(id));
+
     }, []);
 
     return (
         <View style={styles.container}>
-            <HomeHeader bottomText={true} showChat={true} showQr={true} profile={true} heading="avijo" colors={['#FFFFFF','#0095D9']} showSearch={true} headingColor={colors.blue} onPress={() => navigation.navigate('Profile', { id: id })} createPress={() => navigation.navigate('AbhaLogin')} />
+            {/* <HomeHeader profile={true} right2={<Image source={require('../../assets/images/blackSearch.png')} style={{ height: 24, width: 24, marginLeft: '70%' }} />} heading="avijo" colors={['white', 'white']} headingColor={colors.blue} onPress={() => navigation.navigate('Profile', { id: id })} createPress={() => navigation.navigate('AbhaLogin')} /> */}
+            <View style={{ width: '100%', alignItems: 'center', justifyContent: 'space-between', flexDirection: 'row', paddingTop: '3%', paddingBottom: '3%' }}>
+                <View style={{ marginLeft: '5%', flexDirection: 'row', alignItems: 'center' }}>
+                    <TouchableOpacity onPress={() => navigation.navigate('Profile', { id: id })}>
+                        <Image source={require('../../assets/images/profile.png')} style={{ height: 50, width: 50 }} />
+                    </TouchableOpacity>
+                    <Text style={{ fontSize: 28, fontFamily: 'Gilroy-SemiBold', color: colors.blue, paddingLeft: '5%' }}>avijo</Text>
+                </View>
+                <View style={{ marginRight: '2%', flexDirection: 'row', alignItems: 'center', width:65, justifyContent:'space-between' }}>
+                    <TouchableOpacity onPress={() => navigation.navigate('Notification')}>
+                        <View style={styles.numberContainer}>
+                            <Text style={styles.number}>33+</Text>
+                        </View>
+                        <Image source={require('../../assets/images/blackChat.png')} style={{ height: 24, width: 24 }} />
+                    </TouchableOpacity>
+                    <Image source={require('../../assets/images/blackSearch.png')} style={{ height: 24, width: 24, marginRight: '5%' }} />
+                </View>
+            </View>
             <ScrollView style={{ width: '100%' }} contentContainerStyle={{ alignItems: 'center', paddingBottom: '5%' }}>
                 <View style={{ width: '100%', backgroundColor: colors.white, paddingBottom: '10%', marginTop: '5%' }}>
                     {/* <Text style={styles.heading}>Your Medication Services Partner</Text> */}
@@ -54,7 +73,7 @@ export default function Home({ navigation }) {
                         <SymptomCard2 image={require('../../assets/images/videoCall.png')} image2={require('../../assets/images/rightCircle.png')} text="Instant Video Consultation" bottomText="UP TO 10 % OFF" bottomBackground={colors.skyblue} bottomColor={colors.blue} onPress={() => navigation.navigate('OnlineConsult')} />
                     </View>
                     <View style={{ width: '90%', alignSelf: 'center', flexDirection: 'row', justifyContent: 'space-between', marginRight: '2%', marginTop: '5%' }}>
-                        <SymptomCard2 image={require('../../assets/images/orderMed.png')} image2={require('../../assets/images/rightCircle.png')} text="Order Medicine & Product" bottomText="UP TO 10 % OFF" bottomBackground={colors.lightGreen2} bottomColor={colors.green} onPress={() => navigation.navigate('Planss')} />
+                        <SymptomCard2 image={require('../../assets/images/orderMed.png')} image2={require('../../assets/images/rightCircle.png')} text="Order Medicine & Product" bottomText="UP TO 10 % OFF" bottomBackground={colors.lightGreen2} bottomColor={colors.green} onPress={() => navigation.navigate('Plans')} />
                         <SymptomCard2 image={require('../../assets/images/bookTest.png')} image2={require('../../assets/images/rightCircle.png')} text="Book Lab Tests" bottomText="UP TO 10 % OFF" bottomBackground={colors.lightGreen2} bottomColor={colors.green} onPress={() => navigation.navigate('Lab')} />
                     </View>
                     {/* <View style={{

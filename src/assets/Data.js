@@ -528,6 +528,8 @@ const product = [
 ]
 
 
+
+
 const profileOption = [
     {
         id: 0,
@@ -624,64 +626,88 @@ export const getData = async (key) => {
 const productCategory = [
     {
         id: 0,
-        image: require('../assets/images/category1.png'),
-        text: 'Top product',
+        image: require('../assets/images/personal7.png'),
+        text: 'Moisturizer',
     },
     {
         id: 1,
-        image: require('../assets/images/category2.png'),
-        text: 'Nutrition',
+        image: require('../assets/images/personal6.png'),
+        text: 'Sunscreen',
     },
     {
         id: 2,
-        image: require('../assets/images/category3.png'),
-        text: 'Vitamins',
+        image: require('../assets/images/personal6.png'),
+        text: 'Deodorant',
     },
     {
         id: 3,
-        image: require('../assets/images/category4.png'),
-        text: 'Respiratory',
+        image: require('../assets/images/personal5.png'),
+        text: 'Lip Balm',
     },
     {
         id: 4,
-        image: require('../assets/images/category5.png'),
-        text: 'Women care',
+        image: require('../assets/images/personal4.png'),
+        text: 'Toothpaste',
     },
     {
         id: 5,
-        image: require('../assets/images/category6.png'),
-        text: 'Ayurvedic care',
+        image: require('../assets/images/personal3.png'),
+        text: 'Body Wash',
     },
     {
         id: 6,
-        image: require('../assets/images/category7.png'),
-        text: 'Diabetic Care',
+        image: require('../assets/images/personal2.png'),
+        text: 'Conditioner',
     },
     {
         id: 7,
-        image: require('../assets/images/category8.png'),
-        text: 'Homeopathy',
+        image: require('../assets/images/personal1.png'),
+        text: 'Shampoo',
     },
-    {
-        id: 8,
-        image: require('../assets/images/category9.png'),
-        text: 'Accessories',
-    },
-    {
-        id: 9,
-        image: require('../assets/images/category10.png'),
-        text: 'Baby Care',
-    },
-    {
-        id: 10,
-        image: require('../assets/images/category11.png'),
-        text: 'Mom Care',
-    },
-    {
-        id: 11,
-        image: require('../assets/images/category12.png'),
-        text: 'Wearables',
-    }
+    // {
+    //     id: 8,
+    //     image: require('../assets/images/category9.png'),
+    //     text: 'Accessories',
+    // },
+    // {
+    //     id: 9,
+    //     image: require('../assets/images/category10.png'),
+    //     text: 'Baby Care',
+    // },
+    // {
+    //     id: 10,
+    //     image: require('../assets/images/category11.png'),
+    //     text: 'Mom Care',
+    // },
+    // {
+    //     id: 11,
+    //     image: require('../assets/images/category12.png'),
+    //     text: 'Wearables',
+    // }
+]
+
+const personalCare = [
+{
+    id:0,
+    image:require('../assets/images/personalCare1.png'),
+    text:'Moisturizer'
+} ,
+{
+    id:1,
+    image:require('../assets/images/personalCare2.png'),
+    text:'Sunscreen'
+} ,
+{
+    id:2,
+    image:require('../assets/images/personalCare3.png'),
+    text:'Deodorant'
+} ,
+{
+    id:3,
+    image:require('../assets/images/personalCare4.png'),
+    text:'Lip Balm'
+}   
+
 ]
 
 
@@ -857,7 +883,7 @@ const recordData = [
     {
         id: 0,
         image: require('../assets/images/record1.png'),
-        text: 'Medications'
+        text: 'Medications',
     },
     {
         id: 1,
@@ -865,6 +891,34 @@ const recordData = [
         text: 'Lab Report'
     }
 ]
+
+
+const chatData = [
+    {
+        id:0,
+        name:'Dr. Jii',
+        image:require('../assets/images/dr-ji.png'),
+        pin:true,
+    },
+    {
+        id:1,
+        name:'Alis Smith',
+        image:require('../assets/images/dash2.png'),
+        pin:false,
+    },
+    {
+        id:2,
+        name:'Roomi',
+        image:require('../assets/images/dash3.png'),
+        pin:false,
+    },
+    {
+        id:3,
+        name:'Roomi',
+        image:require('../assets/images/dash3.png'),
+        pin:false,
+    }
+  ]
 
 // const BaseUrl = "https://avijobackendtest-production-6295.up.railway.app";
 const BaseUrl2 = "https://avijobackend-production.up.railway.app";
@@ -898,6 +952,8 @@ export {
     newSearch,
     detailOption,
     recordData,
+    personalCare,
+    chatData,
     hp,
     wp,
 };
