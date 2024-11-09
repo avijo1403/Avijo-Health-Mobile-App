@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Image, ScrollView, Text, View } from "react-native";
+import { ActivityIndicator, Image, ScrollView, Text, View } from "react-native";
 import styles from "./style";
 import { TouchableOpacity } from "react-native";
 import { colors } from "../../Theme/GlobalTheme";
@@ -10,6 +10,19 @@ import { FloatingAction } from "react-native-floating-action";
 export default function DoCare({ navigation }) {
     const [id, setId] = useState();
     const [select, setSelect] = useState(1);
+    const [loading, setLoading] = useState(false);
+
+    const startLoading = () => {
+        setLoading(true);
+        setTimeout(() => {
+            setLoading(false);
+        }, 2000); // Simulate a 2-second loading period
+    };
+
+    useEffect(() => {
+        startLoading();
+    }, []);
+
 
     useEffect(() => {
         getData('id').then(id => setId(id));
@@ -21,8 +34,8 @@ export default function DoCare({ navigation }) {
 
     return (
         <View style={styles.container}>
-            <View style={{ width: '100%', height: 50, alignItems: 'center', justifyContent: 'space-between', flexDirection: 'row', paddingTop: '4%' }}>
-                <Text style={{ fontSize: 28, fontFamily: 'akuina-bold-slanted', color: '#3CA2A5', paddingLeft: '5%', }}>D<Text style={{ fontSize: 22 }}>OCARE</Text></Text>
+            <View style={{ width: '100%', alignItems: 'center', justifyContent: 'space-between', flexDirection: 'row', paddingTop: '4%' }}>
+                <Text style={{ fontSize: 28, fontFamily: 'akuina-bold-slanted', color: '#3CA2A5', paddingLeft: '5%', }}>D<Text style={{ fontSize: 22 }}>OCARE </Text></Text>
                 <View style={{ flexDirection: 'row', alignItems: 'center', paddingRight: '3%' }}>
                     <Image source={require('../../assets/images/blackSearch.png')} style={{ height: 24, width: 24, marginRight: 10, }} />
                     {/* <Image source={require('../../assets/images/addSquare.png')} style={{ height: 24, width: 24, }} /> */}
@@ -38,7 +51,7 @@ export default function DoCare({ navigation }) {
                     <Text style={{ fontFamily: 'Gilroy-SemiBold', fontSize: 18, color: colors.black, textAlign: 'center' }}>Followings</Text>
                 </TouchableOpacity>
             </View>
-            <ScrollView style={{ width: '100%' }} contentContainerStyle={{ alignItems: 'center' }}>
+            {loading ? <ActivityIndicator size={'large'} color={colors.blue} style={{ flex: 1, width: '100%', alignSelf: 'center' }} /> : <ScrollView style={{ width: '100%' }} contentContainerStyle={{ alignItems: 'center' }}>
                 {/* <View style={{ flexDirection: 'row', alignItems: 'start', backgroundColor: colors.white, width: '100%', paddingTop: '7%', padding: '5%' }}>
                     <Image source={require('../../assets/images/profile.png')} style={{ height: 44, width: 44, borderRadius: 100 }} />
                     <View style={{ width: '80%' }}>
@@ -81,7 +94,7 @@ export default function DoCare({ navigation }) {
                                 <Text style={{ fontSize: 14, fontFamily: 'Gilroy-Medium', color: colors.darkGrey, width: "100%" }}>Aug 12</Text>
                             </View>
                             <TouchableOpacity>
-                                <Image source={require('../../assets/images/dots2.png')} style={{ height: 20, width: 20 }} />
+                                <Image source={require('../../assets/images/dot3.png')} style={{ height: 20, width: 20 }} />
                             </TouchableOpacity>
                         </View>
                         <Text style={{ fontSize: 10, fontFamily: 'Gilroy-SemiBold', color: colors.black, width: "100%", marginTop: '3%', paddingLeft: '2%' }}>How do I build a social media app: A Comprehensive Guide?</Text>
@@ -124,7 +137,7 @@ export default function DoCare({ navigation }) {
                                 <Text style={{ fontSize: 14, fontFamily: 'Gilroy-Medium', color: colors.darkGrey, width: "100%" }}>Sponsored</Text>
                             </View>
                             <TouchableOpacity>
-                                <Image source={require('../../assets/images/cross2.png')} style={{ height: 10, width: 10 }} />
+                                <Image source={require('../../assets/images/dot3.png')} style={{ height: 20, width: 20 }} />
                             </TouchableOpacity>
                         </View>
                         <Text style={{ fontSize: 12, fontFamily: 'Gilroy-SemiBold', color: colors.black, width: "100%", marginTop: '3%', paddingLeft: '2%' }}>New jeevan Akshay Lic’s</Text>
@@ -167,7 +180,7 @@ export default function DoCare({ navigation }) {
                             <View style={{ width: '100%', alignItems: 'center', flexDirection: 'row', alignItems: 'flex-start', justifyContent: 'space-between' }}>
                                 <Text style={{ fontSize: 10, fontFamily: 'Gilroy-SemiBold', color: colors.black, width: "95%" }}>How has the spread of tick-borne viruses in Japan evolved over the X years, and what new infectious diseases have been detected recently?</Text>
                                 <TouchableOpacity>
-                                    <Image source={require('../../assets/images/cross2.png')} style={{ height: 10, width: 10 }} />
+                                    <Image source={require('../../assets/images/dot3.png')} style={{ height: 20, width: 20 }} />
                                 </TouchableOpacity>
                             </View>
                             <Text style={{ fontSize: 10, fontFamily: 'Gilroy-Medium', color: colors.darkGrey, width: "100%", marginTop: '3%' }}>No answer yet . Last followed 14m</Text>
@@ -212,7 +225,7 @@ export default function DoCare({ navigation }) {
                         </View>
                     </View>
                 </View>
-            </ScrollView>
+            </ScrollView>}
             <FloatingAction
                 color={colors.blue}
                 onPressMain={() => {

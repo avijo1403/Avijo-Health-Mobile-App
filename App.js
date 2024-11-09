@@ -71,13 +71,18 @@ import Search from './src/screens/Search';
 import Ambulance from './src/screens/Ambulance';
 import MedicalRecord from './src/screens/MedicalRecord';
 import Chat2 from './src/screens/Chat2';
+import Splash from './src/screens/Splash';
+import SettingList from './src/screens/SettingList';
 
 const Stack = createNativeStackNavigator();
 
 const App = () => {
+
   return (
     <NavigationContainer>
       <Stack.Navigator>
+        {/* <Stack.Screen name='CreateAccount' component={CreateAccount} options={{ headerShown: false }} /> */}
+        <Stack.Screen name='Splash' component={Splash} options={{ headerShown: false }} />
         <Stack.Screen name='Login' component={Login} options={{ headerShown: false }} />
         <Stack.Screen name='OtpVerify' component={OtpVerify} options={{ headerShown: false }} />
         <Stack.Screen name='CreateAccount' component={CreateAccount} options={{ headerShown: false }} />
@@ -145,6 +150,7 @@ const App = () => {
         <Stack.Screen name='Ambulance' component={Ambulance} options={{ headerShown: false }} />
         <Stack.Screen name='MedicalRecord' component={MedicalRecord} options={{ headerShown: false }} />
         <Stack.Screen name='Chat2' component={Chat2} options={{ headerShown: false }} />
+        <Stack.Screen name='SettingList' component={SettingList} options={{ headerShown: false }} />
       </Stack.Navigator>
     </NavigationContainer>
   )

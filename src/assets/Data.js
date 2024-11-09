@@ -687,26 +687,26 @@ const productCategory = [
 ]
 
 const personalCare = [
-{
-    id:0,
-    image:require('../assets/images/personalCare1.png'),
-    text:'Moisturizer'
-} ,
-{
-    id:1,
-    image:require('../assets/images/personalCare2.png'),
-    text:'Sunscreen'
-} ,
-{
-    id:2,
-    image:require('../assets/images/personalCare3.png'),
-    text:'Deodorant'
-} ,
-{
-    id:3,
-    image:require('../assets/images/personalCare4.png'),
-    text:'Lip Balm'
-}   
+    {
+        id: 0,
+        image: require('../assets/images/personalCare1.png'),
+        text: 'Moisturizer'
+    },
+    {
+        id: 1,
+        image: require('../assets/images/personalCare2.png'),
+        text: 'Sunscreen'
+    },
+    {
+        id: 2,
+        image: require('../assets/images/personalCare3.png'),
+        text: 'Deodorant'
+    },
+    {
+        id: 3,
+        image: require('../assets/images/personalCare4.png'),
+        text: 'Lip Balm'
+    }
 
 ]
 
@@ -895,30 +895,45 @@ const recordData = [
 
 const chatData = [
     {
-        id:0,
-        name:'Dr. Jii',
-        image:require('../assets/images/dr-ji.png'),
-        pin:true,
+        id: 0,
+        name: 'Dr. Jii',
+        image: require('../assets/images/dr-ji.png'),
+        pin: true,
     },
     {
-        id:1,
-        name:'Alis Smith',
-        image:require('../assets/images/dash2.png'),
-        pin:false,
+        id: 1,
+        name: 'Alis Smith',
+        image: require('../assets/images/dash2.png'),
+        pin: false,
     },
     {
-        id:2,
-        name:'Roomi',
-        image:require('../assets/images/dash3.png'),
-        pin:false,
+        id: 2,
+        name: 'Roomi',
+        image: require('../assets/images/dash3.png'),
+        pin: false,
     },
     {
-        id:3,
-        name:'Roomi',
-        image:require('../assets/images/dash3.png'),
-        pin:false,
+        id: 3,
+        name: 'Roomi',
+        image: require('../assets/images/dash3.png'),
+        pin: false,
     }
-  ]
+]
+
+export const calculateAge = (birthDateString) => {
+    const birthDate = new Date(birthDateString);
+    const today = new Date();
+
+    let age = today.getFullYear() - birthDate.getFullYear();
+    const monthDifference = today.getMonth() - birthDate.getMonth();
+
+    // Check if the birthday has not occurred yet this year
+    if (monthDifference < 0 || (monthDifference === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+    }
+
+    return age;
+}
 
 // const BaseUrl = "https://avijobackendtest-production-6295.up.railway.app";
 const BaseUrl2 = "https://avijobackend-production.up.railway.app";

@@ -12,7 +12,7 @@ export default function HeaderItem2(props) {
                 </TouchableOpacity>
                 {props.text && <Text style={[styles.headerText, { color: props.backgroundColor ? props.textColor : colors.black, }]}>{props?.text}</Text>}
                 {props.center && <View style={{ backgroundColor: colors.blue, flexDirection: 'row', alignItems: 'center', padding: '5%', marginLeft: '0%', borderRadius: 8, paddingLeft: "5%", paddingRight: "10%" }}>
-                    {props?.profileImage && <Image source={props?.profileImage} style={{ height: 46, width: 46, borderRadius:100, }} />}
+                    {props?.profileImage && <Image source={props?.profileImage} style={{ height: 46, width: 46, borderRadius: 100, }} />}
                     <Text style={{ fontSize: 20, fontFamily: 'Gilroy-SemiBold', color: colors.white, marginLeft: '5%' }}>{props.name}</Text>
                 </View>}
             </View>

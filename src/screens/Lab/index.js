@@ -7,6 +7,7 @@ import { common, men, test, test1, women } from "../../assets/Data";
 import CategoryCard from "../../components/CategoryCard";
 import LabCard from "../../components/LabCard";
 import HeaderItem2 from "../../components/HeaderItem2";
+import ArticleHeader2 from "../../components/ArticleHeader2";
 
 export default function Lab({ navigation }) {
 
@@ -20,15 +21,7 @@ export default function Lab({ navigation }) {
 
     return (
         <View style={styles.container}>
-            <HeaderItem2 text="Lab Services" backgroundColor={colors.green} textColor={colors.white} right={
-                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                    <TouchableOpacity onPress={() => navigation.navigate('Search')}>
-                        <Image source={require('../../assets/images/whiteSearch.png')} style={{ height: 24, width: 24, marginRight: 5 }} />
-                    </TouchableOpacity>
-                    <TouchableOpacity>
-                        <Image source={require('../../assets/images/whiteNoti.png')} style={{ height: 24, width: 24 }} />
-                    </TouchableOpacity>
-                </View>} />
+            <ArticleHeader2 onBack={() => navigation.goBack()} text="Lab Services" showSearch={true} showBottomText={true} image={<Image source={require('../../assets/images/cart1.png')} style={{ height: 24, width: 24 }} />} />
             <ScrollView style={{ width: '100%' }} contentContainerStyle={{ alignItems: 'center' }}>
                 {/* <Text style={{ fontSize: 20, fontFamily: 'Gilroy-SemiBold', color: colors.black, alignSelf: 'flex-start', paddingLeft: '5%', paddingTop: '5%' }}>Most Common Medical Tests</Text> */}
                 {/* <ScrollView horizontal={true} contentContainerStyle={{ flexDirection: 'row', alignItems: 'center', paddingLeft: '5%', marginTop: '5%' }} showsHorizontalScrollIndicator={false}>

@@ -90,14 +90,14 @@ export default function Order({ navigation }) {
         )
     }
 
-    const Diagnostics=()=>{
-        return(
-            <View style={{flex:1, width:'100%', alignItems:'center', justifyContent:'center', marginTop:'20%'}}>
-                <Image source={require('../../assets/images/noOrder.png')} style={{height:200, width:200}}/>
-                <Text style={{color:colors.black, fontSize:24, fontFamily:'Gilroy-SemiBold', marginTop:'3%'}}>No orders placed!</Text>
-                <Text style={{color:colors.grey, fontSize:16, fontFamily:'Gilroy-Medium', marginTop:'1%'}}>Currently you don’t have any orders.</Text>
-                <View style={{width:'100%', marginTop:'10%', alignItems:'center'}}>
-                    <Button2 Text="Order Now" backgroundColor={colors.green}/>
+    const Diagnostics = () => {
+        return (
+            <View style={{ flex: 1, width: '100%', alignItems: 'center', justifyContent: 'center', marginTop: '20%' }}>
+                <Image source={require('../../assets/images/noOrder.png')} style={{ height: 200, width: 200 }} />
+                <Text style={{ color: colors.black, fontSize: 24, fontFamily: 'Gilroy-SemiBold', marginTop: '3%' }}>No orders placed!</Text>
+                <Text style={{ color: colors.grey, fontSize: 16, fontFamily: 'Gilroy-Medium', marginTop: '1%' }}>Currently you don’t have any orders.</Text>
+                <View style={{ width: '100%', marginTop: '10%', alignItems: 'center' }}>
+                    <Button2 Text="Order Now" backgroundColor={colors.green} />
                 </View>
             </View>
         )
@@ -105,9 +105,9 @@ export default function Order({ navigation }) {
 
     return (
         <View style={styles.container}>
-            <HeaderItem2 onPress={() => navigation.goBack()} text="My Order" />
+            <HeaderItem2 onPress={() => navigation.goBack()} text="Order & Booking" />
             <ScrollView style={{ width: '100%' }} contentContainerStyle={{ alignItems: 'center' }}>
-                <View style={{ flexDirection: 'row', marginRight: 15, marginTop: '7%', marginLeft: '7%', justifyContent: 'space-between', width: '90%', borderBottomWidth:2, borderColor:colors.grey }}>
+                <View style={{ flexDirection: 'row', marginRight: 15, marginTop: '7%', marginLeft: '7%', justifyContent: 'space-between', width: '90%', borderBottomWidth: 2, borderColor: colors.grey }}>
                     <TouchableOpacity onPress={() => handleSelect(1)} style={select === 1 ? styles.optionContainer2 : styles.optionContainer}>
                         <Text style={select === 2 ? styles.optionText2 : styles.optionText}>Orders</Text>
                     </TouchableOpacity>
@@ -118,9 +118,9 @@ export default function Order({ navigation }) {
                         <Text style={select === 3 ? styles.optionText2 : styles.optionText}>Consultations</Text>
                     </TouchableOpacity>
                 </View>
-                {select === 1 && <Orders/>}
-                {select === 2 && <Diagnostics/>}
-                {select === 3 && <Consultations/>}
+                {select === 1 && <Orders />}
+                {select === 2 && <Diagnostics />}
+                {select === 3 && <Consultations />}
             </ScrollView>
         </View>
     )

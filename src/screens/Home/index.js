@@ -11,6 +11,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import SymptomCard2 from "../../components/SymptomCard2";
 import SearchItem from "../../components/SearchItem";
 import SearchItem2 from "../../components/SearchItem2";
+import GetLocation from "../../components/GetLocation";
 
 export default function Home({ navigation }) {
 
@@ -55,7 +56,7 @@ export default function Home({ navigation }) {
                     </TouchableOpacity>
                     <Text style={{ fontSize: 28, fontFamily: 'Gilroy-SemiBold', color: colors.blue, paddingLeft: '5%' }}>avijo</Text>
                 </View>
-                <View style={{ marginRight: '2%', flexDirection: 'row', alignItems: 'center', width:65, justifyContent:'space-between' }}>
+                <View style={{ marginRight: '2%', flexDirection: 'row', alignItems: 'center', width: 65, justifyContent: 'space-between' }}>
                     <TouchableOpacity onPress={() => navigation.navigate('Notification')}>
                         <View style={styles.numberContainer}>
                             <Text style={styles.number}>33+</Text>
@@ -67,10 +68,11 @@ export default function Home({ navigation }) {
             </View>
             <ScrollView style={{ width: '100%' }} contentContainerStyle={{ alignItems: 'center', paddingBottom: '5%' }}>
                 <View style={{ width: '100%', backgroundColor: colors.white, paddingBottom: '10%', marginTop: '5%' }}>
+                <GetLocation/>
                     {/* <Text style={styles.heading}>Your Medication Services Partner</Text> */}
                     <View style={{ width: '90%', alignSelf: 'center', flexDirection: 'row', justifyContent: 'space-between', marginRight: '2%' }}>
                         <SymptomCard2 image={require('../../assets/images/bookClinic.png')} image2={require('../../assets/images/rightCircle.png')} text="Book In-Clinic Appointment" bottomText="UP TO 10 % OFF" bottomBackground={colors.skyblue} bottomColor={colors.blue} onPress={() => navigation.navigate('FindDoctor')} />
-                        <SymptomCard2 image={require('../../assets/images/videoCall.png')} image2={require('../../assets/images/rightCircle.png')} text="Instant Video Consultation" bottomText="UP TO 10 % OFF" bottomBackground={colors.skyblue} bottomColor={colors.blue} onPress={() => navigation.navigate('OnlineConsult')} />
+                        <SymptomCard2 image={require('../../assets/images/videoCall.png')} image2={require('../../assets/images/rightCircle.png')} text="Instant Video Consult" bottomText="UP TO 10 % OFF" bottomBackground={colors.skyblue} bottomColor={colors.blue} onPress={() => navigation.navigate('OnlineConsult')} />
                     </View>
                     <View style={{ width: '90%', alignSelf: 'center', flexDirection: 'row', justifyContent: 'space-between', marginRight: '2%', marginTop: '5%' }}>
                         <SymptomCard2 image={require('../../assets/images/orderMed.png')} image2={require('../../assets/images/rightCircle.png')} text="Order Medicine & Product" bottomText="UP TO 10 % OFF" bottomBackground={colors.lightGreen2} bottomColor={colors.green} onPress={() => navigation.navigate('Plans')} />

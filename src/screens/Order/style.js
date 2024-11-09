@@ -15,12 +15,15 @@ const styles = StyleSheet.create({
         padding:5, 
         paddingLeft:'3%',
         paddingRight:'3%',
+        width:'34%',
     },
     optionText:{
         color:colors.grey,
         fontSize:14,
         marginLeft:5,
-        fontFamily:'Gilroy-SemiBold'
+        fontFamily:'Gilroy-SemiBold',
+        width:'100%',
+        textAlign:'center',
     },
     optionContainer2:{
         flexDirection:'row',
@@ -31,12 +34,16 @@ const styles = StyleSheet.create({
         borderBottomWidth:2,
         paddingBottom:'5%',
         borderColor:colors.darkGrey,
+        width:'34%',
     },
     optionText2:{
         color:colors.grey,
         fontSize:14,
         marginLeft:5,
-        fontFamily:'Gilroy-SemiBold'
+        fontFamily:'Gilroy-SemiBold',
+        width:'34%',
+        textAlign:'center',
+        width:'100%',
     },
     buttonContainer:{
         flexDirection:'row',

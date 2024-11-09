@@ -143,7 +143,7 @@ export default function MyCart({ navigation }) {
                 <View style={{ width: '90%', alignItems: 'center', backgroundColor: colors.white, borderRadius: 5, marginTop: '5%', padding: 5, marginBottom: '5%', paddingBottom: 10, borderWidth: 1, borderColor: colors.lightgrey }}>
                     <View style={{ width: '100%', alignItems: 'center', flexDirection: 'row', justifyContent: 'space-between' }}>
                         <Text style={{ fontSize: 16, fontFamily: 'Gilroy-SemiBold', paddingLeft: '3%', color: colors.black, marginTop: '3%', width: "70%", textAlign: 'left' }}>Ordering for someone else?</Text>
-                        <TouchableOpacity style={{ width: "100%" }} onPress={() => setModalVisible(true)}>
+                        <TouchableOpacity style={{ width: "100%" }}>
                             <Text style={{ fontSize: 12, fontFamily: 'Gilroy-SemiBold', paddingLeft: '3%', color: colors.green, marginTop: '3%', width: "30%", textAlign: 'left' }}>Add Details</Text>
                         </TouchableOpacity>
                     </View>

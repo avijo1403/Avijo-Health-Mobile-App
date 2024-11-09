@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { FlatList, Image, Modal, Pressable, ScrollView, Text, Touchable, TouchableOpacity, View } from "react-native";
+import React, { useEffect, useState } from "react";
+import { ActivityIndicator, FlatList, Image, Modal, Pressable, ScrollView, Text, Touchable, TouchableOpacity, View } from "react-native";
 import styles from "./style";
 import ArticleHeader from "../../components/ArticleHeader";
 import { colors, wp } from "../../Theme/GlobalTheme";
@@ -12,11 +12,23 @@ export default function OnlineMedicine({ navigation }) {
     const [columns, setColumns] = useState(4);
     const [columns2, setColumns2] = useState(2);
     const [modalVisible, setModalVisible] = useState(false);
+    const [loading, setLoading] = useState(false);
+
+    const startLoading = () => {
+        setLoading(true);
+        setTimeout(() => {
+          setLoading(false);
+        }, 2000); // Simulate a 2-second loading period
+      };
+
+      useEffect(()=>{
+        startLoading();
+      },[]);
 
     return (
         <View style={styles.container}>
-            <ArticleHeader2 onBack={() => navigation.goBack()} text="Medicines & Products" showSearch={true} showBottomText={true} image={<Image source={require('../../assets/images/cart1.png')} style={{ height: 24, width: 24 }} />} />
-            <ScrollView style={{ width: '100%' }} contentContainerStyle={{ alignItems: 'center' }}>
+            <ArticleHeader2 text="Medicines & Products" showSearch={true} showBottomText={true} image={<Image source={require('../../assets/images/cart1.png')} style={{ height: 24, width: 24 }} />} />
+            {loading ? <ActivityIndicator size={'large'} color={colors.blue} style={{flex:1, width:'100%', alignSelf:'center'}}/>:<ScrollView style={{ width: '100%' }} contentContainerStyle={{ alignItems: 'center' }}>
                 <Text style={{ fontSize: 20, fontFamily: 'Gilroy-SemiBold', color: colors.black, width: '90%', marginTop: "5%", borderColor: colors.grey }}>Order Medicines Via</Text>
                 <View style={{ width: '90%', backgroundColor: colors.white, marginTop: '0%', padding: '2%' }}>
                     {/* <TouchableOpacity onPress={() => navigation.navigate('NewAddress')} style={{ flexDirection: 'row', width: '100%', alignItems: 'center', borderBottomWidth: 1, borderColor: colors.lightgrey, paddingBottom: "10%" }}>
@@ -169,7 +181,7 @@ export default function OnlineMedicine({ navigation }) {
                         <Text style={{ fontSize: 12, fontFamily: 'Gilroy-Medium', color: colors.black }}>Offer valid for a limited time only!</Text>
                     </View>
                 </View> */}
-            </ScrollView>
+            </ScrollView>}
             <Modal
                 // animationType="slide"
                 transparent={true}

@@ -17,7 +17,8 @@ const styles = StyleSheet.create({
     },
     profile:{
         height:72,
-        width:72
+        width:72,
+        marginLeft:'5%'
     },
     textContainer:{
         flexDirection:'column'

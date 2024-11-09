@@ -8,7 +8,7 @@ const LoginInput =(props)=>{
         <View style={styles.container}>
             <Text style={[styles.text]}>{props.text}</Text>
             <View style={[styles.inputContainer]}>
-                <TextInput placeholder={props.placeholder} placeholderTextColor={colors.placeholder} style={styles.input}/>
+                <TextInput placeholder={props.placeholder} placeholderTextColor={colors.placeholder} onChangeText={props.onChangeText} style={styles.input}/>
             </View>
         </View>
     )

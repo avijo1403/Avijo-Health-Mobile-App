@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
-import { View, Text, Image, TouchableOpacity, Alert, StyleSheet, Keyboard, ActivityIndicator } from "react-native";
+import { View, Text, Image, TouchableOpacity, Alert, StyleSheet, Keyboard, ActivityIndicator, ToastAndroid } from "react-native";
 import PhoneInput from "react-native-phone-number-input";
 import Button1 from "../../components/Button1";
 import EnterOTP from "../../components/EnterOTP";
@@ -10,41 +10,90 @@ import { BaseUrl2 } from "../../assets/Data";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function OtpVerify({ navigation, route }) {
-    const number = route.params.mobileNumber;
+    const number = route?.params?.mobileNumber;
     const phoneInput = useRef(null);
     const [value, setValue] = useState(number);
     const [formattedValue, setFormattedValue] = useState(number);
     const [otp, setOtp] = useState('');
     const [loading, setLoading] = useState(false);
+    const [countdown, setCountdown] = useState(60);
 
     const storeData = async (key, value) => {
         try {
-          await AsyncStorage.setItem(key, value);
+            await AsyncStorage.setItem(key, value);
         } catch (e) {
-          console.error('Failed to save the data to the storage', e);
+            console.error('Failed to save the data to the storage', e);
         }
-      };
+    };
 
-    const handleVerify = async () => {
+
+    const handleUseOtp = async () => {
+        setLoading(true);
+        if (!number) {
+            setLoading(false);
+            ToastAndroid.show("Please Enter a Number", ToastAndroid.SHORT);
+            return;
+        }
         try {
-            setLoading(true);
-            console.log('otp:', otp);
-            const response = await axios.post(`${BaseUrl2}/user/verifyLogin`, {
-                mobileNumber: number,
-                otp: otp,
-            });
-            console.log('Response:', response.data);
-            storeData('token', response.data.token);
-            storeData('id', response.data.id);
+            const response = await axios.post(`${BaseUrl2}/user/login`, { mobileNumber: number });
             if (response.status === 200) {
-                navigation.navigate('BottomNav');
+                // navigation.navigate('OtpVerify', { mobileNumber: number });
+                ToastAndroid.show("OTP Sent", ToastAndroid.SHORT);
+                // console.log('login response:', response);
             }
         } catch (error) {
-            console.error('Error verifying OTP:', error);
-            Alert.alert('Verification Failed', 'Invalid OTP. Please try again.');
-        }finally{
+            console.error('Error sending OTP:', error);
+            if (error?.response?.status === 404) {
+                // Alert.alert('Warning!', error.response.data.message);
+                // navigation.navigate('CreateAccount', { mobileNumber: phone });
+                ToastAndroid.show("user not found", ToastAndroid.SHORT);
+            } else if (error.code === 'ERR_NETWORK') {
+                ToastAndroid.show("Network Error", ToastAndroid.SHORT);
+            }
+        } finally {
             setLoading(false);
         }
+    };
+
+    const handleVerify = async () => {
+        if (countdown > 0) {
+            try {
+                setLoading(true);
+                console.log('otp:', otp);
+                const response = await axios.post(`${BaseUrl2}/user/verifyLogin`, {
+                    mobileNumber: number,
+                    otp: otp,
+                });
+                console.log('Response:', response.data);
+                storeData('token', response.data.token);
+                storeData('id', response.data.id);
+                if (response.status === 200) {
+                    navigation.navigate('BottomNav');
+                }
+            } catch (error) {
+                console.error('Error verifying OTP:', error);
+                Alert.alert('Verification Failed', 'Invalid OTP. Please try again.');
+            } finally {
+                setLoading(false);
+            }
+        } else {
+            ToastAndroid.show("Time's UP", ToastAndroid.SHORT);
+        }
+    };
+
+    useEffect(() => {
+        if (countdown > 0) {
+            const timerId = setInterval(() => {
+                setCountdown(prevCount => prevCount - 1);
+            }, 1000);
+
+            return () => clearInterval(timerId); // Clear the interval on component unmount
+        }
+    }, [countdown]);
+
+    const resetCountdown = () => {
+        handleUseOtp();
+        setCountdown(60);
     };
 
     return (
@@ -75,14 +124,14 @@ export default function OtpVerify({ navigation, route }) {
             <Text style={styles.otpHeading}>VERIFYING NUMBER</Text>
             <View style={styles.otpTextContainer}>
                 <Text style={styles.otpText}>We have sent a 6-digit OTP to <Text style={{ color: colors.black }}>{number}</Text></Text>
-                <TouchableOpacity>
+                {countdown === 0 && <TouchableOpacity onPress={resetCountdown}>
                     <Text style={styles.change}>Change</Text>
-                </TouchableOpacity>
+                </TouchableOpacity>}
             </View>
             <EnterOTP value={otp} setValue={setOtp} />
-            <Text style={{ fontSize: 10, fontFamily: 'Gilroy-Medium', color: colors.grey, alignSelf: 'flex-start', marginLeft: '5%', marginTop: '0%' }}>Waiting for OTP...36 Sec</Text>
+            <Text style={{ fontSize: 10, fontFamily: 'Gilroy-Medium', color: colors.grey, alignSelf: 'flex-start', marginLeft: '5%', marginTop: '0%' }}>Waiting for OTP... {countdown} Sec</Text>
             <View style={{ width: '100%', alignItems: 'center', marginTop: '5%' }}>
-                {loading ? <ActivityIndicator size={"large"} color={colors.blue}/>:<Button1 Text="Verify" onPress={() => handleVerify(otp)} />}
+                {loading ? <ActivityIndicator size={"large"} color={colors.blue} /> : <Button1 Text="Verify" onPress={() => handleVerify(otp)} />}
             </View>
             <View style={styles.orContainer}>
                 <View style={styles.line} />
@@ -90,9 +139,9 @@ export default function OtpVerify({ navigation, route }) {
                 <View style={styles.line} />
             </View>
             <View style={styles.iconContainer}>
-                <TouchableOpacity style={{ flexDirection: 'row', width: '90%', alignItems: 'center', justifyContent: 'center', height: 46, backgroundColor: colors.white, marginTop: '5%', elevation: 5, borderRadius: 10  }}>
+                <TouchableOpacity style={{ flexDirection: 'row', width: '90%', alignItems: 'center', justifyContent: 'center', height: 46, backgroundColor: colors.white, marginTop: '5%', elevation: 5, borderRadius: 10 }}>
                     <Image style={styles.icon} source={require('../../assets/images/google.png')} />
-                    <Text style={{ paddingLeft: '5%', fontSize: 18, fontFamily: 'Gilroy-SemiBold', color: colors.darkGrey}}>Log In with Google</Text>
+                    <Text style={{ paddingLeft: '5%', fontSize: 18, fontFamily: 'Gilroy-SemiBold', color: colors.darkGrey }}>Log In with Google</Text>
                 </TouchableOpacity>
             </View>
         </View>

@@ -9,7 +9,7 @@ import { launchImageLibrary } from 'react-native-image-picker';
 import RNFS from 'react-native-fs';
 
 const Chat = ({ navigation, route }) => {
-    const name = route.params.name;
+    const name = route?.params?.name;
     const [messages, setMessages] = useState([
         // { id: 1, sender: 'You', text: 'Hi, Dr.Jii', time: '12:00 pm' },
         // { id: 2, sender: 'Jane', text: 'Hi, Dr.Jii, your AI health expert. Youre in a safe space to ask anything or express any concerns you might have.', time: '12:00 pm' },

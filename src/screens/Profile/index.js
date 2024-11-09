@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Alert, Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
+import { Alert, Image, ImageBackground, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import styles from "./style";
 import Clipboard from "@react-native-clipboard/clipboard";
 import { colors } from "../../Theme/GlobalTheme";
@@ -55,9 +55,14 @@ export default function Profile({ navigation }) {
                 <Image source={require('../../assets/images/blackLeft.png')} style={{ width: 15, height: 13, margin: 20, marginLeft: '5%' }} />
             </TouchableOpacity>
             <ScrollView contentContainerStyle={{ width: '100%' }}>
-                <View style={styles.profile} />
-                <TouchableOpacity onPress={() => navigation.navigate('UserProfile')} style={styles.profileContainer}>
-                    {/* <Image source={require('../../assets/images/profile3.png')} style={styles.profile} /> */}
+                {/* <View style={styles.profile} /> */}
+                {/* <TouchableOpacity onPress={() => navigation.navigate('UserProfile')} style={styles.profileContainer}> */}
+                <View style={{ width: '100%' }}>
+                    <ImageBackground source={require('../../assets/images/demoImage.png')} style={styles.profile}>
+                        <TouchableOpacity style={{ backgroundColor: colors.white, height: 20, width: 20, borderRadius: 100, marginTop: 50, marginLeft: 53 }}>
+                            <Image source={require('../../assets/images/add5.png')} style={{ height: 20, width: 20 }} />
+                        </TouchableOpacity>
+                    </ImageBackground>
                     {/* <View style={styles.textContainer}>
                         <View style={styles.nameContainer}>
                             <Text style={styles.name}>{userData?.fullName}</Text>
@@ -73,8 +78,9 @@ export default function Profile({ navigation }) {
                         <Text style={styles.addText}>{userData?.fullName}</Text>
                         <Image source={require('../../assets/images/rightBlack.png')} style={styles.blueRight} />
                     </TouchableOpacity>
-                    {/* </View> */}
-                </TouchableOpacity>
+                </View>
+                {/* </View> */}
+                {/* </TouchableOpacity> */}
                 {/* <View style={styles.qrContainer}>
                     <Image source={require('../../assets/images/qr.png')} style={styles.qr} />
                     <View style={{ flexDirection: 'row', width: '100%', paddingLeft: '3%', paddingBottom: 5 }}>
@@ -101,7 +107,7 @@ export default function Profile({ navigation }) {
                 <ProfileItem icon={require('../../assets/images/reminder.png')} text="Reminder" />
                 <ProfileItem icon={require('../../assets/images/earn.png')} text="Refer and Earn" />
                 <ProfileItem icon={require('../../assets/images/article2.png')} text="Health Articles (Docare)" /> */}
-                <ProfileItem icon={require('../../assets/images/profile6.png')} text="Ambulance" onPress={()=> navigation.navigate('Ambulance')} emergency={true} />
+                <ProfileItem icon={require('../../assets/images/profile6.png')} text="Ambulance" onPress={() => navigation.navigate('Ambulance')} emergency={true} />
                 <ProfileItem icon={require('../../assets/images/profile7.png')} text="Support and Help" onPress={() => navigation.navigate('Support')} />
                 <TouchableOpacity style={{ margin: '5%', alignSelf: 'flex-end' }}>
                     <Image source={require('../../assets/images/setting1.png')} style={{ height: 32, width: 32, }} />

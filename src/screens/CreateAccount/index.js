@@ -11,7 +11,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function CreateAccount({ navigation, route }) {
 
-  const number = route.params.mobileNumber;
+  const number = route?.params?.mobileNumber;
 
 
   const [seconds, setSeconds] = useState(60);
@@ -38,7 +38,7 @@ export default function CreateAccount({ navigation, route }) {
     }
   }, [seconds]);
 
-  
+
   const storeData = async (key, value) => {
     try {
       await AsyncStorage.setItem(key, value);
@@ -61,18 +61,24 @@ export default function CreateAccount({ navigation, route }) {
 
   const handleVerifyOtp = async () => {
     try {
+      // console.log(
+      //   'fullName',fullName,
+      //   email,
+      //   dateOfBirth,
+      //   'mobileNumber', phone,
+      //   'otp', otpValue);
       setLoading(true);
       const response = await axios.post(`${BaseUrl2}/user/verify`, {
-        mobileNumber: phone,
-        otp: otpValue,
         fullName,
         email,
         dateOfBirth,
+        mobileNumber: phone,
+        otp: otpValue,
       });
       console.log("Verification Response:", response);
-      storeData('token', response.data.token );
+      await storeData('token', response.data.token);
       Alert.alert("Success", "OTP Verified Successfully");
-      navigation.navigate("BottomNav");
+      navigation.replace("Login");
       setLoading(false);
     } catch (error) {
       setLoading(false);
@@ -81,14 +87,14 @@ export default function CreateAccount({ navigation, route }) {
     }
   };
 
-  
+
 
   return (
     <View style={styles.container}>
       <Text style={styles.heading}>Create Account</Text>
       <LoginInput text="FULL NAME" placeholder="Enter your Full Name" value={fullName} onChangeText={setFullName} />
       <LoginInput text="EMAIL ID" placeholder="Enter your Email Id" value={email} onChangeText={setEmail} />
-      <LoginInput text="DATE OF BIRTH" placeholder="Enter your Date Of Birth" value={dateOfBirth} onChangeText={setDob} />
+      <LoginInput text="DATE OF BIRTH" placeholder="YYYY-MM-DD" value={dateOfBirth} onChangeText={setDob} />
       <Text style={styles.otpHeading}>VERIFYING NUMBER</Text>
       <View style={styles.otpTextContainer}>
         <Text style={styles.otpText}>We have sent 6 digit OTP on <Text style={{ color: colors.black }}>{phone}</Text></Text>
@@ -101,7 +107,7 @@ export default function CreateAccount({ navigation, route }) {
         Waiting for OTP...{seconds} Sec
       </Text>
       <View style={{ width: '100%', alignItems: 'center', marginTop: '10%' }}>
-        {loading?<ActivityIndicator size='large' color={colors.blue}/>:<Button1 Text="VERIFY" onPress={handleVerifyOtp} />}
+        {loading ? <ActivityIndicator size='large' color={colors.blue} /> : <Button1 Text="VERIFY" onPress={handleVerifyOtp} />}
       </View>
     </View>
   );

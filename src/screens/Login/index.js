@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { View, Text, Image, TouchableOpacity, ActivityIndicator, StyleSheet, Alert } from "react-native";
+import { View, Text, Image, TouchableOpacity, ActivityIndicator, StyleSheet, Alert, ToastAndroid } from "react-native";
 import PhoneInput from "react-native-phone-number-input";
 import axios from "axios";
 import Button1 from "../../components/Button1"; // Adjust the import path as needed
@@ -15,25 +15,25 @@ export default function Login({ navigation }) {
   const [formattedValue, setFormattedValue] = useState("");
   const [loading, setLoading] = useState(false);
 
-  useEffect(()=>{
+  useEffect(() => {
     GoogleSignin.configure();
-  },[])
+  }, [])
 
- 
 
-  const googleLogin = async ()=>{
-    try{
-await GoogleSignin.hasPlayServices();
-const userInfo = await GoogleSignin.signIn();
-console.log("user info", userInfo);
-    }catch(error){
-      if(error.code === statusCodes.SIGN_IN_CANCELLED){
+
+  const googleLogin = async () => {
+    try {
+      await GoogleSignin.hasPlayServices();
+      const userInfo = await GoogleSignin.signIn();
+      console.log("user info", userInfo);
+    } catch (error) {
+      if (error.code === statusCodes.SIGN_IN_CANCELLED) {
         console.log(error);
-      }else if(error.code === statusCodes.IN_PROGRESS){
+      } else if (error.code === statusCodes.IN_PROGRESS) {
         console.log(error);
-      }else if(error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE){
+      } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
         console.log(error);
-      }else{
+      } else {
         console.log(error);
       }
     }
@@ -41,6 +41,11 @@ console.log("user info", userInfo);
 
   const handleUseOtp = async () => {
     setLoading(true);
+    if (!phone) {
+      setLoading(false);
+      ToastAndroid.show("Please Enter a Number", ToastAndroid.SHORT);
+      return;
+    }
     try {
       console.log('phone1:', phone);
       const response = await axios.post(`${BaseUrl2}/user/login`, { mobileNumber: phone });
@@ -48,16 +53,17 @@ console.log("user info", userInfo);
         navigation.navigate('OtpVerify', { mobileNumber: phone });
         Alert.alert('Success!', response.data.message);
         console.log('login response:', response);
-      }else{
+      } else {
         navigation.navigate('CreateAccount', { mobileNumber: phone });
       }
     } catch (error) {
       console.error('Error sending OTP:', error);
       if (error?.response?.status === 404) {
-        Alert.alert('Warning!', error.response.data.message);
+        // Alert.alert('Warning!', error.response.data.message);
         navigation.navigate('CreateAccount', { mobileNumber: phone });
+        ToastAndroid.show("user not found", ToastAndroid.SHORT);
       } else if (error.code === 'ERR_NETWORK') {
-        Alert.alert('Error!', 'API Not Working For backend');
+        ToastAndroid.show("Network Error", ToastAndroid.SHORT);
       }
     } finally {
       setLoading(false);
@@ -65,18 +71,9 @@ console.log("user info", userInfo);
   };
 
 
-  const handleNavigation = async()=>{
-    const userId = await AsyncStorage.getItem("id");
-    if(userId){
-      navigation.replace('BottomNav');
-    }
-  }
 
-  useEffect(()=>{
-    handleNavigation();
-  },[]);
 
-  
+
   return (
     <View style={styles.container}>
       <Text style={styles.heading}>Log In</Text>
@@ -114,9 +111,9 @@ console.log("user info", userInfo);
         <View style={styles.line} />
       </View>
       <View style={styles.iconContainer}>
-        <TouchableOpacity onPress={googleLogin} style={{flexDirection:'row', width:'90%', alignItems:'center', justifyContent:'center', height:46, backgroundColor:colors.white, marginTop:'5%', elevation:5, borderRadius: 10 }}>
+        <TouchableOpacity onPress={googleLogin} style={{ flexDirection: 'row', width: '90%', alignItems: 'center', justifyContent: 'center', height: 46, backgroundColor: colors.white, marginTop: '5%', elevation: 5, borderRadius: 10 }}>
           <Image style={styles.icon} source={require('../../assets/images/google.png')} />
-          <Text style={{paddingLeft:'5%', fontSize:18, fontFamily:'Gilroy-SemiBold', color:colors.darkGrey}}>Log In with Google</Text>
+          <Text style={{ paddingLeft: '5%', fontSize: 18, fontFamily: 'Gilroy-SemiBold', color: colors.darkGrey }}>Log In with Google</Text>
         </TouchableOpacity>
       </View>
     </View>

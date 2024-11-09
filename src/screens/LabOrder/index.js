@@ -43,8 +43,8 @@ export default function LabOrder({ navigation }) {
                                 <Text style={{ fontSize: 14, fontFamily: 'Gilroy-SemiBold', color: colors.black }}>Cardiac enzyme test</Text>
                                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
                                     <View style={{ backgroundColor: colors.aqua, flexDirection: 'row', width: '55%', alignItems: 'center', justifyContent: 'space-between', borderRadius: 5, marginTop: '5%' }}>
-                                        <Text style={{ fontSize: 12, fontFamily: 'Gilroy-Medium', color: colors.green, padding: '2%' }}>Includes 90 tests</Text>
-                                        <Text style={{ fontSize: 12, fontFamily: 'Gilroy-Medium', color: colors.green, padding: '2%' }}>Show all</Text>
+                                        <Text style={{ fontSize: 12, fontFamily: 'Gilroy-Medium', color: colors.green, padding: '2%', width:'60%' }}>Includes 90 tests</Text>
+                                        <Text style={{ fontSize: 12, fontFamily: 'Gilroy-Medium', color: colors.green, padding: '2%', width:"40%", textAlign:'right' }}>Show all</Text>
                                     </View>
                                     <View>
                                         <Text style={{ fontSize: 10, fontFamily: 'Gilroy-SemiBold', color: colors.darkGrey, paddingLeft: '3%' }}>Available at</Text>
@@ -65,7 +65,7 @@ export default function LabOrder({ navigation }) {
                                         <Text style={{ fontSize: 12, fontFamily: 'Gilroy-Regular', color: colors.darkGrey, paddingLeft: '1%', marginTop: '3%' }}>$700/-</Text>
                                         <Text style={{ fontSize: 12, fontFamily: 'Gilroy-Medium', color: colors.black, paddingLeft: '1%', marginTop: '3%' }}>$499/-   <Text style={{ color: colors.green, fontFamily: 'Gilroy-SemiBold' }}>37% off</Text></Text>
                                     </View>
-                                    <TouchableOpacity onPress={() => navigation.navigate('LabReview')} style={{ backgroundColor: colors.green, borderRadius: 8 }}>
+                                    <TouchableOpacity style={{ backgroundColor: colors.green, borderRadius: 8 }}>
                                         <Text style={{ fontSize: 14, fontFamily: 'Gilroy-Medium', color: colors.white, padding: '3%', paddingLeft: '7%', paddingRight: '7%' }}>Book</Text>
                                     </TouchableOpacity>
                                 </View>

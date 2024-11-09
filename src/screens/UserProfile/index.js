@@ -3,16 +3,37 @@ import { FlatList, Modal, Pressable, ScrollView, Text, Touchable, TouchableOpaci
 import styles from "./style";
 import { colors } from "../../Theme/GlobalTheme";
 import { Image } from "react-native";
-import { BaseUrl2, profileOption } from "../../assets/Data";
+import { BaseUrl2, calculateAge, profileOption } from "../../assets/Data";
 import HeaderItem2 from "../../components/HeaderItem2";
 import HeaderItem from "../../components/HeaderItem";
 import Button2 from "../../components/Button2";
 import Button3 from "../../components/Button3";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function UserProfile({ navigation }) {
 
     const [select, setSelect] = useState(0);
     const [modalVisible, setModalVisible] = useState(false);
+    const [userData, setUserData] = useState({});
+
+
+
+    const fetchData = async () => {
+        const userId = await AsyncStorage.getItem('id');
+        console.log('userId:', userId);
+        try {
+            const response1 = await fetch(`${BaseUrl2}/user/getUserSingle/${userId}`);
+            const json1 = await response1.json();
+            setUserData(json1.data);
+            console.log('json:', json1.data);
+        } catch (e) {
+            console.log('fetch error:', e);
+        }
+    }
+
+    useEffect(() => {
+        fetchData();
+    }, [])
 
     const Profile = () => {
         return (
@@ -141,12 +162,15 @@ export default function UserProfile({ navigation }) {
                     </View>
                 </View>
                 <View style={{ width: '90%', alignItems: 'center', borderWidth: 1, borderColor: colors.lightgrey, borderRadius: 5, marginTop: '3%', padding: '3%', elevation: 5, backgroundColor: colors.white }}>
-                    <View style={{ width: '100%', flexDirection: 'row', alignItems: 'center' }}>
-                        <Image source={require('../../assets/images/profileName.png')} style={{ height: 40, width: 40 }} />
-                        <View style={{ width: '80%', alignItems: 'center', paddingLeft: '5%' }}>
-                            <Text style={{ fontSize: 16, fontFamily: 'Gilroy-SemiBold', color: colors.black, width: "100%" }}>Stuff man have to deal with</Text>
-                            <Text style={{ fontSize: 14, fontFamily: 'Gilroy-Medium', color: colors.blue, width: "100%" }}>Answered by Anthony 7h</Text>
+                    <View style={{ width: '100%', flexDirection: 'row', alignItems: 'flex-start', justifyContent: 'space-between' }}>
+                        <View style={{ flexDirection: 'row', alignItems: 'center', width: '90%' }}>
+                            <Image source={require('../../assets/images/profileName.png')} style={{ height: 40, width: 40 }} />
+                            <View style={{ width: '80%', alignItems: 'center', paddingLeft: '5%' }}>
+                                <Text style={{ fontSize: 16, fontFamily: 'Gilroy-SemiBold', color: colors.black, width: "100%" }}>Stuff man have to deal with</Text>
+                                <Text style={{ fontSize: 14, fontFamily: 'Gilroy-Medium', color: colors.blue, width: "100%" }}>Answered by Anthony 7h</Text>
+                            </View>
                         </View>
+                        <Image source={require('../../assets/images/dot3.png')} style={{ height: 18, width: 18 }} />
                     </View>
                     <Text style={{ fontSize: 16, fontFamily: 'Gilroy-Medium', color: colors.black, width: "100%", marginTop: '3%', paddingLeft: '2%' }}>How do I care for my health without doing anything?</Text>
                     <Text style={{ fontSize: 12, fontFamily: 'Gilroy-Medium', color: colors.darkGrey, width: "100%", marginTop: '3%', paddingLeft: '2%' }}>No answer yet . Last followed 14m</Text>
@@ -157,15 +181,15 @@ export default function UserProfile({ navigation }) {
                                 <Text style={{ fontSize: 10, fontFamily: 'Gilroy-Medium', color: colors.darkGrey }}>400K</Text>
                                 <Image source={require('../../assets/images/thumbDown.png')} style={{ height: 16, width: 16, marginLeft: '5%' }} />
                             </TouchableOpacity>
-                            <TouchableOpacity style={{ marginLeft: "5%" }}>
-                                <Image source={require('../../assets/images/chat1.png')} style={{ height: 20, width: 20, marginLeft: '5%' }} />
-                            </TouchableOpacity>
-                            <TouchableOpacity>
+                            {/* <TouchableOpacity style={{ marginLeft: "5%" }}>
+                                <Image source={require('../../assets/images/chat7.png')} style={{ height: 20, width: 20, marginLeft: '5%' }} />
+                            </TouchableOpacity> */}
+                            <TouchableOpacity style={{ marginLeft: '5%' }}>
                                 <Image source={require('../../assets/images/send2.png')} style={{ height: 20, width: 20, marginLeft: '5%' }} />
                             </TouchableOpacity>
                         </View>
                         <TouchableOpacity>
-                            <Image source={require('../../assets/images/horizontalDots.png')} style={{ height: 20, width: 20 }} />
+                            <Image source={require('../../assets/images/favorite.png')} style={{ height: 24, width: 24 }} />
                         </TouchableOpacity>
                     </View>
                 </View>
@@ -341,22 +365,22 @@ export default function UserProfile({ navigation }) {
                 </TouchableOpacity>
                 <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                     <Image source={require('../../assets/images/qr3.png')} style={{ height: 26, width: 26, }} />
-                    <Image source={require('../../assets/images/lines1.png')} style={{ height: 30, width: 30, marginLeft: 10 }} />
+                    <TouchableOpacity onPress={()=>navigation.navigate("SettingList")}>
+                        <Image source={require('../../assets/images/lines1.png')} style={{ height: 30, width: 30, marginLeft: 10 }} />
+                    </TouchableOpacity>
                 </View>
             </View>
             <ScrollView
                 style={{ width: '100%' }}
                 contentContainerStyle={{ alignItems: 'center' }}
-                showsVerticalScrollIndicator={false}
-            >
+                showsVerticalScrollIndicator={false}>
                 <TouchableOpacity onPress={() => navigation.navigate('Profile')} style={{ width: '90%', alignItems: 'center', flexDirection: 'row', marginTop: "10%", padding: '3%', borderWidth: 1, borderRadius: 8, borderColor: colors.lightgrey, elevation: 5, backgroundColor: colors.white }}>
-                    <Image source={require('../../assets/images/healthrecord.png')} style={{ height: 72, width: 72 }} />
+                    <Image source={require('../../assets/images/profile.png')} style={{ height: 72, width: 73 }} />
                     <View style={{ paddingLeft: '5%' }}>
-                        <Text style={{ fontSize: 18, fontFamily: "Gilroy-SemiBold", color: colors.black }}>Alicia Johns</Text>
+                        <Text style={{ fontSize: 18, fontFamily: "Gilroy-SemiBold", color: colors.black }}>{userData?.fullName}</Text>
                         {/* <Text style={{ fontSize: 10, fontFamily: "Gilroy-Medium", color: colors.darkGrey, marginTop: '3%' }}>-070676-35032</Text> */}
-                        <Text style={{ fontSize: 14, fontFamily: "Gilroy-Medium", color: colors.darkGrey, marginTop: '3%' }}>24 Years Old</Text>
+                        <Text style={{ fontSize: 14, fontFamily: "Gilroy-Medium", color: colors.darkGrey, marginTop: '3%' }}>{userData?.dateOfBirth && calculateAge(userData?.dateOfBirth)} years Old</Text>
                     </View>
-
                 </TouchableOpacity>
                 <View style={{ width: "90%", alignItems: 'center', flexDirection: 'row', justifyContent: 'space-between', marginLeft: "2%", marginTop: '5%' }}>
                     <View style={{ width: "52%" }}>
@@ -365,6 +389,7 @@ export default function UserProfile({ navigation }) {
                     <View style={{ width: "52%" }}>
                         <Button3 left={<Image source={require('../../assets/images/blueShare2.png')} style={{ height: 20, width: 20, marginRight: '5%' }} />} Text="Share" />
                     </View>
+
                 </View>
                 <View style={{ width: '100%', alignItems: 'center' }}>
                     <FlatList

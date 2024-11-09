@@ -104,6 +104,7 @@ const Chat2 = ({ navigation }) => {
                             styles.message,
                             message.sender === 'You' ? styles.sentMessage : styles.receivedMessage,
                         ]}>
+                            
                         <Text style={[styles.messageText, { color: message.sender === 'You' ? colors.black : colors.black }]}>{message.text}</Text>
                         <View style={{ alignItems: 'center', flexDirection: 'row', justifyContent: 'flex-end' }}>
                             <Text style={[styles.messageSender, { color: colors.black, alignSelf: 'flex-end' }]}>{message.time}</Text>

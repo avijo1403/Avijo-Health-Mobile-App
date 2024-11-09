@@ -11,13 +11,13 @@ export default function ArticleHeader2(props) {
             <LinearGradient colors={['white', 'white']} style={{ width: '100%' }}>
                 <View style={styles.container}>
                     <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                        <TouchableOpacity onPress={props.onBack}>
+                        {props.onBack && <TouchableOpacity onPress={props.onBack}>
                             <Image source={require('../assets/images/blackLeft.png')} style={{ width: 15, height: 14 }} />
-                        </TouchableOpacity>
+                        </TouchableOpacity>}
                         <View style={{ flexDirection: 'column' }}>
                             <Text style={styles.text}>{props.text}</Text>
                             {props.showBottomText && <TouchableOpacity onPress={props.createPress} style={styles.textContainer}>
-                                <Text style={styles.CreateText}>Other <Text style={{ color: colors.darkGrey, fontSize: 12, fontFamily:'Gilroy-Medium' }}>- Mahalaxmi</Text></Text>
+                                <Text style={styles.CreateText}>Other <Text style={{ color: colors.darkGrey, fontSize: 12, fontFamily: 'Gilroy-Medium' }}>- Mahalaxmi</Text></Text>
                                 <Image source={require('../assets/images/down.png')} style={{ height: 8, width: 8, marginLeft: '3%' }} />
                             </TouchableOpacity>}
                         </View>

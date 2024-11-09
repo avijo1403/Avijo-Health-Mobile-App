@@ -17,7 +17,14 @@ const Tab = createBottomTabNavigator();
 
 const BottomNav = () => {
   const [userId, setUserId] = useState(null);
+  const [loading, setLoading] = useState(false);
 
+  const startLoading = () => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000); // Simulate a 2-second loading period
+  };
   // Fetch the id from AsyncStorage
   useEffect(() => {
     const fetchUserId = async () => {
@@ -32,9 +39,11 @@ const BottomNav = () => {
       screenOptions={{
         tabBarStyle: {
           height: 60,
+          alignItems: 'center',
         },
         tabBarShowLabel: false,
       }}
+
     >
       <Tab.Screen
         options={{
@@ -57,6 +66,8 @@ const BottomNav = () => {
                   fontSize: 12,
                   fontFamily: "Gilroy-SemiBold",
                   marginTop: "2%",
+                  width: 50,
+                  textAlign: 'center',
                   color: focused ? colors.blue : colors.grey,
                 }}
               >
@@ -89,6 +100,8 @@ const BottomNav = () => {
                   fontSize: 12,
                   fontFamily: "Gilroy-SemiBold",
                   marginTop: "2%",
+                  width: 50,
+                  textAlign: 'center',
                   color: focused ? colors.blue : colors.grey,
                 }}
               >
@@ -121,6 +134,8 @@ const BottomNav = () => {
                   fontSize: 12,
                   fontFamily: "Gilroy-SemiBold",
                   marginTop: "2%",
+                  width: 60,
+                  textAlign: 'center',
                   color: focused ? colors.green : colors.grey,
                 }}
               >
@@ -149,8 +164,8 @@ const BottomNav = () => {
                 style={styles.home}
                 source={focused ? require("../assets/images/doCareBlue.png") : require("../assets/images/doCareGrey.png")}
               /> */}
-              <Text style={{ fontSize: 24, width: 20, fontFamily: 'akuina-bold-slanted', color: focused ? '#3CA2A5' : colors.grey, }}>D</Text>
-              <Text style={{ fontSize: 12, fontFamily: 'akuina-bold-slanted', color: focused ? '#3CA2A5' : colors.grey, }}>D<Text style={{ fontSize: 10 }}>OCARE</Text></Text>
+              <Text style={{ fontSize: 24, width: 23, fontFamily: 'akuina-bold-slanted', color: focused ? '#3CA2A5' : colors.grey, }}>D</Text>
+              <Text style={{ fontSize: 12, fontFamily: 'akuina-bold-slanted', color: focused ? '#3CA2A5' : colors.grey, width: 60, textAlign: 'center' }}>D<Text style={{ fontSize: 10 }}>OCARE</Text></Text>
             </View>
           ),
         }}
@@ -189,6 +204,9 @@ const BottomNav = () => {
                   fontSize: 12,
                   fontFamily: "Gilroy-SemiBold",
                   marginTop: "2%",
+                  width: 50,
+                  textAlign: 'center',
+
                   color: focused ? colors.blue : colors.grey,
                 }}
               >

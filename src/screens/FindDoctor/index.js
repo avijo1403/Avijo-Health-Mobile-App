@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { FlatList, Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
+import { ActivityIndicator, FlatList, Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import styles from "./style";
 import HeaderItem from "../../components/HeaderItem";
 import { colors, hp, wp } from "../../Theme/GlobalTheme";
@@ -37,15 +37,20 @@ export default function FindDoctor({ navigation }) {
     const [time1, setTime1] = useState(true);
     const [time2, setTime2] = useState(false);
     const [doctorData, setDoctorData] = useState([]);
+    const [loading, setLoading] = useState(false);
+
 
     const fetchDoctorData = async () => {
         try {
+            setLoading(true);
             const response = await fetch(`${BaseUrl2}/doctor/getAllDoctorProfile`);
             const json = await response.json();
             setDoctorData(json.data);
             console.log('data:', json);
+            setLoading(false);
         } catch (e) {
             console.log('error:', e);
+            setLoading(false);
         }
     }
 
@@ -105,7 +110,7 @@ export default function FindDoctor({ navigation }) {
     return (
         <View style={styles.container}>
             <HeaderItem text="Find Doctor" onBack={() => navigation.goBack()} showSearch={true} image={<Image source={require('../../assets/images/whiteSearch.png')} style={{ height: 26, width: 26 }} />} />
-            <ScrollView style={{ width: '100%' }} contentContainerStyle={{ alignItems: 'center' }}>
+            {loading ? <ActivityIndicator size={'large'} color={colors.blue} style={{flex:1, width:'100%', alignSelf:'center'}}/>:<ScrollView style={{ width: '100%' }} contentContainerStyle={{ alignItems: 'center' }}>
                 {/* <ScrollView
                     showsHorizontalScrollIndicator={false}
                     style={{ width: '100%' }}
@@ -240,7 +245,7 @@ export default function FindDoctor({ navigation }) {
                         )}
                     />
                 </View>
-            </ScrollView>
+            </ScrollView>}
         </View>
     )
 }
