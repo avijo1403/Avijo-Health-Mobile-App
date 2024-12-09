@@ -1,17 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { FlatList, Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
+import { FlatList, Image, PermissionsAndroid, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import styles from "./style";
 import HomeHeader from "../../components/HomeHeader";
 import SymptomCard from "../../components/SymptomCard";
 import CategoryCard from "../../components/CategoryCard";
-import { BaseUrl2, common, data, data2, getData, offerData, symptomData } from "../../assets/Data";
+import { BaseUrl2, common, data, data2, getCoordinates, getData, offerData, symptomData, updateFcmToken } from "../../assets/Data";
 import { colors, wp } from "../../Theme/GlobalTheme";
 import ImageSlider from "react-native-image-slider";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import SymptomCard2 from "../../components/SymptomCard2";
 import SearchItem from "../../components/SearchItem";
 import SearchItem2 from "../../components/SearchItem2";
-import GetLocation from "../../components/GetLocation";
+import messaging from '@react-native-firebase/messaging';
+import { Provider, useDispatch, useSelector } from "react-redux";
+import store from "../../components/store";
+import { addArea } from "../../components/locationAction";
+import GooglePlacesInput from "../../components/GooglePlaceInput";
 
 export default function Home({ navigation }) {
 
@@ -19,8 +23,8 @@ export default function Home({ navigation }) {
     const [columns, setColumns] = useState(4);
     const commonLimit = common.slice(0, 8);
     const [doctorData, setDoctorData] = useState([]);
+    const [notifications, setNotifications] = useState(0);
     const [id, setId] = useState();
-
 
 
     const fetchDoctorData = async () => {
@@ -39,16 +43,56 @@ export default function Home({ navigation }) {
         setPosition(newPosition);
     };
 
+    const fetchFcmToken = async (id) => {
+        try {
+            const token = await messaging().getToken();
+            console.log('Firebase Cloud Messaging Token:', token);
+            updateFcmToken(token, id);
+        } catch (error) {
+            console.error('Error fetching FCM Token:', error);
+        }
+    };
+
+
+    const fetchNotifications = async () => {
+        const getId = await AsyncStorage.getItem("id");
+        console.log('ids:', getId);
+        try {
+            const response = await fetch(`${BaseUrl2}/user/notifications/receiver/${getId}`);
+            if (response.ok) {
+                const data = await response.json();
+                console.log("notification fetch successfully:", data.data);
+                const unseen = data?.data?.filter((item) => item.seen === false);
+                console.log("unseen:", unseen.length,);
+                setNotifications(unseen.length);
+            } else {
+                console.error("Failed to fetch notification:", response.status, response.statusText);
+            }
+        } catch (error) {
+            console.error("Error fetch notification:", error);
+        }
+    };
+
+
     useEffect(() => {
+        fetchFcmToken();
         fetchDoctorData();
+        fetchNotifications();
         getData('token').then(token => console.log('token:', token));
         getData('id').then(id => setId(id));
-
     }, []);
+
+    useEffect(() => {
+        const unsubscribe = navigation.addListener('focus', () => {
+            console.log('Screen is focused');
+            fetchNotifications();
+        });
+        return unsubscribe;
+    }, [navigation]);
+
 
     return (
         <View style={styles.container}>
-            {/* <HomeHeader profile={true} right2={<Image source={require('../../assets/images/blackSearch.png')} style={{ height: 24, width: 24, marginLeft: '70%' }} />} heading="avijo" colors={['white', 'white']} headingColor={colors.blue} onPress={() => navigation.navigate('Profile', { id: id })} createPress={() => navigation.navigate('AbhaLogin')} /> */}
             <View style={{ width: '100%', alignItems: 'center', justifyContent: 'space-between', flexDirection: 'row', paddingTop: '3%', paddingBottom: '3%' }}>
                 <View style={{ marginLeft: '5%', flexDirection: 'row', alignItems: 'center' }}>
                     <TouchableOpacity onPress={() => navigation.navigate('Profile', { id: id })}>
@@ -58,9 +102,9 @@ export default function Home({ navigation }) {
                 </View>
                 <View style={{ marginRight: '2%', flexDirection: 'row', alignItems: 'center', width: 65, justifyContent: 'space-between' }}>
                     <TouchableOpacity onPress={() => navigation.navigate('Notification')}>
-                        <View style={styles.numberContainer}>
-                            <Text style={styles.number}>33+</Text>
-                        </View>
+                        {notifications > 0 && <View style={styles.numberContainer}>
+                            <Text style={styles.number}>{notifications}</Text>
+                        </View>}
                         <Image source={require('../../assets/images/blackChat.png')} style={{ height: 24, width: 24 }} />
                     </TouchableOpacity>
                     <Image source={require('../../assets/images/blackSearch.png')} style={{ height: 24, width: 24, marginRight: '5%' }} />
@@ -68,7 +112,6 @@ export default function Home({ navigation }) {
             </View>
             <ScrollView style={{ width: '100%' }} contentContainerStyle={{ alignItems: 'center', paddingBottom: '5%' }}>
                 <View style={{ width: '100%', backgroundColor: colors.white, paddingBottom: '10%', marginTop: '5%' }}>
-                    {/* <GetLocation/> */}
                     {/* <Text style={styles.heading}>Your Medication Services Partner</Text> */}
                     <View style={{ width: '90%', alignSelf: 'center', flexDirection: 'row', justifyContent: 'space-between', marginRight: '2%' }}>
                         <SymptomCard2 image={require('../../assets/images/bookClinic.png')} image2={require('../../assets/images/rightCircle.png')} text="Book In-Clinic Appointment" bottomText="UP TO 10 % OFF" bottomBackground={colors.skyblue} bottomColor={colors.blue} onPress={() => navigation.navigate('FindDoctor')} />

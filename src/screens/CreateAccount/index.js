@@ -88,6 +88,11 @@ export default function CreateAccount({ navigation, route }) {
   };
 
 
+  const resetCountdown = () => {
+    sendOtp(phone);
+    setSeconds(60);
+  };
+
 
   return (
     <View style={styles.container}>
@@ -98,9 +103,9 @@ export default function CreateAccount({ navigation, route }) {
       <Text style={styles.otpHeading}>VERIFYING NUMBER</Text>
       <View style={styles.otpTextContainer}>
         <Text style={styles.otpText}>We have sent 6 digit OTP on <Text style={{ color: colors.black }}>{phone}</Text></Text>
-        <TouchableOpacity>
+        {seconds === 0 && <TouchableOpacity onPress={resetCountdown}>
           <Text style={styles.change}>Change</Text>
-        </TouchableOpacity>
+        </TouchableOpacity>}
       </View>
       <EnterOTP value={otpValue} setValue={setOtpValue} />
       <Text style={{ fontSize: 10, fontFamily: 'Gilroy-Medium', color: colors.grey, alignSelf: 'flex-start', marginLeft: '5%', marginTop: '2%' }}>

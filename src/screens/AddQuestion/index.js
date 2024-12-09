@@ -1,5 +1,5 @@
-import React, { useCallback, useRef, useState } from "react";
-import { AppState, Dimensions, Image, KeyboardAvoidingView, ScrollView, Text, TextInput, TouchableOpacity } from "react-native";
+import React, { useCallback, useEffect, useRef, useState } from "react";
+import { ActivityIndicator, AppState, Dimensions, Image, Keyboard, KeyboardAvoidingView, Platform, ScrollView, Text, TextInput, ToastAndroid, TouchableOpacity } from "react-native";
 import { View } from "react-native";
 import styles from "./style";
 import { colors } from "../../Theme/GlobalTheme";
@@ -9,17 +9,28 @@ import { launchImageLibrary } from "react-native-image-picker";
 import { actions, defaultActions, RichEditor, RichToolbar } from "react-native-pell-rich-editor";
 import { debounce } from "lodash";
 import RNFS from 'react-native-fs';
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { BaseUrl2 } from "../../assets/Data";
 
 
 const { height, width } = Dimensions.get("window");
 
 export default function AddQuestion({ navigation }) {
+
+    const timestamp = new Date().getTime();
+    const imageName = `image-${timestamp}.jpg`;
+
     const [select, setSelect] = useState(1);
     const RichText = useRef();
+    const textInputRef = useRef(null);
+
+
     const [article, setArticle] = useState("");
     const [appState, setAppState] = useState(AppState.currentState);
     const [showEditor, setShowEditor] = useState(false);
     const [image, setImage] = useState('');
+    const [text, setText] = useState('');
+    const [loading, setLoading] = useState(false);
 
 
     const handleSelect = (no) => {
@@ -37,6 +48,10 @@ export default function AddQuestion({ navigation }) {
         debouncedSetArticle(text);
     };
 
+
+    const onChangeText = (text) => {
+        setText(text);
+    }
 
 
     function onPressAddImage() {
@@ -60,6 +75,7 @@ export default function AddQuestion({ navigation }) {
                         setImage(imageUri);
 
                         // Insert base64 image into the RichEditor
+                        console.log('imageUri:', imageUri);
                         const imageHtml = `<img src="${imageBase64}" style="width: 90%; height: 150px;" />`;
                         RichText.current?.insertHTML(imageHtml);
                     })
@@ -69,6 +85,91 @@ export default function AddQuestion({ navigation }) {
             }
         });
     }
+
+    
+    
+    const submitQuestion = async () => {
+
+        setLoading(true);
+        const id = await AsyncStorage.getItem("id");
+        if (!text) {
+            ToastAndroid.show("text field is mendatory...", ToastAndroid.SHORT);
+            setLoading(false);
+            return;
+        }
+
+        const formData = new FormData();
+
+        formData.append('image', {
+            uri: image,
+            type: 'image/jpeg',
+            name: imageName
+        });
+        formData.append('senderId', id);
+        formData.append('text', text);
+        formData.append('type', 'post');
+        formData.append('like', id);
+        formData.append('dislike', id);
+
+        console.log('id:', formData);
+        try {
+            const response = await fetch(`${BaseUrl2}/doctor/createdoCare`, {
+                method: 'POST',
+                body: formData,
+            });
+
+            const jsonResponse = await response.json();
+            console.log('Upload Response:', jsonResponse);
+            setText('');
+            setImage('');
+            setLoading(false);
+        } catch (error) {
+            setLoading(false);
+            console.error('Error uploading image:', error);
+        }
+    };
+
+    const handleSubmit = async () => {
+
+        setLoading(true);
+        const id = await AsyncStorage.getItem("id");
+        if (!text) {
+            ToastAndroid.show("text field is mendatory...", ToastAndroid.SHORT);
+            setLoading(false);
+            return;
+        }
+
+        const formData = new FormData();
+
+        formData.append('image', {
+            uri: image,
+            type: 'image/jpeg',
+            name: imageName
+        });
+        formData.append('senderId', id);
+        formData.append('text', text);
+        formData.append('type', 'post');
+        formData.append('like', id);
+        formData.append('dislike', id);
+
+        console.log('id:', formData);
+        try {
+            const response = await fetch(`${BaseUrl2}/doctor/createdoCare`, {
+                method: 'POST',
+                body: formData,
+            });
+
+            const jsonResponse = await response.json();
+            console.log('Upload Response:', jsonResponse);
+            setText('');
+            setImage('');
+            setLoading(false);
+        } catch (error) {
+            setLoading(false);
+            console.error('Error uploading image:', error);
+        }
+    };
+
 
 
     const QuestionData = () => {
@@ -92,7 +193,23 @@ export default function AddQuestion({ navigation }) {
         )
     }
 
-    const Post = () => {
+    const Post = (props) => {
+
+        const [n, setN] = useState(text);
+
+        const handleChangeText = (text) => {
+            setN(text);
+        }
+
+        useEffect(() => {
+            const intervalId = setInterval(() => {
+                setText(n);
+            }, 500);
+
+            return () => clearInterval(intervalId);
+        }, [n]); // Runs whenever `n` changes
+
+
         return (
             <View style={{ height: height * 0.8, width: '100%', alignItems: 'center', }}>
                 <View style={{ width: '90%', alignItems: 'center', flexDirection: 'row', marginTop: "10%" }}>
@@ -102,13 +219,19 @@ export default function AddQuestion({ navigation }) {
                         <Collapsible7 text="Everyone" />
                     </View>
                 </View>
-                <Image source={{ uri: image }} style={{ height: 180, width: width * 0.9, marginTop: '5%', borderRadius: 3 }} resizeMode="cover" />
-                {!showEditor && <TextInput
+                {image && <Image source={{ uri: image }} style={{ height: 180, width: width * 0.9, marginTop: '5%', borderRadius: 3 }} resizeMode="cover" />}
+                {/* <Text>{text}</Text> */}
+                {props.input && !showEditor && <TextInput
+                    ref={textInputRef}
                     style={{ fontSize: 18, fontFamily: "Gilroy-Regular", color: colors.black, width: '90%', marginTop: '5%', width: 330 }}
                     placeholder="Share anything health related"
                     verticalAlign="top"
+                    value={n}
+                    onChangeText={val => handleChangeText(val)}
                     placeholderTextColor={colors.grey}
                     multiline={true}
+                    onEndEditing={() => Keyboard.dismiss()}
+                    keyboardShouldPersistTaps={false}
                 />}
                 {showEditor && <KeyboardAvoidingView style={{ justifyContent: 'space-between', width: '100%', alignItems: 'center', flex: 1, marginTop: '5%' }}>
                     <RichEditor
@@ -164,9 +287,9 @@ export default function AddQuestion({ navigation }) {
                         </TouchableOpacity>
                     </View>
                     <View style={{ flexDirection: 'row', width: "17%", justifyContent: 'space-between', alignItems: 'flex-end', marginRight: '5%' }}>
-                        <TouchableOpacity style={{ height: 26, width: 70, backgroundColor: colors.white, borderRadius: 50, alignItems: 'center', justifyContent: 'center' }}>
+                        {!loading && <TouchableOpacity onPress={handleSubmit} style={{ height: 26, width: 70, backgroundColor: colors.white, borderRadius: 50, alignItems: 'center', justifyContent: 'center' }}>
                             <Text style={{ fontSize: 12, color: colors.blue, fontFamily: 'Gilroy-SemiBold' }}>Add Post</Text>
-                        </TouchableOpacity>
+                        </TouchableOpacity>}
                     </View>
                 </View>
             </View>
@@ -180,9 +303,10 @@ export default function AddQuestion({ navigation }) {
                     <Text style={{ fontFamily: 'Gilroy-SemiBold', fontSize: 18, color: colors.white, textAlign: 'center' }}>Share</Text>
                 </TouchableOpacity>
             </View>
-            <ScrollView style={{ width: '100%' }} contentContainerStyle={{ alignItems: 'center' }}>
+            <ScrollView style={{ width: '100%' }} contentContainerStyle={{ alignItems: 'center', flexGrow: 1 }}>
+                {loading && <ActivityIndicator size={'large'} color={colors.blue} style={{marginTop:'5%'}} />}
                 {select === 1 && <QuestionData />}
-                {select === 2 && <Post />}
+                {select === 2 && <Post input={true} />}
             </ScrollView>
         </View>
     )

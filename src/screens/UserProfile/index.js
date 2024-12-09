@@ -382,7 +382,9 @@ export default function UserProfile({ navigation }) {
                     <Image source={require('../../assets/images/down.png')} style={{ height: 10, width: 10, marginLeft: 2, marginTop: '3%' }} />
                 </TouchableOpacity>
                 <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                    <Image source={require('../../assets/images/qr3.png')} style={{ height: 26, width: 26, }} />
+                    <TouchableOpacity onPress={() => navigation.navigate("AbhaQR")}>
+                        <Image source={require('../../assets/images/qr3.png')} style={{ height: 26, width: 26, }} />
+                    </TouchableOpacity>
                     <TouchableOpacity onPress={() => navigation.navigate("SettingList")}>
                         <Image source={require('../../assets/images/lines1.png')} style={{ height: 30, width: 30, marginLeft: 10 }} />
                     </TouchableOpacity>

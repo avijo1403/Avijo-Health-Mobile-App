@@ -17,7 +17,7 @@ export default function ArticleHeader2(props) {
                         <View style={{ flexDirection: 'column' }}>
                             <Text style={styles.text}>{props.text}</Text>
                             {props.showBottomText && <TouchableOpacity onPress={props.createPress} style={styles.textContainer}>
-                                <Text style={styles.CreateText}>Other <Text style={{ color: colors.darkGrey, fontSize: 12, fontFamily: 'Gilroy-Medium' }}>- Mahalaxmi</Text></Text>
+                                <Text style={styles.CreateText}  numberOfLines={1} ellipsizeMode="tail">Other <Text style={{ color: colors.darkGrey, fontSize: 12, fontFamily: 'Gilroy-Medium' }} numberOfLines={1} ellipsizeMode="tail">- {props.location}</Text></Text>
                                 <Image source={require('../assets/images/down.png')} style={{ height: 8, width: 8, marginLeft: '3%' }} />
                             </TouchableOpacity>}
                         </View>
@@ -73,5 +73,6 @@ const styles = StyleSheet.create({
         fontFamily: 'Gilroy-SemiBold',
         color: colors.black,
         paddingLeft: 5,
+        maxWidth:'90%'
     }
 })

@@ -12,7 +12,7 @@ export default function ConfirmBooking({ navigation, route }) {
     const dataWithAddButton = [{ isAddButton: true }, ...consult2];
     const [singleData, setSingleData] = useState({});
     const [userData, setUserData] = useState({});
-    const id = route.params.id;
+    const id = route.params.id || "";
 
     const storeMultipleValues = async (key, values) => {
         try {
@@ -61,6 +61,7 @@ export default function ConfirmBooking({ navigation, route }) {
     const fetchData = async () => {
         const userId = await AsyncStorage.getItem('id');
         console.log('userId:', userId);
+        console.log('id:', id);
         try {
             const response = await fetch(`${BaseUrl2}/doctor/getDoctorProfile/${id}`);
             const response1 = await fetch(`${BaseUrl2}/user/getUserSingle/${userId}`);

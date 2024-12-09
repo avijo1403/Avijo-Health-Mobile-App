@@ -5,12 +5,12 @@ import { colors } from "../../Theme/GlobalTheme";
 import Button1 from "../../components/Button1";
 import { BaseUrl2 } from "../../assets/Data";
 
-export default function AppointmentConfirm({navigation, route}) {
-    
-    const id = route.params.id;
+export default function AppointmentConfirm({ navigation, route }) {
+
+    const id = route?.params?.id;
 
     const [singleData, setSingleData] = useState({});
-    
+
 
     const fetchData = async () => {
         try {
@@ -23,10 +23,10 @@ export default function AppointmentConfirm({navigation, route}) {
         }
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         fetchData();
         // console.log('id:', id);
-    },[]);
+    }, []);
 
     return (
         <View style={styles.container}>
@@ -45,7 +45,7 @@ export default function AppointmentConfirm({navigation, route}) {
                 </View>
             </View>
             <Text style={styles.changeText}>Change date & time</Text>
-            <View style={{ flexDirection: 'row', width: '90%', marginTop:'5%' }}>
+            <View style={{ flexDirection: 'row', width: '90%', marginTop: '5%' }}>
                 <Image source={require('../../assets/images/appDoc.png')} style={{ width: 77, height: 98 }} />
                 <View style={{ paddingLeft: '5%', marginTop: '5%' }}>
                     <Text style={{ fontSize: 16, fontFamily: 'Gilroy-SemiBold', color: colors.black }}>{singleData?.fullName}</Text>
@@ -64,9 +64,9 @@ export default function AppointmentConfirm({navigation, route}) {
                     <Text style={styles.buttonText}>Reshedule</Text>
                 </TouchableOpacity>
             </View> */}
-            <Text style={{fontSize:13, fontFamily:'Gilroy-Medium', color:colors.grey, width:'90%', marginTop:'10%'}}>You can follow up or check your Consultations Details by clicking my consultations button.</Text>
-            <View style={{width:'100%', alignItems:'center', marginTop:'10%'}}>
-                <Button1 Text="Chat" left={<Image source={require('../../assets/images/chat6.png')} style={{height:20, width:20, marginRight:10}}/>} onPress={()=>navigation.navigate('Chat2')}/>
+            <Text style={{ fontSize: 13, fontFamily: 'Gilroy-Medium', color: colors.grey, width: '90%', marginTop: '10%' }}>You can follow up or check your Consultations Details by clicking my consultations button.</Text>
+            <View style={{ width: '100%', alignItems: 'center', marginTop: '10%' }}>
+                <Button1 Text="Chat" left={<Image source={require('../../assets/images/chat6.png')} style={{ height: 20, width: 20, marginRight: 10 }} />} onPress={() => navigation.navigate('Chat', { id: id, name: singleData?.fullName })} />
             </View>
         </View>
     )

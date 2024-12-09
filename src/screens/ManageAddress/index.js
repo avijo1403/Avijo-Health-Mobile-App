@@ -20,7 +20,7 @@ export default function ManageAddress({ navigation }) {
                     <Button2 Text="Change Address" backgroundColor={colors.grey} />
                 </View>
                 <View style={{ width: '100%', alignItems: 'center', marginTop: '10%' }}>
-                    <Button2 Text="Confirm Address" backgroundColor={colors.green} onPress={() => navigation.navigate('Home')} />
+                    <Button2 Text="Confirm Address" backgroundColor={colors.green} onPress={() => navigation.navigate('BottomNav')} />
                 </View>
             </ScrollView>
         </View>

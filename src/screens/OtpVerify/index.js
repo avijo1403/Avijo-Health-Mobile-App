@@ -6,7 +6,7 @@ import EnterOTP from "../../components/EnterOTP";
 import axios from 'axios';
 import { colors } from "../../Theme/GlobalTheme";
 import styles from "./style";
-import { BaseUrl2 } from "../../assets/Data";
+import { BaseUrl2, fetchFcmToken } from "../../assets/Data";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function OtpVerify({ navigation, route }) {
@@ -44,8 +44,6 @@ export default function OtpVerify({ navigation, route }) {
         } catch (error) {
             console.error('Error sending OTP:', error);
             if (error?.response?.status === 404) {
-                // Alert.alert('Warning!', error.response.data.message);
-                // navigation.navigate('CreateAccount', { mobileNumber: phone });
                 ToastAndroid.show("user not found", ToastAndroid.SHORT);
             } else if (error.code === 'ERR_NETWORK') {
                 ToastAndroid.show("Network Error", ToastAndroid.SHORT);
@@ -67,6 +65,7 @@ export default function OtpVerify({ navigation, route }) {
                 console.log('Response:', response.data);
                 storeData('token', response.data.token);
                 storeData('id', response.data.id);
+                await fetchFcmToken(response.data.id);
                 if (response.status === 200) {
                     navigation.navigate('BottomNav');
                 }

@@ -10,14 +10,17 @@ import { GoogleSignin, statusCodes } from '@react-native-google-signin/google-si
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function Login({ navigation }) {
+
   const phoneInput = useRef(null);
   const [phone, setPhone] = useState("");
   const [formattedValue, setFormattedValue] = useState("");
   const [loading, setLoading] = useState(false);
+  const [token, setToken] = useState('');
 
   useEffect(() => {
     GoogleSignin.configure();
   }, [])
+
 
 
 
@@ -39,6 +42,8 @@ export default function Login({ navigation }) {
     }
   }
 
+
+
   const handleUseOtp = async () => {
     setLoading(true);
     if (!phone) {
@@ -59,7 +64,6 @@ export default function Login({ navigation }) {
     } catch (error) {
       console.error('Error sending OTP:', error);
       if (error?.response?.status === 404) {
-        // Alert.alert('Warning!', error.response.data.message);
         navigation.navigate('CreateAccount', { mobileNumber: phone });
         ToastAndroid.show("user not found", ToastAndroid.SHORT);
       } else if (error.code === 'ERR_NETWORK') {
@@ -69,7 +73,6 @@ export default function Login({ navigation }) {
       setLoading(false);
     }
   };
-
 
 
 
@@ -101,7 +104,7 @@ export default function Login({ navigation }) {
         ) : (
           <View style={{ width: '100%', alignItems: 'center' }}>
             <Button1 Text="USE OTP" onPress={handleUseOtp} />
-            {/*<Button1 Text="USE OTP" onPress={()=>{navigation.navigate('BottomNav')}} />*/}
+            {/* <Button1 Text="USE OTP" onPress={()=>{navigation.navigate('BottomNav')}} /> */}
           </View>
         )}
       </View>

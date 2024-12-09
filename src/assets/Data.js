@@ -1,5 +1,8 @@
 import { heightPercentageToDP as hp, widthPercentageToDP as wp } from "react-native-responsive-screen";
 import { colors } from "../Theme/GlobalTheme";
+import messaging from '@react-native-firebase/messaging';
+import Geolocation from 'react-native-geolocation-service';
+
 
 const data = [
     {
@@ -922,30 +925,33 @@ const chatData = [
 
 const tipData = [
     {
-        id:0,
-        text:'😀 ₹',
-        price:20,
+        id: 0,
+        text: '😀 ₹',
+        price: 20,
     },
     {
-        id:1,
-        text:'🤩 ₹',
-        price:30,
-        most:true,
+        id: 1,
+        text: '🤩 ₹',
+        price: 30,
+        most: true,
     },
     {
-        id:2,
-        text:'😍 ₹',
-        price:50,
+        id: 2,
+        text: '😍 ₹',
+        price: 50,
     },
     {
-        id:3,
-        text:'👏 ₹',
-        price:100,
+        id: 3,
+        text: '👏 ₹',
+        price: 100,
     }
+
 ]
 
 export const calculateAge = (birthDateString) => {
+
     const birthDate = new Date(birthDateString);
+
     const today = new Date();
 
     let age = today.getFullYear() - birthDate.getFullYear();
@@ -958,9 +964,123 @@ export const calculateAge = (birthDateString) => {
     return age;
 }
 
+
+
+
+export const fetchFcmToken = async (id) => {
+    try {
+        const token = await messaging().getToken(); // Fetches the FCM token
+        console.log('Firebase Cloud Messaging Token:', token);
+        updateFcmToken(token, id);
+        // return token;
+    } catch (error) {
+        console.error('Error fetching FCM Token:', error);
+    }
+};
+
+
+export const updateFcmToken = async (token, id) => {
+    try {
+        const data = {
+            firebaseToken: token
+        };
+
+        const response = await fetch(`${BaseUrl2}/user/upadateUser/${id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json', // Set the content type
+            },
+            body: JSON.stringify(data), // Convert the data object to a JSON string
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const result = await response.json(); // Parse the JSON response
+        console.log('Success:', result);
+    } catch (e) {
+        console.log('error fetching FCM Token...', e);
+    }
+}
+
+
+export const getAreaName = async (lat, lng) => {
+    const apiKey = 'AIzaSyBR4iLjpG8FEw-gOBmL0MmX701c6E8iT2g'; // Your API Key
+    const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${apiKey}&language=en&region=pk`;
+
+    try {
+        const response = await fetch(url); // Using fetch instead of axios
+
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+
+        const data = await response.json(); // Parsing the response to JSON
+
+        if (data.status === 'OK') {
+            const results = data.results;
+            const addressComponents = results[0].address_components;
+
+            let areaName = '';
+            let pincode = '';
+
+            // Loop through address components to find area and pincode
+            for (let component of addressComponents) {
+                if (component.types.includes('locality')) {
+                    areaName = component.long_name; // Get the area (city/town)
+                }
+                if (component.types.includes('postal_code')) {
+                    pincode = component.long_name; // Get the pincode
+                }
+                console.log(`comp: ${component.long_name}`);
+            }
+
+            console.log(`Pincode: ${areaName}`);
+            return areaName;
+        } else {
+            console.log('No valid result found');
+        }
+    } catch (error) {
+        console.error('Error fetching location details:', error);
+    }
+}
+
+
+export const timeAgo = (inputTime) => {
+    const now = new Date();
+    const past = new Date(inputTime);
+    const diffInMs = now - past;
+
+    const seconds = Math.floor(diffInMs / 1000);
+    const minutes = Math.floor(seconds / 60);
+    const hours = Math.floor(minutes / 60);
+    const days = Math.floor(hours / 24);
+    const weeks = Math.floor(days / 7);
+    const months = Math.floor(days / 30);
+    const years = Math.floor(days / 365);
+
+    if (seconds < 60) return `${seconds} seconds ago`;
+    if (minutes < 60) return `${minutes} minutes ago`;
+    if (hours < 24) return `${hours} hours ago`;
+    if (days < 7) return `${days} days ago`;
+    if (weeks < 4) return `${weeks} weeks ago`;
+    if (months < 12) return `${months} months ago`;
+    return `${years} years ago`;
+}
+
+
+export const getFormattedTime = (timestamp) => {
+    const date = new Date(timestamp);
+    return date.toLocaleTimeString('en-US', {
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: true,
+    });
+};
+
 // const BaseUrl = "https://avijobackendtest-production-6295.up.railway.app";
 const BaseUrl2 = "https://avijobackend-production.up.railway.app";
-
 
 
 export {
