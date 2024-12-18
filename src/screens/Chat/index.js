@@ -9,11 +9,14 @@ import { launchImageLibrary } from 'react-native-image-picker';
 import RNFS from 'react-native-fs';
 import { io } from 'socket.io-client';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { BaseUrl2 } from '../../assets/Data';
+import { BaseUrl2, onlyNotification } from '../../assets/Data';
 
 const Chat = ({ navigation, route }) => {
+
     const name = route?.params?.name;
     const doctorId = route?.params?.id;
+    const fcmToken = route?.params?.fcmToken;
+
     const [messages, setMessages] = useState([
         // { id: 1, sender: 'You', text: 'Hi, Dr.Jii', time: '12:00 pm' },
         // { id: 2, sender: 'Jane', text: 'Hi, Dr.Jii, your AI health expert. Youre in a safe space to ask anything or express any concerns you might have.', time: '12:00 pm' },
@@ -52,9 +55,7 @@ const Chat = ({ navigation, route }) => {
                 setMessages((prevMessages) => [...prevMessages, data]);
             });
         };
-
         initializeSocket();
-
         // Cleanup function
         return () => {
             socket.disconnect(); // Close the connection
@@ -66,7 +67,7 @@ const Chat = ({ navigation, route }) => {
 
     const fetchMessages = async () => {
         const getId = await AsyncStorage.getItem("id");
-        console.log('ids:', getId, doctorId);
+        console.log('ids:', getId, doctorId, fcmToken);
         const payload = {
             senderId: getId,
         };
@@ -96,7 +97,8 @@ const Chat = ({ navigation, route }) => {
 
     const sendBackendMessage = async () => {
         const getId = await AsyncStorage.getItem("id");
-        console.log('ids:', getId, doctorId);
+        // console.log('ids:', getId, doctorId, fcmToken);
+        await onlyNotification(fcmToken, getId, doctorId, "user", "new message", "chat");
         const payload = {
             senderId: getId,
             message: newMessage,

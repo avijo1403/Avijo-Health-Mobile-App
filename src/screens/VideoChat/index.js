@@ -2,23 +2,32 @@ import React, { useEffect, useState } from 'react';
 import { Dimensions, Image, TouchableOpacity, View } from 'react-native';
 import { colors } from '../../Theme/GlobalTheme';
 import AgoraUIKit from 'agora-rn-uikit';
-import { BaseUrl2, wp } from '../../assets/Data';
+import { BaseUrl2, onlyNotification, wp } from '../../assets/Data';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const dimensions = {
     width: Dimensions.get('window').width,
     height: Dimensions.get('window').height,
 };
 
-const VideoChat = ({ navigation }) => {
+const VideoChat = ({ navigation, route }) => {
+
+    const docId = route?.params?.id;
+    const fcmToken = route?.params?.fcmToken;
 
     const [videoCall, setVideoCall] = useState(true);
     const [token, setToken] = useState('');
+    const [userId, setUserId] = useState('');
     const [uid, setUid] = useState(Math.floor(Math.random() * 1000));
 
 
     const fetchToken = async () => {
+        console.log('drId:', docId, fcmToken);
+        const userId = await AsyncStorage.getItem("id");
+        await onlyNotification(fcmToken, userId, docId, "video-call", userId, "video-call");
+        setUserId(userId);
         const data = {
-            "channelName": "test",
+            "channelName": userId,
             "uid": uid,
         }
         try {
@@ -44,21 +53,21 @@ const VideoChat = ({ navigation }) => {
 
     const connectionData = {
         appId: 'd19a9bdbb20e41dc8fad2ff7fe7f3d34',
-        channel: 'test',
+        channel: userId,
         token: token,
         uid: uid,
     };
 
 
     const callbacks = {
-        EndCall: () => navigation.navigate('Chat2'),
+        EndCall: () => navigation.navigate('Chat', { id: docId, fcmToken: fcmToken }),
     };
 
     return (
         <View style={{ flex: 1, width: '100%' }}>
             {videoCall ? (
                 <View style={{ flex: 1, width: '100%' }}>
-                    <TouchableOpacity onPress={() => navigation.navigate('Chat2')} style={{ position: 'absolute', zIndex: 2, backgroundColor: 'rgba(0, 0, 0, 0.2)', height: 48, width: 48, borderRadius: 14, alignItems: 'center', justifyContent: 'center', top: '5%', left: '3%' }}>
+                    <TouchableOpacity onPress={() => navigation.navigate('Chat', { id: docId, fcmToken: fcmToken })} style={{ position: 'absolute', zIndex: 2, backgroundColor: 'rgba(0, 0, 0, 0.2)', height: 48, width: 48, borderRadius: 14, alignItems: 'center', justifyContent: 'center', top: '5%', left: '3%' }}>
                         <Image
                             source={require('../../assets/images/leftWhite.png')}
                             style={{ height: 16, width: 16 }}

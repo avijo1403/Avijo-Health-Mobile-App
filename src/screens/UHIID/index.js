@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { FlatList, Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
+import { ActivityIndicator, FlatList, Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import styles from "./style";
 import HeaderItem from "../../components/HeaderItem";
 import { colors } from "../../Theme/GlobalTheme";
@@ -21,7 +21,7 @@ export default function UHIID({ navigation }) {
         try {
             const response = await fetch(`${BaseUrl2}/doctor/getAllDoctorProfile`);
             const json = await response.json();
-            console.log('json:', json);
+            console.log('json:', json.data[0]._id);
             setDrData(json.data);
         } catch (e) {
             console.log('error fetching...', e);
@@ -94,7 +94,7 @@ export default function UHIID({ navigation }) {
                     <Text style={{ fontSize: 14, fontFamily: 'Gilroy-Medium', alignSelf: 'flex-start', paddingLeft: '5%', color: colors.darkGrey }}>Verified Doctors Online Now</Text>
                     <Image source={require('../../assets/images/dot.png')} style={{ height: 20, width: 20, marginLeft: '2%' }} />
                 </View>
-                <FlatList
+                {drData.length > 0 ? <FlatList
                     showsHorizontalScrollIndicator={false}
                     style={{ marginRight: 5, marginLeft: '5%', }}
                     contentContainerStyle={{ justifyContent: 'space-between' }}
@@ -125,7 +125,7 @@ export default function UHIID({ navigation }) {
                                 </View>
                             </View>
                         </View>
-                    )} />
+                    )} /> : <ActivityIndicator color={colors.blue} style={{ padding: 10 }} />}
                 <View style={styles.languageContainer}>
                     <Text style={styles.languageHeading}>Choose Your Preferred Language</Text>
                     <Text style={styles.languageDetail}>We will find the doctor who can speak in your language.</Text>
@@ -169,8 +169,10 @@ export default function UHIID({ navigation }) {
                     <Text style={styles.privacyText}>By proceeding to avail a consultation, you agree to</Text><TouchableOpacity><Text style={{ fontSize: 14, fontFamily: 'Gilroy-Medium', color: colors.blue }}>avijo's Terms of use</Text></TouchableOpacity>
                     <Text style={styles.bottomText}>avijo Gaurantee: 100% Money back if no response</Text>
                 </View>
-                <TouchableOpacity onPress={() => navigation.navigate('VideoChat')} style={styles.buttonContainer}>
-                {/* <TouchableOpacity onPress={() => navigation.navigate('Chat')} style={styles.buttonContainer}> */}
+                <TouchableOpacity onPress={() => {
+                    navigation.navigate('VideoChat', { id: drData[3]._id, fcmToken: drData[3].firebaseToken });
+                }} style={styles.buttonContainer}>
+                    {/* <TouchableOpacity onPress={() => navigation.navigate('Chat')} style={styles.buttonContainer}> */}
                     <View style={{ flexDirection: 'row', height: 48, alignItems: 'center', justifyContent: 'space-between', width: '55%', marginLeft: 20 }}>
                         <Text style={styles.buttonFee}>$999</Text>
                         <View style={{ width: 2, height: '50%', backgroundColor: colors.white }} />

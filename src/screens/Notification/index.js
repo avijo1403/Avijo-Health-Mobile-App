@@ -17,6 +17,7 @@ export default function Notification({ navigation }) {
   const [notifications, setNotifications] = useState([]);
   const [users, setUsers] = useState([]);
   const [userName, setUserName] = useState([]);
+  const [fcmTkn, setFcmTkn] = useState([]);
   const [chats, setChats] = useState([]);
 
 
@@ -56,10 +57,19 @@ export default function Notification({ navigation }) {
         userIds.map(async (id) => {
           const response = await fetch(`${BaseUrl2}/user/profile/${id}`);
           const json = await response.json();
-          return json.fullName || "Unknown";
+          return (json.fullName || "Unknown");
         })
       );
+      const tokens = await Promise.all(
+        userIds.map(async (id) => {
+          const response = await fetch(`${BaseUrl2}/user/profile/${id}`);
+          const json = await response.json();
+          return (json.firebaseToken || "Unknown");
+        })
+      );
+      console.log('usernames:', tokens);
       setUserName(userNames);
+      setFcmTkn(tokens);
     } catch (error) {
       console.error("Error fetching user data:", error);
     }
@@ -87,18 +97,33 @@ export default function Notification({ navigation }) {
     }
   };
 
+  const updateMsg = async (id) => {
+    try {
+      const response = await fetch(`${BaseUrl2}/user/message/seen/${id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        }
+      });
+      if (response.ok) {
+        console.log('msg updated...');
+      }
+    } catch (e) {
+      console.log('error msg notification', e);
+    }
+  }
+
   const updateNoti = async (id) => {
     try {
       const response = await fetch(`${BaseUrl2}/user/notifications/${id}/seen`, {
         method: "PATCH",
         headers: {
-
           "Content-Type": "application/json",
         }
       });
       if (response.ok) {
         console.log('notification updated...');
-        fetchNotifications();
+        // fetchNotifications();
       }
     } catch (e) {
       console.log('error updating notification', e);
@@ -175,18 +200,22 @@ export default function Notification({ navigation }) {
               contentContainerStyle={{ alignItems: 'center', marginTop: '0%' }}
               data={chats}
               renderItem={({ item, index }) => (
-                <TouchableOpacity onPress={() => navigation.navigate('Chat', { name: userName && userName[index], id: users[index] })} style={{ width: '100%', alignItems: 'center', flexDirection: 'row', padding: '5%', backgroundColor: '#FBFBFB', borderBottomWidth: 1, borderColor: colors.lightgrey }}>
+                <TouchableOpacity onPress={() => {
+                  navigation.navigate('Chat', { name: userName && userName[index], id: users[index], fcmToken: fcmTkn[index] });
+                  // console.log('id:', item._id);
+                  updateMsg(item._id);
+                }} style={{ width: '100%', alignItems: 'center', flexDirection: 'row', padding: '5%', backgroundColor: '#FBFBFB', borderBottomWidth: 1, borderColor: colors.lightgrey }}>
                   <Image source={require('../../assets/images/dummyProfile.png')} style={{ height: 46, width: 46, borderRadius: 100 }} />
                   <View style={{ width: '85%', paddingLeft: '3%' }}>
                     <View style={{ width: '100%', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
                       <Text style={{ fontSize: 20, fontFamily: 'Gilroy-SemiBold', color: colors.black, width: "70%" }}>{userName[index] ? userName[index] : 'Unknowns'}</Text>
                       {item?.pin ? <Image source={require('../../assets/images/blackPin.png')} style={{ height: 20, width: 20 }} />
                         : <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                          <Text style={{ fontSize: 14, fontFamily: 'Gilroy-Medium', color: colors.grey, paddingRight: '2%' }}>Sat</Text>
+                          <Text style={{ fontSize: 12, fontFamily: 'Gilroy-Medium', color: colors.grey, paddingRight: '2%', width: '50%', textAlign: 'center' }}>{timeAgo(item.createdAt)}</Text>
                           <Image source={require('../../assets/images/rightBlack.png')} style={{ height: 16, width: 16 }} />
                         </View>}
                     </View>
-                    <Text style={{ fontSize: 14, fontFamily: 'Gilroy-Regular', color: colors.darkGrey, paddingRight: '2%', marginTop: '2%' }} numberOfLines={2} ellipsizeMode="2">{item.message}</Text>
+                    <Text style={{ fontSize: 14, fontFamily: item.seen ? 'Gilroy-Regular' : 'Gilroy-SemiBold', color: item.seen ? colors.darkGrey : colors.black, paddingRight: '2%', marginTop: '2%' }} numberOfLines={2} ellipsizeMode="2">{item.message}</Text>
                   </View>
                 </TouchableOpacity>
               )} />

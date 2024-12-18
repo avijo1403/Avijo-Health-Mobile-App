@@ -148,7 +148,7 @@ export default function ConfirmBooking({ navigation, route }) {
                     <Text style={styles.totalOption}>$40.00</Text>
                 </View>
                 <View style={{ width: '100%', alignItems: 'center', marginTop: '5%', marginBottom: '5%' }}>
-                    <Button1 Text="Confirm booking" onPress={() => navigation.navigate('Slot', { name: singleData?.fullName, id: id })} />
+                    <Button1 Text="Confirm booking" onPress={() => navigation.navigate('Slot', { name: singleData?.fullName, id: id, token: singleData?.firebaseToken })} />
                 </View>
             </ScrollView>
         </View>

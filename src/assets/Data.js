@@ -2,6 +2,7 @@ import { heightPercentageToDP as hp, widthPercentageToDP as wp } from "react-nat
 import { colors } from "../Theme/GlobalTheme";
 import messaging from '@react-native-firebase/messaging';
 import Geolocation from 'react-native-geolocation-service';
+import { Vibration } from "react-native";
 
 
 const data = [
@@ -1005,6 +1006,7 @@ export const updateFcmToken = async (token, id) => {
 }
 
 
+
 export const getAreaName = async (lat, lng) => {
     const apiKey = 'AIzaSyBR4iLjpG8FEw-gOBmL0MmX701c6E8iT2g'; // Your API Key
     const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${apiKey}&language=en&region=pk`;
@@ -1070,6 +1072,9 @@ export const timeAgo = (inputTime) => {
 }
 
 
+
+
+
 export const getFormattedTime = (timestamp) => {
     const date = new Date(timestamp);
     return date.toLocaleTimeString('en-US', {
@@ -1079,8 +1084,89 @@ export const getFormattedTime = (timestamp) => {
     });
 };
 
+
+export const onlyNotification = async ( token, sender, receiver, user, text, type) => {
+    try {
+        const response = await fetch(`${BaseUrl2}/user/send-notification`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                token: token,
+                senderId: sender,
+                receiverId: receiver,
+                userName: user,
+                text: text,
+                module: "module2",
+                type: type
+            }),
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log('Success:', data);
+    } catch (error) {
+        console.error('Error:', error.message);
+    }
+};
+
+
+export const sentNotification = async ( token, sender, receiver, user, text, type) => {
+    try {
+        const response = await fetch(`${BaseUrl2}/user/notification`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                token: token,
+                senderId: sender,
+                receiverId: receiver,
+                userName: user,
+                text: text,
+                module: "module2",
+                type: type
+            }),
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log('Success:', data);
+    } catch (error) {
+        console.error('Error:', error.message);
+    }
+};
+
+let vibrationInterval;
+
+export const handleVibrate = () => {
+  // Start continuous vibration with a pattern
+  vibrationInterval = setInterval(() => {
+    Vibration.vibrate(1000); // Vibrate for 1 second
+  }, 1500); // Slightly more than the vibration duration to avoid overlap
+};
+
+
+
+export const stopVibration = () => {
+    // Stop the continuous vibration
+    if (vibrationInterval) {
+      clearInterval(vibrationInterval);
+      Vibration.cancel(); // Stop any ongoing vibration
+    }
+  };
+
 // const BaseUrl = "https://avijobackendtest-production-6295.up.railway.app";
+
 const BaseUrl2 = "https://avijobackend-production.up.railway.app";
+
 
 
 export {

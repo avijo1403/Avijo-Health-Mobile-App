@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Home from "../screens/Home";
-import { Image, PermissionsAndroid, Platform, StyleSheet, Text, View } from "react-native";
+import { Alert, Image, PermissionsAndroid, Platform, StyleSheet, Text, View } from "react-native";
 import { colors } from "../Theme/GlobalTheme";
 import Profile from "../screens/Profile";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -14,6 +14,10 @@ import OnlineMedicine from "../screens/OnlineMedicine";
 import Diary from "../screens/Diary";
 import Geolocation from 'react-native-geolocation-service';
 import UnServer from "../components/UnServe";
+import RNCallKeep from "react-native-callkeep";
+import setupCallKeep from "../components/callkeepSetup";
+import messaging from '@react-native-firebase/messaging';
+import { loadRingtone, playRingtone } from "../components/soundUtils";
 
 const Tab = createBottomTabNavigator();
 
@@ -50,6 +54,19 @@ const BottomNav = ({ navigation }) => {
     requestPermission();
   }, [])
 
+  // useEffect(() => {
+  //   setupCallKeep();
+
+  //   const onAnswerCall = ({ callUUID }) => {
+  //     Alert.alert('Incoming Call', 'You answered the call!');
+  //     RNCallKeep.endCall(callUUID);
+  //   };
+  //   RNCallKeep.addEventListener('answerCall', onAnswerCall);
+  //   return () => {
+  //     RNCallKeep.removeEventListener('answerCall', onAnswerCall);
+  //   };
+
+  // }, []);
 
   const getLocationDetails = async (lat, lng) => {
     const apiKey = 'AIzaSyBR4iLjpG8FEw-gOBmL0MmX701c6E8iT2g'; // Your API Key
@@ -213,7 +230,9 @@ const BottomNav = ({ navigation }) => {
           if (loc) setLocation(loc);
 
           if (!loc || !code) {
+
             getLocation();
+
           }
 
           if (coordinates) {
@@ -238,8 +257,29 @@ const BottomNav = ({ navigation }) => {
   };
 
   useEffect(() => {
-
+    loadRingtone();
     fetchUserId();
+  }, []);
+
+
+  useEffect(() => {
+    const unsubscribe = messaging().onMessage(async remoteMessage => {
+      // Alert.alert('New FCM message!', JSON.stringify(remoteMessage.notification));
+      console.log('Foreground message:', remoteMessage);
+      // playRingtone();
+      // RNCallKeep.displayIncomingCall('unique-call-id', 'Caller Name', 'Caller Number');
+      // navigation.navigate('IncomingCall');
+    });
+
+    messaging().setBackgroundMessageHandler(async remoteMessage => {
+      console.log('Message handled in the background:', remoteMessage);
+      //  playRingtone();
+      // RNCallKeep.backToForeground();
+      // RNCallKeep.displayIncomingCall('unique-call-id', 'Caller Name', 'Caller Number');
+      // navigation.navigate('IncomingCall');
+    });
+
+    return () => unsubscribe();
   }, []);
 
   return (

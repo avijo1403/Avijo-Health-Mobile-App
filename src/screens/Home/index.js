@@ -16,6 +16,7 @@ import { Provider, useDispatch, useSelector } from "react-redux";
 import store from "../../components/store";
 import { addArea } from "../../components/locationAction";
 import GooglePlacesInput from "../../components/GooglePlaceInput";
+import RNCallKeep from "react-native-callkeep";
 
 export default function Home({ navigation }) {
 
@@ -26,6 +27,12 @@ export default function Home({ navigation }) {
     const [notifications, setNotifications] = useState(0);
     const [id, setId] = useState();
 
+    const simulateIncomingCall = () => {
+        const callUUID = '12345'; // Generate a random UUID for the call
+        const callerName = 'Dr. Smith'; // Customize the caller's name
+
+        RNCallKeep.displayIncomingCall(callUUID, callerName, 'Video Call', 'video');
+    };
 
     const fetchDoctorData = async () => {
         try {
@@ -136,7 +143,7 @@ export default function Home({ navigation }) {
                 </View>
                 <View style={styles.viewAllContainer}>
                     <Text style={styles.viewText}>Offers</Text>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={simulateIncomingCall}>
                         <Text style={styles.view}>Show All</Text>
                     </TouchableOpacity>
                 </View>

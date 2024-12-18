@@ -145,7 +145,6 @@ export default function Address({ navigation }) {
                     </TouchableOpacity>
                 ))}
             </ScrollView>
-
             <Modal
                 // animationType="slide"
                 // transparent={true}

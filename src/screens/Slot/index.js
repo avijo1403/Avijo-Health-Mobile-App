@@ -4,7 +4,9 @@ import styles from "./style";
 import { colors, hp } from "../../Theme/GlobalTheme";
 import HeaderItem2 from "../../components/HeaderItem2";
 import Button2 from "../../components/Button2";
-import { BaseUrl2 } from "../../assets/Data";
+import { BaseUrl2, sentNotification } from "../../assets/Data";
+import Username from "agora-rn-uikit/src/Views/Usernames";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function Slot({ navigation, route }) {
 
@@ -13,6 +15,7 @@ export default function Slot({ navigation, route }) {
     const [available, setAvailable] = useState(1);
     const userName = route?.params?.name;
     const id = route?.params?.id;
+    const token = route?.params?.token;
 
     const handleSelect = (no) => {
         setSelect(no);
@@ -27,7 +30,7 @@ export default function Slot({ navigation, route }) {
     
     const handleSubmit = async () => {
         const userId = await AsyncStorage.getItem('id');
-        console.log('userId:', userId, id);
+        console.log('userId:', userId, id, token);
         try {
             const data = {
                 "userId": userId,
@@ -37,6 +40,7 @@ export default function Slot({ navigation, route }) {
                 "userName": userName,
             }
 
+            await sentNotification(token, userId, id, Username, 'You have a new appointment', 'appointment');
             const response = await fetch(`${BaseUrl2}/user/appointment/book`, {
                 method: 'POST',
                 headers: {
@@ -60,7 +64,7 @@ export default function Slot({ navigation, route }) {
 
     return (
         <View style={styles.container}>
-            <HeaderItem2 backgroundColor={colors.blue} textColor={colors.white} text="My Booking Slot" onBack={() => navigation.goBack()} />
+            <HeaderItem2 onPress={()=>navigation.goBack()} backgroundColor={colors.blue} textColor={colors.white} text="My Booking Slot" onBack={() => navigation.goBack()} />
             <ScrollView style={{ width: '100%' }} contentContainerStyle={{ alignItems: 'center' }}>
                 <Text style={{ fontSize: 24, fontFamily: 'Gilroy-SemiBold', color: colors.black, width: '90%', marginTop: '5%' }}>Choose a Slot</Text>
                 <Text style={{ fontSize: 16, fontFamily: 'Gilroy-SemiBold', color: colors.blue, width: '90%', marginTop: '3%' }}>Select Date</Text>
@@ -124,7 +128,7 @@ export default function Slot({ navigation, route }) {
                     </TouchableOpacity>
                 </View>
                 <View style={{ width: '100%', alignItems: 'center', marginTop: '5%', marginBottom: '5%' }}>
-                    <Button2 backgroundColor={colors.blue} onPress={()=>navigation.navigate('AppointmentConfirm', {id: id})} Text="Continue" />
+                    <Button2 backgroundColor={colors.blue} onPress={handleSubmit} Text="Continue" />
                 </View>
             </ScrollView>
         </View>

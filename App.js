@@ -1,4 +1,4 @@
-import { PermissionsAndroid, StyleSheet } from 'react-native'
+import { Alert, AppRegistry, PermissionsAndroid, StyleSheet } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -75,14 +75,33 @@ import Splash from './src/screens/Splash';
 import SettingList from './src/screens/SettingList';
 import { Provider } from 'react-redux';
 import store from './src/components/store';
+import messaging from '@react-native-firebase/messaging';
 import Geolocation from 'react-native-geolocation-service';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import setupCallKeep from './src/components/callkeepSetup';
+import RNCallKeep from 'react-native-callkeep';
+import IncomingCall from './src/screens/IncomingCall';
 
 const Stack = createNativeStackNavigator();
 
 const App = () => {
 
+  async function requestUserPermission() {
+    const authStatus = await messaging().requestPermission();
+    const enabled =
+      authStatus === messaging.AuthorizationStatus.AUTHORIZED ||
+      authStatus === messaging.AuthorizationStatus.PROVISIONAL;
 
+    if (enabled) {
+      console.log('Notification permissions granted:', authStatus);
+    } else {
+      console.log('Notification permissions denied');
+    }
+  }
+
+  useEffect(() => {
+    requestUserPermission();
+  }, []);
 
   return (
     <Provider store={store}>
@@ -158,12 +177,14 @@ const App = () => {
           <Stack.Screen name='MedicalRecord' component={MedicalRecord} options={{ headerShown: false }} />
           <Stack.Screen name='Chat2' component={Chat2} options={{ headerShown: false }} />
           <Stack.Screen name='SettingList' component={SettingList} options={{ headerShown: false }} />
+          <Stack.Screen name='IncomingCall' component={IncomingCall} options={{ headerShown: false }} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
   )
 }
 
+AppRegistry.registerComponent('app', () => App);
 export default App;
 
 const styles = StyleSheet.create({})
